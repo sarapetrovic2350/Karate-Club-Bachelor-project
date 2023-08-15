@@ -1,0 +1,9 @@
+.out {
+  color: black;
+}
+footer{
+  height:10vh;
+  /*Or fixed pixel unit*/
+  background-color: transparent;
+}
+

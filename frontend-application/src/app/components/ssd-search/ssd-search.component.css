@@ -1,0 +1,64 @@
+.mat-card {
+  max-width: 500px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ml {
+  margin-left: 5px;
+}
+
+.btn {
+  margin-left: 10px;
+  height: 50px;
+  width: 100px;
+  border-radius: 10px;
+}
+
+.container {
+  width: 70%;
+  margin: 20px auto auto;
+  border-radius: 3px;
+  border: #DCD6CC 1px solid;
+}
+
+table {
+  width: 100%;
+}
+
+table td {
+  max-width: 100px;
+}
+
+.table-title {
+  padding-bottom: 20px;
+  padding-top: 20px;
+  padding-left: 20px;
+  font-size: 20px;
+
+}
+
+.cell-center {
+  text-align: center;
+}
+
+.clickable:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.table-header {
+  display: flex;
+}
+
+p {
+  float: left;
+  margin-right: auto;
+}
+
+footer{
+  height:20vh;
+  /*Or fixed pixel unit*/
+  background-color: transparent;
+}
