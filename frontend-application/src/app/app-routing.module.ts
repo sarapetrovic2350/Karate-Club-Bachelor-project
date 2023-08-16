@@ -11,6 +11,7 @@ import { LoginComponent} from "./components/login/login.component";
 import  { UpdateUserComponent } from "./components/user-profile/update-user.component";
 import {UserRegistrationComponent} from "./components/user-registration/user-registration.component";
 import {ClubMembersComponent} from "./components/club-members/club-members.component";
+import {StudentGroupInfoComponent} from "./components/student-group-info/student-group-info.component";
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'club-members',
     component: ClubMembersComponent
+  },
+  {
+    path: 'group-info',
+    component: StudentGroupInfoComponent
   },
   {
     path:'search-ram',

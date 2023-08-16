@@ -12,6 +12,8 @@ export class SideNavComponent implements OnInit {
   name: string = "";
   isAdministrator: boolean = false;
   isCoach: boolean = false;
+  isStudent: boolean = false;
+
   @ViewChild('sidenav', {static: true}) sidenav: MatSidenav;
 
   constructor(private userService : UserService) {
@@ -34,6 +36,9 @@ export class SideNavComponent implements OnInit {
     }
     if (role == "COACH") {
       this.isCoach = true;
+    }
+    if (role == "STUDENT") {
+      this.isStudent = true;
     }
     console.log(window.innerWidth)
     if (window.innerWidth < 768) {

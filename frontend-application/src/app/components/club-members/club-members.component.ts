@@ -23,10 +23,11 @@ export class ClubMembersComponent implements OnInit {
   public groups: Group[] = [];
   public dataSourceGroups = new MatTableDataSource<Group>();
   public displayedColumnsGroups = ['name', 'category', 'coach'];
+
   constructor(private userService: UserService, private groupService: GroupService) { }
 
-
   ngOnInit(): void {
+
     this.userService.getAllCoaches().subscribe(
       {
         next: (res) => {
@@ -63,6 +64,7 @@ export class ClubMembersComponent implements OnInit {
         }
 
       });
+
   }
 
 }

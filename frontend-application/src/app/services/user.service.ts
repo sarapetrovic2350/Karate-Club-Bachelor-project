@@ -39,7 +39,7 @@ export class UserService {
   activateAccount(token: string) {
     return this.http.put<any>(this.activate_account_url + token, {headers: this.headers});
   }
-  getCurrentUser(): User {
+  getCurrentUser(): any {
     return JSON.parse(localStorage.getItem('currentUser')!);
   }
   logout() {
