@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
-import {Ram} from "../../models/ram.model";
 import {User} from "../../models/user.model";
 import {UserService} from "../../services/user.service";
+import {Group} from "../../models/group.model";
+import {GroupService} from "../../services/group.service";
 
 @Component({
   selector: 'app-club-members',
@@ -18,7 +19,11 @@ export class ClubMembersComponent implements OnInit {
   public students: User[] = [];
   public dataSourceStudents = new MatTableDataSource<User>();
   public displayedColumnsStudents = ['name', 'surname', 'email', 'phoneNumber', 'beltColor', 'group'];
-  constructor(private userService: UserService) { }
+
+  public groups: Group[] = [];
+  public dataSourceGroups = new MatTableDataSource<Group>();
+  public displayedColumnsGroups = ['name', 'category', 'coach'];
+  constructor(private userService: UserService, private groupService: GroupService) { }
 
 
   ngOnInit(): void {
@@ -39,6 +44,18 @@ export class ClubMembersComponent implements OnInit {
         next: (res) => {
           this.students = res;
           this.dataSourceStudents.data = this.students
+
+        },
+        error: (e) => {
+          console.log(e);
+        }
+
+      });
+    this.groupService.getAllGroups().subscribe(
+      {
+        next: (res) => {
+          this.groups = res;
+          this.dataSourceGroups.data = this.groups
 
         },
         error: (e) => {

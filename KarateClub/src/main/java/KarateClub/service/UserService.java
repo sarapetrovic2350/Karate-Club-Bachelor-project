@@ -26,6 +26,7 @@ import KarateClub.dto.UserUpdateDTO;
 public class UserService implements IUserService {
 
 	private IUserRepository userRepository;
+	private GroupService groupService;
 
 	private AuthorityService authorityService;
 
@@ -36,11 +37,12 @@ public class UserService implements IUserService {
 	private RegisteredUserRepository registeredUserRepository;
 
 	@Autowired
-	public UserService(IUserRepository userRepository, AuthorityService authorityService,
+	public UserService(IUserRepository userRepository, GroupService groupService, AuthorityService authorityService,
 					   ConfirmationTokenService confirmationTokenService, EmailService emailService,
 					   RegisteredUserRepository registeredUserRepository) {
 		super();
 		this.userRepository = userRepository;
+		this.groupService = groupService;
 		this.authorityService = authorityService;
 		this.confirmationTokenService = confirmationTokenService;
 		this.emailService = emailService;
@@ -100,12 +102,13 @@ public class UserService implements IUserService {
 		student.setJmbg(Long.parseLong(userRegistrationDTO.getJmbg()));
 		student.setGender(userRegistrationDTO.getGender());
 		student.setUserType(userRegistrationDTO.getUserType());
-		student.setEnabled(true);
-		Authority authority = authorityService.findByName("STUDENT");
-		student.setAuthority(authority);
 		student.setKarateClub(userRegistrationDTO.getKarateClub());
 		student.setBeltColor(userRegistrationDTO.getBeltColor());
-		student.setGroup(userRegistrationDTO.getGroup());
+		Group group = this.groupService.findById(userRegistrationDTO.getGroupId());
+		student.setGroup(group);
+		Authority authority = authorityService.findByName("STUDENT");
+		student.setAuthority(authority);
+		student.setEnabled(true);
 		userRepository.save(student);
 		ConfirmationToken confirmationToken = confirmationTokenService.saveConfirmationToken(student);
 		//sendConfirmationEmail(registeredUser, confirmationToken);
@@ -114,11 +117,7 @@ public class UserService implements IUserService {
 
 	@Override
 	public User login(JwtAuthenticationRequest authenticationRequest) {
-		System.out.println("u loginu");
-		System.out.println(authenticationRequest.getEmail());
 		User user = findByEmail(authenticationRequest.getEmail());
-		System.out.println(user);
-		System.out.println(user.getName());
 		if (user != null)
 			if (verifyHash(generatePasswordWithSalt(authenticationRequest.getPassword(), user.getSalt()),
 					user.getPassword()))

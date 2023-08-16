@@ -4,6 +4,8 @@ import {Router} from "@angular/router";
 import {User} from "../../models/user.model";
 import Swal from 'sweetalert2';
 import {FormControl, Validators, FormGroup, FormBuilder} from '@angular/forms';
+import {Group} from "../../models/group.model";
+import {GroupService} from "../../services/group.service";
 
 @Component({
   selector: 'app-user-registration',
@@ -13,7 +15,8 @@ import {FormControl, Validators, FormGroup, FormBuilder} from '@angular/forms';
 export class UserRegistrationComponent implements OnInit {
   constructor(
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private groupService: GroupService
   ) { }
   title = 'Registration';
   user = new User();
@@ -25,6 +28,8 @@ export class UserRegistrationComponent implements OnInit {
   country: string="";
   isAdministrator: boolean = false;
   isCoach: boolean = false;
+  groups: Group[] = [];
+  chosenGroup: string = "";
 
   ngOnInit(): void {
     let role = localStorage.getItem('role')
@@ -35,6 +40,10 @@ export class UserRegistrationComponent implements OnInit {
     if (role == "COACH") {
       this.isCoach = true;
     }
+    this.groupService.getAllGroups().subscribe((data:any) => {
+      console.log(data);
+      this.groups = data;
+    })
   }
   email = new FormControl('', [Validators.required, Validators.email]);
   name = new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(30)])
@@ -51,7 +60,7 @@ export class UserRegistrationComponent implements OnInit {
   licenceNumberFormControl = new FormControl('', [Validators.required])
   jmbgFormControl = new FormControl('', [Validators.required, Validators.minLength(13), Validators.maxLength(13)])
 
-
+  groupFormControl = new FormControl( '', [Validators.required])
   getEmailErrorMessage() {
     return this.email.hasError('required') ? 'You must enter email' :
       this.email.hasError('email') ? 'Not a valid email' :
@@ -67,19 +76,25 @@ export class UserRegistrationComponent implements OnInit {
     this.user.address.city = this.city;
     this.user.address.country = this.country;
     this.user.karateClub = admin.karateClub;
+    this.user.groupId = this.chosenGroup;
+    console.log(this.chosenGroup)
     if (this.isCoach) {
       this.user.userType = "STUDENT";
+    }
+    if (this.user.userType == "COACH") {
+      this.user.beltColor = "BLACK";
     }
     console.log(this.user);
     this.userService.registerUser(this.user).subscribe(
       {
         next: (res) => {
-          this.router.navigate(['/login']);
+
           Swal.fire({
             icon: 'success',
             title: 'Success!',
             text: 'Successfully registered to Karate Club!',
           })
+          this.router.navigate(['/club-members']);
 
         },
         error: (e) => {

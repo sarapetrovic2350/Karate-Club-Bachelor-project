@@ -1,8 +1,6 @@
 package KarateClub.model;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "groups")
@@ -18,15 +16,15 @@ public class Group {
     @Enumerated(EnumType.STRING)
     private GroupCategory groupCategory;
 
-//    @ManyToMany(mappedBy = "groups", fetch = FetchType.LAZY)
-//    private Set<Coach> coaches = new HashSet<>();
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "coachId", referencedColumnName = "userId")
+    private Coach coach;
 
 
     public Group(String groupName, GroupCategory groupCategory) {
         super();
         this.groupName = groupName;
         this.groupCategory = groupCategory;
-//        this.coaches = coaches;
     }
 
     public Group() {
@@ -57,12 +55,11 @@ public class Group {
         this.groupCategory = groupCategory;
     }
 
-//    public Set<Coach> getCoaches() {
-//        return coaches;
-//    }
-//
-//    public void setCoaches(Set<Coach> coaches) {
-//        this.coaches = coaches;
-//    }
+    public Coach getCoach() {
+        return coach;
+    }
 
+    public void setCoach(Coach coach) {
+        this.coach = coach;
+    }
 }

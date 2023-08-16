@@ -37,13 +37,10 @@ public class UserRegistrationDTO {
 
 	@NotBlank
 	private UserType userType;
-	
-	@NotBlank
+
 	private String licenceNumber;
 
-	@NotBlank
 	private BeltColor beltColor;
 
-	@NotBlank
-	private Group group;
+	private Long groupId;
 }
