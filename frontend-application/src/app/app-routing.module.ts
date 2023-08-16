@@ -10,6 +10,7 @@ import {SimilarComputersComponent} from "./components/similar-computers/similar-
 import { LoginComponent} from "./components/login/login.component";
 import  { UpdateUserComponent } from "./components/user-profile/update-user.component";
 import {UserRegistrationComponent} from "./components/user-registration/user-registration.component";
+import {ClubMembersComponent} from "./components/club-members/club-members.component";
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'user-registration',
     component: UserRegistrationComponent
+  },
+  {
+    path: 'club-members',
+    component: ClubMembersComponent
   },
   {
     path:'search-ram',

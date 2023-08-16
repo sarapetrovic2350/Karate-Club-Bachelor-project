@@ -20,6 +20,7 @@ import { MatGridListModule } from "@angular/material/grid-list";
 import { MatDividerModule } from "@angular/material/divider";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatListModule } from "@angular/material/list";
+import {MatTabsModule} from "@angular/material/tabs";
 
 @NgModule({
   declarations: [],
@@ -45,7 +46,8 @@ import { MatListModule } from "@angular/material/list";
     MatGridListModule,
     MatDividerModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatTabsModule
   ],
   exports: [
     CommonModule,
@@ -67,7 +69,8 @@ import { MatListModule } from "@angular/material/list";
     MatGridListModule,
     MatDividerModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatTabsModule
   ],
 })
 export class AngularMaterialModule {}

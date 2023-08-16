@@ -17,6 +17,8 @@ public interface IUserService {
 	User login(JwtAuthenticationRequest authenticationRequest);
 
 	List<User> getAllUsers();
+	List<User> getAllStudents();
+	List<User> getAllCoaches();
 
 	User findLoggedInUser();
 

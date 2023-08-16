@@ -55,13 +55,17 @@ public class UserController {
 	}
 
 	@GetMapping(value = "/getAll")
-	public ResponseEntity<List<User>> findAll() {
+	public ResponseEntity<List<User>> getAllUsers() {
 		return new ResponseEntity<List<User>>(userService.getAllUsers(), HttpStatus.OK);
 	}
 
-	@GetMapping(value = "/getAllRegistredUsers")
-	public ResponseEntity<List<User>> findAllRegistredUsers() {
-		return new ResponseEntity<List<User>>(userService.getAllRegistredUsers(), HttpStatus.OK);
+	@GetMapping(value = "/getAllStudents")
+	public ResponseEntity<List<User>> getAllStudents() {
+		return new ResponseEntity<List<User>>(userService.getAllStudents(), HttpStatus.OK);
+	}
+	@GetMapping(value = "/getAllCoaches")
+	public ResponseEntity<List<User>> getAllCoaches() {
+		return new ResponseEntity<List<User>>(userService.getAllCoaches(), HttpStatus.OK);
 	}
 
 	//@PreAuthorize("hasRole('ROLE_REGISTERED_USER')")

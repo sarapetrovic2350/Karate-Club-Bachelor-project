@@ -20,6 +20,8 @@ import { LoginComponent } from "./components/login/login.component";
 import { UpdateUserComponent } from "./components/user-profile/update-user.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {UserRegistrationComponent} from "./components/user-registration/user-registration.component";
+import { ClubMembersComponent } from './components/club-members/club-members.component';
+
 
 @NgModule({
   declarations: [
@@ -35,17 +37,18 @@ import {UserRegistrationComponent} from "./components/user-registration/user-reg
     SideNavComponent,
     LoginComponent,
     UpdateUserComponent,
-    UserRegistrationComponent
+    UserRegistrationComponent,
+    ClubMembersComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    AngularMaterialModule,
-    HttpClientModule,
-    ReactiveFormsModule,
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        AngularMaterialModule,
+        HttpClientModule,
+        ReactiveFormsModule,
 
-  ],
+    ],
   providers: [],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -153,18 +153,31 @@ public class UserService implements IUserService {
 	public List<User> getAllUsers() {
 		return userRepository.findAll();
 	}
-
-	public List<User> getAllRegistredUsers() {
+	@Override
+	public List<User> getAllStudents() {
 
 		List<User> allUsers = userRepository.findAll();
-		List<User> newUsers = new ArrayList<>();
+		List<User> students = new ArrayList<>();
 		for (User user : allUsers) {
 			if (user.getUserType().equals(UserType.STUDENT)) {
-				newUsers.add(user);
+				students.add(user);
 			}
 		}
 
-		return newUsers;
+		return students;
+	}
+	@Override
+	public List<User> getAllCoaches() {
+
+		List<User> allUsers = userRepository.findAll();
+		List<User> coaches = new ArrayList<>();
+		for (User user : allUsers) {
+			if (user.getUserType().equals(UserType.COACH)) {
+				coaches.add(user);
+			}
+		}
+
+		return coaches;
 	}
 
 	public User findById(Long id) throws AccessDeniedException {
@@ -249,7 +262,7 @@ public class UserService implements IUserService {
 
 	public List<User> findUserByNameAndSurnameForCenterAdmin(String name, String surname) {
 		List<User> usersFind = new ArrayList<User>();
-		List<User> users = getAllRegistredUsers();
+		List<User> users = getAllUsers();
 		for (User user : users) {
 			if (name.equals("null") || surname.equals("null")) {
 				if (user.getName().toLowerCase().contains(name.toLowerCase().trim())

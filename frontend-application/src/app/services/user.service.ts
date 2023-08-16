@@ -53,4 +53,12 @@ export class UserService {
   updateUser(user: any): Observable<any> {
     return this.http.put<any>(this.apiHost + 'user/update' , user, {headers: this.headers});
   }
+
+  getAllCoaches() {
+    return this.http.get<User[]>(this.apiHost + "user/getAllCoaches", {headers: this.headers});
+  }
+  getAllStudents() {
+    return this.http.get<User[]>(this.apiHost + "user/getAllStudents", {headers: this.headers});
+  }
+
 }
