@@ -1,13 +1,11 @@
 package KarateClub.service;
 
+import KarateClub.dto.NewGroupDTO;
 import KarateClub.iservice.IGroupService;
-import KarateClub.iservice.IUserService;
+import KarateClub.model.Coach;
 import KarateClub.model.Group;
-import KarateClub.model.User;
 import KarateClub.repository.IGroupRepository;
-import KarateClub.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,5 +27,19 @@ public class GroupService implements IGroupService {
     @Override
     public Group findById(Long id) {
         return groupRepository.findByGroupId(id);
+    }
+
+    @Override
+    public Group saveGroupWithCoach(Group group) {
+        return groupRepository.save(group);
+    }
+
+    @Override
+    public Group createGroup(NewGroupDTO newGroupDTO, Coach coach) {
+        Group group = new Group();
+        group.setGroupName(newGroupDTO.getGroupName());
+        group.setGroupCategory(newGroupDTO.getGroupCategory());
+        group.setCoach(coach);
+        return groupRepository.save(group);
     }
 }

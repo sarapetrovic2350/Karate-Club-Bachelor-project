@@ -29,7 +29,9 @@ export class UserRegistrationComponent implements OnInit {
   isAdministrator: boolean = false;
   isCoach: boolean = false;
   groups: Group[] = [];
+  availableGroupsForCoach: Group[] = [];
   chosenGroup: string = "";
+  noAvailableGroups: boolean = false;
 
   ngOnInit(): void {
     let role = localStorage.getItem('role')
@@ -40,10 +42,7 @@ export class UserRegistrationComponent implements OnInit {
     if (role == "COACH") {
       this.isCoach = true;
     }
-    this.groupService.getAllGroups().subscribe((data:any) => {
-      console.log(data);
-      this.groups = data;
-    })
+
   }
   email = new FormControl('', [Validators.required, Validators.email]);
   name = new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(30)])
@@ -109,5 +108,33 @@ export class UserRegistrationComponent implements OnInit {
         }
 
       });
+  }
+
+  findAvailableGroups() {
+    this.groupService.getAllGroups().subscribe((data:any) => {
+      console.log(data);
+
+      if(this.user.userType == "COACH") {
+        console.log(this.user.userType)
+        for (let i=0; i < data.length; i++) {
+          if(data[i].coach == null) {
+            this.availableGroupsForCoach.push(data[i]);
+            console.log(this.availableGroupsForCoach)
+
+            this.noAvailableGroups = false;
+          }
+        }
+        this.groups = this.availableGroupsForCoach
+        console.log(this.groups)
+        if(this.groups.length == 0) {
+          this.noAvailableGroups = true;
+        }
+      }
+      else {
+        this.groups = data;
+        this.availableGroupsForCoach = [];
+        this.noAvailableGroups = false;
+      }
+    })
   }
 }

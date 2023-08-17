@@ -10,7 +10,7 @@
         <div>
           <mat-form-field *ngIf="isAdministrator" appearance="fill">
             <mat-label>User type</mat-label>
-            <mat-select name ="role" matNativeControl [(ngModel)]="user.userType" [formControl]="roleFormControl" required>
+            <mat-select name ="role" matNativeControl (ngModelChange)="findAvailableGroups()" [(ngModel)]="user.userType" [formControl]="roleFormControl" required>
               <mat-option value="COACH">COACH</mat-option>
               <mat-option value="STUDENT">STUDENT</mat-option>
             </mat-select>
@@ -66,9 +66,9 @@
           </mat-form-field>
           <label *ngIf="!passwordMatchValidator()" style="color: red;">Passwords do not match</label>
 
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="fill"  *ngIf="!noAvailableGroups">
             <mat-label>Select group</mat-label>
-            <mat-select name="groups" [(ngModel)]="chosenGroup" [formControl]="groupFormControl" required>
+            <mat-select name="groups"  [(ngModel)]="chosenGroup" [formControl]="groupFormControl" required>
               <mat-option [value]="null" disabled>Select group</mat-option>
               <mat-option *ngFor="let group of groups" [value]="group.groupId">
                 {{group.groupName}}</mat-option>
@@ -119,7 +119,7 @@
       <button color="primary" [disabled]="email.invalid || name.invalid || lastName.invalid || password.invalid || passwordConfirm.invalid
               || streetFormControl.invalid || streetNumberFormControl.invalid ||
                cityFormControl.invalid || countryFormControl.invalid
-               || genderFormControl.invalid || jmbgFormControl.invalid || groupFormControl.invalid"
+               || genderFormControl.invalid || jmbgFormControl.invalid"
               class="btn" mat-raised-button type="submit">REGISTER {{user.userType}}</button><br>
     </form>
     <mat-spinner *ngIf="submitted" mode="indeterminate"></mat-spinner>

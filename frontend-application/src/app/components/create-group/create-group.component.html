@@ -1,0 +1,48 @@
+<mat-card elevation="5" fxFlex class="content">
+  <mat-card-title>
+    <h2>{{title}}</h2>
+  </mat-card-title>
+  <mat-card-content>
+    <p></p>
+    <form (ngSubmit)="onSubmit()" *ngIf="!submitted">
+      <div class="row">
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Group category</mat-label>
+            <mat-select name ="category" matNativeControl [(ngModel)]="group.groupCategory" [formControl]="categoryFormControl" required>
+              <mat-option value="PIONEERS">PIONEERS</mat-option>
+              <mat-option value="CADETS">CADETS</mat-option>
+              <mat-option value="JUNIORS">JUNIORS</mat-option>
+              <mat-option value="SENIORS">SENIORS</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Group name: </mat-label>
+            <input matInput name="name" [(ngModel)]="group.groupName" [formControl]="name" required>
+            <mat-error *ngIf="name.invalid">You must enter group name</mat-error>
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill" >
+            <mat-label>Select coach</mat-label>
+            <mat-select name="coaches" [(ngModel)]="group.coachId">
+              <mat-option [value]="null" disabled>Select coach</mat-option>
+              <mat-option *ngFor="let coach of coaches" [value]="coach.userId">
+                {{coach.name}} {{coach.surname}}</mat-option>
+            </mat-select>
+          </mat-form-field><br>
+        </div>
+
+      </div>
+      <br><br>
+      <button color="primary" [disabled]="name.invalid || categoryFormControl.invalid"
+              class="btn" mat-raised-button type="submit">CREATE GROUP</button><br>
+    </form>
+    <mat-spinner *ngIf="submitted" mode="indeterminate"></mat-spinner>
+  </mat-card-content>
+</mat-card>
+<footer></footer>
+
+
+

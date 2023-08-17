@@ -27,9 +27,9 @@ VALUES ('Coach', default, 'Mila', 'Milakovic', '2610996805047', 'mila@gmail.com'
 INSERT INTO public.groups (group_id, group_name, group_category, coach_id) VALUES (default, 'Pioniri','PIONEERS', '2');
 INSERT INTO public.groups (group_id, group_name, group_category, coach_id) VALUES (default, 'Kadeti','CADETS', '3');
 INSERT INTO public.groups (group_id, group_name, group_category, coach_id) VALUES (default, 'Juniori G1','JUNIORS', '3');
-INSERT INTO public.groups (group_id, group_name, group_category, coach_id) VALUES (default, 'Juniori G2','JUNIORS', '3');
-INSERT INTO public.groups (group_id, group_name, group_category, coach_id) VALUES (default, 'Mladji seniori','SENIORS', '2');
-INSERT INTO public.groups (group_id, group_name, group_category, coach_id) VALUES (default, 'Stariji seniori','SENIORS', '2');
+INSERT INTO public.groups (group_id, group_name, group_category, coach_id) VALUES (default, 'Juniori G2','JUNIORS', '2');
+INSERT INTO public.groups (group_id, group_name, group_category, coach_id) VALUES (default, 'Mladji seniori','SENIORS', null);
+INSERT INTO public.groups (group_id, group_name, group_category, coach_id) VALUES (default, 'Stariji seniori','SENIORS', null);
 
 -- STUDENT email: marija@gmail.com password: marija Juniori G1, Klub Nippon
 INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)

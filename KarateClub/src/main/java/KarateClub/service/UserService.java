@@ -75,12 +75,17 @@ public class UserService implements IUserService {
 		coach.setJmbg(Long.parseLong(userRegistrationDTO.getJmbg()));
 		coach.setGender(userRegistrationDTO.getGender());
 		coach.setUserType(userRegistrationDTO.getUserType());
-		coach.setEnabled(true);
 		Authority authority = authorityService.findByName("COACH");
 		coach.setAuthority(authority);
 		coach.setLicenceNumber(userRegistrationDTO.getLicenceNumber());
 		coach.setKarateClub(userRegistrationDTO.getKarateClub());
+		coach.setEnabled(true);
 		userRepository.save(coach);
+		if (userRegistrationDTO.getGroupId() != null) {
+			Group group = this.groupService.findById(userRegistrationDTO.getGroupId());
+			group.setCoach(coach);
+			groupService.saveGroupWithCoach(group);
+		}
 		ConfirmationToken confirmationToken = confirmationTokenService.saveConfirmationToken(coach);
 		//sendConfirmationEmail(registeredUser, confirmationToken);
 		return coach;

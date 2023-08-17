@@ -21,7 +21,9 @@ export class ClubMembersComponent implements OnInit {
   public displayedColumnsStudents = ['name', 'surname', 'email', 'phoneNumber', 'beltColor', 'group'];
 
   public groups: Group[] = [];
+  public groupsWithoutCoach: Group[] = [];
   public dataSourceGroups = new MatTableDataSource<Group>();
+  public dataSourceGroupsWithoutCoaches = new MatTableDataSource<Group>();
   public displayedColumnsGroups = ['name', 'category', 'coach'];
 
   constructor(private userService: UserService, private groupService: GroupService) { }
@@ -54,10 +56,19 @@ export class ClubMembersComponent implements OnInit {
       });
     this.groupService.getAllGroups().subscribe(
       {
-        next: (res) => {
-          this.groups = res;
+        next: (res: any) => {
+          for (let i=0; i < res.length; i++) {
+            if (res[i].coach == null) {
+              this.groupsWithoutCoach.push(res[i]);
+            }
+            else {
+              this.groups.push(res[i]);
+            }
+          }
           this.dataSourceGroups.data = this.groups
+          this.dataSourceGroupsWithoutCoaches.data = this.groupsWithoutCoach
 
+          console.log(this.groups)
         },
         error: (e) => {
           console.log(e);

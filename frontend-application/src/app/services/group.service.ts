@@ -14,4 +14,7 @@ export class GroupService {
   getAllGroups() {
     return this.http.get<Group[]>(this.apiHost + "/getAll", {headers: this.headers});
   }
+  createGroup(group: Group) {
+    return this.http.post<Group>(this.apiHost + '/createGroup', group);
+  }
 }

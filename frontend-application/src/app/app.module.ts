@@ -22,6 +22,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {UserRegistrationComponent} from "./components/user-registration/user-registration.component";
 import { ClubMembersComponent } from './components/club-members/club-members.component';
 import { StudentGroupInfoComponent } from './components/student-group-info/student-group-info.component';
+import { CreateGroupComponent } from './components/create-group/create-group.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { StudentGroupInfoComponent } from './components/student-group-info/stude
     UpdateUserComponent,
     UserRegistrationComponent,
     ClubMembersComponent,
-    StudentGroupInfoComponent
+    StudentGroupInfoComponent,
+    CreateGroupComponent
   ],
     imports: [
         BrowserModule,

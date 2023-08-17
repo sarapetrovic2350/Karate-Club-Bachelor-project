@@ -12,6 +12,7 @@ import  { UpdateUserComponent } from "./components/user-profile/update-user.comp
 import {UserRegistrationComponent} from "./components/user-registration/user-registration.component";
 import {ClubMembersComponent} from "./components/club-members/club-members.component";
 import {StudentGroupInfoComponent} from "./components/student-group-info/student-group-info.component";
+import {CreateGroupComponent} from "./components/create-group/create-group.component";
 
 const routes: Routes = [
   {
@@ -29,6 +30,10 @@ const routes: Routes = [
   {
     path: 'user-registration',
     component: UserRegistrationComponent
+  },
+  {
+    path: 'create-group',
+    component: CreateGroupComponent
   },
   {
     path: 'club-members',

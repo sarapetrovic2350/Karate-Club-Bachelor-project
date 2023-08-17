@@ -30,8 +30,11 @@
       <a *ngIf="isCoach" mat-list-item  routerLink="/user-registration">
         <mat-icon>person_add</mat-icon> Register New Student
       </a>
+      <a *ngIf="isAdministrator" mat-list-item  routerLink="/create-group">
+        <mat-icon>people</mat-icon> Create New Group
+      </a>
       <a *ngIf="isCoach || isAdministrator"  mat-list-item routerLink="/club-members">
-        <mat-icon>content_paste</mat-icon> Club Members
+        <mat-icon>content_paste</mat-icon> Club Members and Groups
       </a>
       <a *ngIf="isStudent" mat-list-item routerLink="/group-info">
         <mat-icon>content_paste</mat-icon> Group information
