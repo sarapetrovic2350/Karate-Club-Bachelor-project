@@ -8,6 +8,7 @@ INSERT INTO public.address (city, country, street, street_number) VALUES ('Novi 
 INSERT INTO public.address (city, country, street, street_number) VALUES ('Temerin', 'Srbija', 'Novosadska', '371');
 INSERT INTO public.address (city, country, street, street_number) VALUES ('Novi Sad', 'Srbija', 'Maksima Gorkog', '84');
 INSERT INTO public.address (city, country, street, street_number) VALUES ('Novi Sad', 'Srbija', 'Pascanova', '159');
+INSERT INTO public.address (city, country, street, street_number) VALUES ('Budapest', 'Hungary', 'Stefania Ut 2.', '1143');
 
 INSERT INTO public.karate_clubs (club_id, name, phone_number,address_id) VALUES (default, 'Karate Klub Nippon', '+3810603981759', '1');
 INSERT INTO public.karate_clubs (club_id, name, phone_number, address_id) VALUES (default, 'Karate Klub Mladost', '+3810615931726', '2');
@@ -34,3 +35,10 @@ INSERT INTO public.groups (group_id, group_name, group_category, coach_id) VALUE
 -- STUDENT email: marija@gmail.com password: marija Juniori G1, Klub Nippon
 INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)
 VALUES ('Student', default, 'Marija', 'Nikolic', '03080058805039', 'marija@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'ETk76xQWhz1JOKRDzp/CDQ==', 'FEMALE', '+381642258974', 'STUDENT','RED', '4', '1','3', '3', true);
+
+INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'KUP VOJVODINE 2023','Kup Vojvodine za kadete/kinje – juniore/ke i seniore/ke odrzace se u Sportskoj hali- Novi Becej.', '2023-09-15', 'Novi Becej, Srbija', 'karate1.jpg');
+INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'Balkansko prvenstvo 2023','Balkansko prvenstvo za pionire i kadete', '2023-09-22', 'Skopje, Makedonija', 'karate3.jpg');
+INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'Prvenstvo Balkana','Prvenstvo Balkana za seniore i juniore u Porecu', '2023-10-17', 'Porec, Hrvatska', 'porec.jpg');
+INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'JKA – WSKA OTVORENI MILOŠ KUP 2023','Miloš Kup 2023 odrzace se u Hali sprotova u Trsteniku.', '2023-10-15', 'Trstenik, Srbija', 'karate2.jpg');
+INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, '2023 Mediterranean Karate Championships','The 29th edition of the Mediterranean Karate Championships in Tunis', '2023-10-05', 'Tunis, Tunisia', 'tunis.jpg');
+INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'World Senior Championships','The magnificent Papp Laszlo Sports Arena in Budapest will host the 26th World Senior Championships', '2023-11-26', 'Budapest, Hungary', 'karate1.jpg');
