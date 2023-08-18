@@ -13,6 +13,7 @@ import {UserRegistrationComponent} from "./components/user-registration/user-reg
 import {ClubMembersComponent} from "./components/club-members/club-members.component";
 import {StudentGroupInfoComponent} from "./components/student-group-info/student-group-info.component";
 import {CreateGroupComponent} from "./components/create-group/create-group.component";
+import {CompetitionsComponent} from "./components/competitions/competitions.component";
 
 const routes: Routes = [
   {
@@ -42,6 +43,10 @@ const routes: Routes = [
   {
     path: 'group-info',
     component: StudentGroupInfoComponent
+  },
+  {
+    path: 'competitions',
+    component: CompetitionsComponent
   },
   {
     path:'search-ram',

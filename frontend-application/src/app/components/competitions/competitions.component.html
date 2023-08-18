@@ -1,0 +1,36 @@
+<div>
+  <div class="row">
+    <div class="card" *ngFor="let c of competitions | paginate : {
+      itemsPerPage: pageSize,
+      currentPage: page,
+      totalItems: count}">
+      <img :src="../assets/images/{{c.image}}" class="card-img-top" sty alt="Missing image">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item ">
+          <strong>Name: </strong><br>{{c.competitionName}}
+        </li>
+        <li *ngIf="c.description !== null" class="list-group-item height"><strong>Description:</strong><br>
+          {{c.description}}</li>
+        <br>
+        <li class="list-group-item"><strong>Date:</strong>
+           {{c.date[2]}}.{{c.date[1]}}.{{c.date[0]}}.
+        </li>
+        <li class="list-group-item"><strong>Place:</strong>
+          {{c.place}}
+        </li>
+
+
+<!--        <p *ngIf="loggedInRegisteredUser" class="list-group-item">Want to schedule appointment?</p>-->
+<!--        <button *ngIf="loggedInRegisteredUser" color="primary" mat-raised-button type="submit"-->
+<!--                (click)="viewAppointments(mc.centerId)">View predefined appointments</button>-->
+      </ul>
+
+    </div>
+  </div>
+  <div class="footer">
+    <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="handlePageChange($event)"
+                         [responsive]="true"></pagination-controls>
+  </div>
+  <br><br>
+
+</div>

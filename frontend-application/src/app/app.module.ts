@@ -23,7 +23,8 @@ import {UserRegistrationComponent} from "./components/user-registration/user-reg
 import { ClubMembersComponent } from './components/club-members/club-members.component';
 import { StudentGroupInfoComponent } from './components/student-group-info/student-group-info.component';
 import { CreateGroupComponent } from './components/create-group/create-group.component';
-
+import { CompetitionsComponent } from './components/competitions/competitions.component';
+import {NgxPaginationModule} from "ngx-pagination";
 
 @NgModule({
   declarations: [
@@ -42,7 +43,9 @@ import { CreateGroupComponent } from './components/create-group/create-group.com
     UserRegistrationComponent,
     ClubMembersComponent,
     StudentGroupInfoComponent,
-    CreateGroupComponent
+    CreateGroupComponent,
+    CompetitionsComponent,
+
   ],
     imports: [
         BrowserModule,
@@ -51,6 +54,7 @@ import { CreateGroupComponent } from './components/create-group/create-group.com
         AngularMaterialModule,
         HttpClientModule,
         ReactiveFormsModule,
+        NgxPaginationModule
 
     ],
   providers: [],

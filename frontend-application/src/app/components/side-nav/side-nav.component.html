@@ -3,7 +3,7 @@
   <div *ngIf="!isLoggedIn">Karate Club</div>
   <div *ngIf="isLoggedIn">{{name}}</div>
   <span>
-    <button (click)="sidenav.toggle()" class="icon-button"><img class="icon" src="../../../assets/images/karate1.png"></button>
+    <button (click)="sidenav.toggle()" class="icon-button"><img class="icon" src="../../../assets/images/logo.png"></button>
   </span>
   <span class="flexExpand"></span>
     <div>
@@ -42,8 +42,8 @@
       <a mat-list-item routerLink="/purposes">
         <mat-icon>library_books</mat-icon> Typography
       </a>
-      <a mat-list-item>
-        <mat-icon>location_on</mat-icon> Maps
+      <a mat-list-item routerLink="/competitions">
+        <mat-icon>location_on</mat-icon> Competitions
       </a>
       <a mat-list-item>
         <mat-icon>calendar_today</mat-icon> Calendar
