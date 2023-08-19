@@ -1,9 +1,11 @@
 package KarateClub.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "karate_clubs")
+@Table(name = "clubs")
 public class KarateClub {
 
     @Id
@@ -18,6 +20,8 @@ public class KarateClub {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "addressId", referencedColumnName = "addressId")
     private Address address;
+    @ManyToMany(mappedBy = "registeredClubs", fetch = FetchType.LAZY)
+    private Set<Competition> competitions = new HashSet<>();
 
     public KarateClub(String name, String phoneNumber, Address address) {
         super();
@@ -60,5 +64,13 @@ public class KarateClub {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public Set<Competition> getCompetitions() {
+        return competitions;
+    }
+
+    public void setCompetitions(Set<Competition> competitions) {
+        this.competitions = competitions;
     }
 }

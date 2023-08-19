@@ -2,6 +2,8 @@ package KarateClub.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "competitions")
@@ -21,6 +23,15 @@ public class Competition {
     private String place;
     @Column(name = "image")
     private String image;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinTable(name = "competitions_clubs",
+            joinColumns = {
+                    @JoinColumn(name = "competition_id", referencedColumnName = "competitionId",
+                            nullable = false, updatable = false)},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "club_id", referencedColumnName = "clubId",
+                            nullable = false, updatable = false)})
+    private Set<KarateClub> registeredClubs = new HashSet<>();
     public Competition(String competitionName, String description, LocalDate date, String place, String image) {
         this.competitionName = competitionName;
         this.description = description;
@@ -78,5 +89,13 @@ public class Competition {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public Set<KarateClub> getRegisteredClubs() {
+        return registeredClubs;
+    }
+
+    public void setRegisteredClubs(Set<KarateClub> registeredClubs) {
+        this.registeredClubs = registeredClubs;
     }
 }

@@ -10,8 +10,9 @@ INSERT INTO public.address (city, country, street, street_number) VALUES ('Novi 
 INSERT INTO public.address (city, country, street, street_number) VALUES ('Novi Sad', 'Srbija', 'Pascanova', '159');
 INSERT INTO public.address (city, country, street, street_number) VALUES ('Budapest', 'Hungary', 'Stefania Ut 2.', '1143');
 
-INSERT INTO public.karate_clubs (club_id, name, phone_number,address_id) VALUES (default, 'Karate Klub Nippon', '+3810603981759', '1');
-INSERT INTO public.karate_clubs (club_id, name, phone_number, address_id) VALUES (default, 'Karate Klub Mladost', '+3810615931726', '2');
+INSERT INTO public.clubs (club_id, name, phone_number,address_id) VALUES (default, 'Karate Klub Nippon', '+3810603981759', '1');
+INSERT INTO public.clubs (club_id, name, phone_number, address_id) VALUES (default, 'Karate Klub Mladost', '+3810615931726', '2');
+INSERT INTO public.clubs (club_id, name, phone_number, address_id) VALUES (default, 'Karate Klub Grande', '+3610615931726', '7');
 
 -- ADMINISTRATOR email: sara@gmail.com password: sarap
 INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, address_id, club_id, authority_id, enabled)
@@ -42,3 +43,9 @@ INSERT INTO public.competitions (competition_id, competition_name, description, 
 INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'JKA – WSKA OTVORENI MILOŠ KUP 2023','Miloš Kup 2023 odrzace se u Hali sprotova u Trsteniku.', '2023-10-15', 'Trstenik, Srbija', 'karate2.jpg');
 INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, '2023 Mediterranean Karate Championships','The 29th edition of the Mediterranean Karate Championships in Tunis', '2023-10-05', 'Tunis, Tunisia', 'tunis.jpg');
 INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'World Senior Championships','The magnificent Papp Laszlo Sports Arena in Budapest will host the 26th World Senior Championships', '2023-11-26', 'Budapest, Hungary', 'karate1.jpg');
+
+
+INSERT INTO public.competitions_clubs(competition_id, club_id) VALUES ('1', '2');
+INSERT INTO public.competitions_clubs(competition_id, club_id) VALUES ('1', '3');
+INSERT INTO public.competitions_clubs(competition_id, club_id) VALUES ('2', '3');
+INSERT INTO public.competitions_clubs(competition_id, club_id) VALUES ('1', '1');
