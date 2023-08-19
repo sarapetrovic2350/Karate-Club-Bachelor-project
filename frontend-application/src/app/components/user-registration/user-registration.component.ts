@@ -29,6 +29,7 @@ export class UserRegistrationComponent implements OnInit {
   isAdministrator: boolean = false;
   isCoach: boolean = false;
   groups: Group[] = [];
+  groupsForStudents: Group[] = [];
   availableGroupsForCoach: Group[] = [];
   chosenGroup: string = "";
   noAvailableGroups: boolean = false;
@@ -42,6 +43,10 @@ export class UserRegistrationComponent implements OnInit {
     if (role == "COACH") {
       this.isCoach = true;
     }
+    this.groupService.getAllGroups().subscribe((data:any) => {
+      console.log(data);
+      this.groupsForStudents = data;
+    })
 
   }
   email = new FormControl('', [Validators.required, Validators.email]);

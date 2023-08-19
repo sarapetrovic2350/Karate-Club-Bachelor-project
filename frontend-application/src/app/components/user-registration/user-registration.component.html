@@ -66,11 +66,19 @@
           </mat-form-field>
           <label *ngIf="!passwordMatchValidator()" style="color: red;">Passwords do not match</label>
 
-          <mat-form-field appearance="fill"  *ngIf="!noAvailableGroups">
+          <mat-form-field appearance="fill"  *ngIf="!noAvailableGroups && isAdministrator">
             <mat-label>Select group</mat-label>
             <mat-select name="groups"  [(ngModel)]="chosenGroup" [formControl]="groupFormControl" required>
               <mat-option [value]="null" disabled>Select group</mat-option>
               <mat-option *ngFor="let group of groups" [value]="group.groupId">
+                {{group.groupName}}</mat-option>
+            </mat-select>
+          </mat-form-field><br>
+          <mat-form-field appearance="fill"  *ngIf="isCoach">
+            <mat-label>Select group</mat-label>
+            <mat-select name="groupsForStudents" [(ngModel)]="chosenGroup" [formControl]="groupFormControl" required>
+              <mat-option [value]="null" disabled>Select group</mat-option>
+              <mat-option *ngFor="let group of groupsForStudents" [value]="group.groupId">
                 {{group.groupName}}</mat-option>
             </mat-select>
           </mat-form-field><br>

@@ -1,10 +1,11 @@
 package KarateClub.controller;
 
+import KarateClub.dto.CompetitionDTO;
 import KarateClub.model.Competition;
-import KarateClub.model.MedicalCenter;
 import KarateClub.service.CompetitionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -12,7 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,8 +31,8 @@ public class CompetitionController {
         this.competitionService = competitionService;
     }
     @GetMapping(value = "/getAll")
-    public ResponseEntity<List<Competition>> getAllCompetitions() {
-        return new ResponseEntity<List<Competition>>(competitionService.getAllCompetitions(), HttpStatus.OK);
+    public ResponseEntity<List<CompetitionDTO>> getAllCompetitions() {
+        return new ResponseEntity<List<CompetitionDTO>>(competitionService.getAllCompetitions(), HttpStatus.OK);
     }
     @GetMapping("/findAll")
     public ResponseEntity<Map<String, Object>> findAllWithPagination(
@@ -40,10 +40,11 @@ public class CompetitionController {
             @RequestParam(defaultValue = "3") int size
     ) {
         try {
-            List<Competition> competitions;
+            List<CompetitionDTO> competitions;
             Pageable paging = PageRequest.of(page, size);
 
-            Page<Competition> pageCompetitions = competitionService.findAll(paging);
+            List<CompetitionDTO> competitionsDTO = competitionService.getAllCompetitions();
+            Page<CompetitionDTO> pageCompetitions = new PageImpl<>(competitionsDTO);
             competitions = pageCompetitions.getContent();
 
             Map<String, Object> response = new HashMap<>();
@@ -55,6 +56,18 @@ public class CompetitionController {
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/registerClubToCompetition")
+    public ResponseEntity<?> registerClubToCompetition(
+            @RequestParam(required = true) Long competitionId,
+            @RequestParam(required = true) Long clubId) {
+        try {
+            this.competitionService.registerClubToCompetition(competitionId, clubId);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 

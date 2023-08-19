@@ -1,5 +1,7 @@
 package KarateClub.model;
 
+import net.minidev.json.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,6 +22,8 @@ public class KarateClub {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "addressId", referencedColumnName = "addressId")
     private Address address;
+
+    @JsonIgnore
     @ManyToMany(mappedBy = "registeredClubs", fetch = FetchType.LAZY)
     private Set<Competition> competitions = new HashSet<>();
 
@@ -66,11 +70,4 @@ public class KarateClub {
         this.address = address;
     }
 
-    public Set<Competition> getCompetitions() {
-        return competitions;
-    }
-
-    public void setCompetitions(Set<Competition> competitions) {
-        this.competitions = competitions;
-    }
 }
