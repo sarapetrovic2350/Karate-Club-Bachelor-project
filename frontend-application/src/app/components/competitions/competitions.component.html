@@ -19,10 +19,9 @@
           {{c.place}}
         </li>
 
-
-<!--        <p *ngIf="loggedInRegisteredUser" class="list-group-item">Want to schedule appointment?</p>-->
-<!--        <button *ngIf="loggedInRegisteredUser" color="primary" mat-raised-button type="submit"-->
-<!--                (click)="viewAppointments(mc.centerId)">View predefined appointments</button>-->
+        <p *ngIf="isAdministrator" class="list-group-item">Want to register club to competition?</p>
+        <button *ngIf="isAdministrator" color="primary" mat-raised-button type="submit"
+                (click)="registerClubToCompetition(c.competitionId)">Register club</button>
       </ul>
 
     </div>
