@@ -220,3 +220,18 @@ mat-grid-tile {
     visibility: visible !important;
   }
 }
+/*.fc .fc-daygrid-day> .fc-content{*/
+/*  white-space: nowrap !important;*/
+/*  overflow: hidden !important;*/
+/*}*/
+.fc .fc-event {
+  /* force events to be one-line tall */
+  white-space: normal !important;
+  overflow: hidden;
+  align-content: center;
+  width:fit-content;
+}
+
+.fc .fc-daygrid-day.fc-day-today {
+  background-color: rgb(228, 235, 255);
+}

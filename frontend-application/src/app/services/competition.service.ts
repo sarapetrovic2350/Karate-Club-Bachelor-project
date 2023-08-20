@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Competition} from "../models/competition.model";
+import {Group} from "../models/group.model";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,9 @@ export class CompetitionService {
 
   constructor(private http: HttpClient) {
   }
-
+  getAll() {
+    return this.http.get<Competition[]>(this.apiHost + "/getAll", {headers: this.headers});
+  }
   getAllCompetitions(params: any): Observable<Competition[]> {
     return this.http.get<Competition[]>(this.apiHost + "/findAll", {params});
   }

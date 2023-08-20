@@ -14,6 +14,7 @@ import {ClubMembersComponent} from "./components/club-members/club-members.compo
 import {StudentGroupInfoComponent} from "./components/student-group-info/student-group-info.component";
 import {CreateGroupComponent} from "./components/create-group/create-group.component";
 import {CompetitionsComponent} from "./components/competitions/competitions.component";
+import {CalendarComponent} from "./components/calendar/calendar.component";
 
 const routes: Routes = [
   {
@@ -47,6 +48,10 @@ const routes: Routes = [
   {
     path: 'competitions',
     component: CompetitionsComponent
+  },
+  {
+    path: 'calendar',
+    component: CalendarComponent
   },
   {
     path:'search-ram',

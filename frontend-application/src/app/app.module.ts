@@ -25,7 +25,8 @@ import { StudentGroupInfoComponent } from './components/student-group-info/stude
 import { CreateGroupComponent } from './components/create-group/create-group.component';
 import { CompetitionsComponent } from './components/competitions/competitions.component';
 import {NgxPaginationModule} from "ngx-pagination";
-
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { CalendarComponent } from './components/calendar/calendar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +46,7 @@ import {NgxPaginationModule} from "ngx-pagination";
     StudentGroupInfoComponent,
     CreateGroupComponent,
     CompetitionsComponent,
+    CalendarComponent,
 
   ],
     imports: [
@@ -54,7 +56,8 @@ import {NgxPaginationModule} from "ngx-pagination";
         AngularMaterialModule,
         HttpClientModule,
         ReactiveFormsModule,
-        NgxPaginationModule
+        NgxPaginationModule,
+        FullCalendarModule
 
     ],
   providers: [],
