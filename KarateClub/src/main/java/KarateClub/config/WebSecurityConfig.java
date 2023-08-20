@@ -98,7 +98,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers(HttpMethod.POST, "/auth/login", "/user/registerUser", "/group/createGroup", "/competition/registerClubToCompetition");
         web.ignoring().antMatchers(HttpMethod.PUT, "/centerAdministrator/changePassword", "/user/changePassword", "/auth/activate-account/*");
         web.ignoring().antMatchers(HttpMethod.GET, "/user/getAll", "/user/getAllStudents", "/user/getAllCoaches",
-                "/group/getAll", "/competition/findAll", "/competition/getAll",
+                "/group/getAll", "/competition/findAll", "/competition/getAll", "/competition/checkIfClubIsRegistered",
                 "/centerAdministrator/getAll", "/user/getUserById/{userId}", "/user/getUserByEmail/{email}",
                 "/medicalCenter/getMedicalCenterById/{centerId}",
                 "/medicalCenter/searchMedicalCenterByNameAndPlace/{name}/{place}",

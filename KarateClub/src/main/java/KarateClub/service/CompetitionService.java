@@ -11,7 +11,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -46,8 +48,19 @@ public class CompetitionService implements ICompetitionService {
     }
 
     @Override
-    public Page<CompetitionDTO> findAll(Pageable pageable) {
-        Page <CompetitionDTO> competitionDTOS = (Page<CompetitionDTO>) competitionRepository.findAll(pageable).stream().map(competition -> new CompetitionDTO(competition)).collect(Collectors.toList());
-        return competitionDTOS;
+    public Boolean checkIfClubIsRegisteredToCompetition(Long competitionId, Long clubId) {
+        Competition competition = competitionRepository.findByCompetitionId(competitionId);
+        KarateClub karateClub = karateClubService.findById(clubId);
+        Set<KarateClub> registeredClubs = competition.getRegisteredClubs();
+        for(KarateClub registeredClub : registeredClubs) {
+            if(registeredClub == karateClub)
+                return true;
+        }
+        return false;
     }
+
+//    @Override
+//    public Page<CompetitionDTO> findAll(Pageable pageable) {
+//        return (Page<CompetitionDTO>) competitionRepository.findAll(pageable).stream().map(competition -> new CompetitionDTO(competition)).collect(Collectors.toList());
+//    }
 }

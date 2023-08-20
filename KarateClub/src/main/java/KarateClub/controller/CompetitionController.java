@@ -1,7 +1,6 @@
 package KarateClub.controller;
 
 import KarateClub.dto.CompetitionDTO;
-import KarateClub.model.Competition;
 import KarateClub.service.CompetitionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -69,6 +68,17 @@ public class CompetitionController {
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
+    }
+    @GetMapping("/checkIfClubIsRegistered")
+    public ResponseEntity<Boolean> checkIfClubIsRegistered(
+            @RequestParam(required = true) Long competitionId,
+            @RequestParam(required = true) Long clubId) {
+            boolean isRegistered = this.competitionService.checkIfClubIsRegisteredToCompetition(competitionId, clubId);
+            if(isRegistered) {
+                return new ResponseEntity<>(true,HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(false,HttpStatus.BAD_REQUEST);
+            }
     }
 
 }
