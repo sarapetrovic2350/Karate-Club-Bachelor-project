@@ -20,6 +20,9 @@ export class CompetitionService {
   getAllCompetitions(params: any): Observable<Competition[]> {
     return this.http.get<Competition[]>(this.apiHost + "/findAll", {params});
   }
+  getCompetitionsClubIsRegisteredTo(clubId: any): Observable<Competition[]> {
+    return this.http.get<Competition[]>(this.apiHost + "/getCompetitionsClubIsRegisteredTo/" + clubId, {headers: this.headers});
+  }
 
   registerClubToCompetition(competitionId: any, clubId: any) {
     let queryParams = new HttpParams()

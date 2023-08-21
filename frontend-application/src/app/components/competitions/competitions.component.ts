@@ -4,6 +4,7 @@ import {CompetitionService} from "../../services/competition.service";
 import {UserService} from "../../services/user.service";
 import Swal from "sweetalert2";
 import {User} from "../../models/user.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-competitions',
@@ -18,7 +19,7 @@ export class CompetitionsComponent implements OnInit {
   isAdministrator: boolean = false;
   loggedInUser: User = new User();
   clubRegistered: boolean = false;
-  constructor(private competitionService: CompetitionService, private userService: UserService) { }
+  constructor(private competitionService: CompetitionService, private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.retrieveCompetitions();
@@ -76,6 +77,7 @@ export class CompetitionsComponent implements OnInit {
             title: 'Success!',
             text: 'Successfully registered karate club to competition!',
           })
+          this.router.navigate(['/calendar']);
         },
         error: (e) => {
           console.log(e);

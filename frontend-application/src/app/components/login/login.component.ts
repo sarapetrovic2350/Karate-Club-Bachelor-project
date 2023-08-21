@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       this.userService.login(this.request).subscribe(
         {
           next: (res) => {
-            window.location.href = '/purposes'
+            window.location.href = '/calendar'
             this.successfulLogin(res);
             Swal.fire({
               icon: 'success',

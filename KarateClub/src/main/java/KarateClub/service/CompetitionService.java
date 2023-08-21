@@ -33,6 +33,23 @@ public class CompetitionService implements ICompetitionService {
     }
 
     @Override
+    public List<CompetitionDTO> getClubIsRegisteredToCompetitions(Long clubId) {
+        List<Competition> allCompetitions = competitionRepository.findAll();
+        List<Competition> competitionsClubIsRegisteredTo = new ArrayList<>();
+        KarateClub club = karateClubService.findById(clubId);
+        for (Competition competition: allCompetitions) {
+            for (KarateClub karateClub: competition.getRegisteredClubs()){
+                if(karateClub == club) {
+                    competitionsClubIsRegisteredTo.add(competition);
+                    break;
+                }
+            }
+        }
+        return competitionsClubIsRegisteredTo.stream().map(competition -> new CompetitionDTO(competition)).collect(Collectors.toList());
+
+    }
+
+    @Override
     public Competition findById(Long id) {
         return competitionRepository.findByCompetitionId(id);
     }

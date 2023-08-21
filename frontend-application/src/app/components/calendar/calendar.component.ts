@@ -3,6 +3,8 @@ import { CalendarOptions } from '@fullcalendar/core'; // useful for typechecking
 import dayGridPlugin from '@fullcalendar/daygrid';
 import {CompetitionService} from "../../services/competition.service";
 import {Competition} from "../../models/competition.model";
+import {UserService} from "../../services/user.service";
+import {User} from "../../models/user.model";
 
 @Component({
   selector: 'app-calendar',
@@ -11,7 +13,8 @@ import {Competition} from "../../models/competition.model";
 })
 export class CalendarComponent implements OnInit {
   public competitions: Competition[] = [];
-
+  private currentUser: User;
+  private clubId: string = "";
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
     height: 500,
@@ -31,16 +34,18 @@ export class CalendarComponent implements OnInit {
     alert('date click! ' + arg.dateStr)
   }
 
-  constructor(private competitionService: CompetitionService) {
+  constructor(private competitionService: CompetitionService, private userService: UserService) {
   }
 
   ngOnInit(): void {
+    this.currentUser = this.userService.getCurrentUser();
+    this.clubId = this.currentUser.karateClub.clubId;
     this.findEvents();
   }
 
   findEvents() {
 
-    this.competitionService.getAll().subscribe(
+    this.competitionService.getCompetitionsClubIsRegisteredTo(this.clubId).subscribe(
       {
         next: (res) => {
         this.competitions = res;

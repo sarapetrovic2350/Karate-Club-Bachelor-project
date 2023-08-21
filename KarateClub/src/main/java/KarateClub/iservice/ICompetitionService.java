@@ -9,6 +9,7 @@ import java.util.List;
 @Service
 public interface ICompetitionService {
     List<CompetitionDTO> getAllCompetitions();
+    List<CompetitionDTO> getClubIsRegisteredToCompetitions(Long clubId);
     //Page<CompetitionDTO> findAll(Pageable pageable);
 
     Competition findById(Long id);

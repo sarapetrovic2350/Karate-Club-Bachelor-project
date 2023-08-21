@@ -33,6 +33,10 @@ public class CompetitionController {
     public ResponseEntity<List<CompetitionDTO>> getAllCompetitions() {
         return new ResponseEntity<List<CompetitionDTO>>(competitionService.getAllCompetitions(), HttpStatus.OK);
     }
+    @GetMapping(value = "/getCompetitionsClubIsRegisteredTo/{clubId}")
+    public ResponseEntity<List<CompetitionDTO>> getClubIsRegisteredToCompetitions(@PathVariable Long clubId) {
+        return new ResponseEntity<List<CompetitionDTO>>(competitionService.getClubIsRegisteredToCompetitions(clubId), HttpStatus.OK);
+    }
     @GetMapping("/findAll")
     public ResponseEntity<Map<String, Object>> findAllWithPagination(
             @RequestParam(defaultValue = "0") int page,
