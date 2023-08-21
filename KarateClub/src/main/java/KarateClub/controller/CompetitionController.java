@@ -1,6 +1,7 @@
 package KarateClub.controller;
 
 import KarateClub.dto.CompetitionDTO;
+import KarateClub.dto.DisciplineDTO;
 import KarateClub.service.CompetitionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -36,6 +37,10 @@ public class CompetitionController {
     @GetMapping(value = "/getCompetitionsClubIsRegisteredTo/{clubId}")
     public ResponseEntity<List<CompetitionDTO>> getClubIsRegisteredToCompetitions(@PathVariable Long clubId) {
         return new ResponseEntity<List<CompetitionDTO>>(competitionService.getClubIsRegisteredToCompetitions(clubId), HttpStatus.OK);
+    }
+    @GetMapping(value = "/getDisciplinesForCompetition/{competitionId}")
+    public ResponseEntity<List<DisciplineDTO>> getDisciplinesForCompetition(@PathVariable Long competitionId) {
+        return new ResponseEntity<List<DisciplineDTO>>(competitionService.getDisciplinesForCompetition(competitionId), HttpStatus.OK);
     }
     @GetMapping("/findAll")
     public ResponseEntity<Map<String, Object>> findAllWithPagination(

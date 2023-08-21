@@ -32,6 +32,8 @@ public class Competition {
                     @JoinColumn(name = "club_id", referencedColumnName = "clubId",
                             nullable = false, updatable = false)})
     private Set<KarateClub> registeredClubs = new HashSet<>();
+    @OneToMany(mappedBy="competition")
+    private Set<Discipline> disciplines;
     public Competition(String competitionName, String description, LocalDate date, String place, String image) {
         this.competitionName = competitionName;
         this.description = description;
@@ -39,6 +41,7 @@ public class Competition {
         this.place = place;
         this.image = image;
     }
+
 
     public Competition() {
     }
@@ -97,5 +100,13 @@ public class Competition {
 
     public void setRegisteredClubs(Set<KarateClub> registeredClubs) {
         this.registeredClubs = registeredClubs;
+    }
+
+    public Set<Discipline> getDisciplines() {
+        return disciplines;
+    }
+
+    public void setDisciplines(Set<Discipline> disciplines) {
+        this.disciplines = disciplines;
     }
 }

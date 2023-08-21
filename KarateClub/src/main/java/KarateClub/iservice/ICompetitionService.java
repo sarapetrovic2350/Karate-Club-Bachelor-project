@@ -1,6 +1,7 @@
 package KarateClub.iservice;
 
 import KarateClub.dto.CompetitionDTO;
+import KarateClub.dto.DisciplineDTO;
 import KarateClub.model.Competition;
 import org.springframework.stereotype.Service;
 
@@ -15,4 +16,5 @@ public interface ICompetitionService {
     Competition findById(Long id);
     void registerClubToCompetition(Long competitionId, Long clubId);
     Boolean checkIfClubIsRegisteredToCompetition(Long competitionId, Long clubId);
+    List<DisciplineDTO> getDisciplinesForCompetition(Long competitionId);
 }

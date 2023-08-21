@@ -1,13 +1,12 @@
 package KarateClub.service;
 
 import KarateClub.dto.CompetitionDTO;
+import KarateClub.dto.DisciplineDTO;
 import KarateClub.iservice.ICompetitionService;
 import KarateClub.model.Competition;
 import KarateClub.model.KarateClub;
 import KarateClub.repository.ICompetitionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -74,6 +73,12 @@ public class CompetitionService implements ICompetitionService {
                 return true;
         }
         return false;
+    }
+
+    @Override
+    public List<DisciplineDTO> getDisciplinesForCompetition(Long competitionId) {
+        Competition competition = competitionRepository.findByCompetitionId(competitionId);
+        return competition.getDisciplines().stream().map(discipline -> new DisciplineDTO(discipline)).collect(Collectors.toList());
     }
 
 //    @Override
