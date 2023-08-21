@@ -15,6 +15,10 @@ import {StudentGroupInfoComponent} from "./components/student-group-info/student
 import {CreateGroupComponent} from "./components/create-group/create-group.component";
 import {CompetitionsComponent} from "./components/competitions/competitions.component";
 import {CalendarComponent} from "./components/calendar/calendar.component";
+import {DisciplinesComponent} from "./components/disciplines/disciplines.component";
+import {
+  RegisterStudentToDisciplineComponent
+} from "./components/register-student-to-discipline/register-student-to-discipline.component";
 
 const routes: Routes = [
   {
@@ -52,6 +56,14 @@ const routes: Routes = [
   {
     path: 'calendar',
     component: CalendarComponent
+  },
+  {
+    path: 'disciplines/:competitionId',
+    component: DisciplinesComponent
+  },
+  {
+    path: 'disciplines/:competitionId/register-student/:disciplineId',
+    component: RegisterStudentToDisciplineComponent
   },
   {
     path:'search-ram',

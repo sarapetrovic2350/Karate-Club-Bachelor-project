@@ -22,6 +22,9 @@
         <p *ngIf="isAdministrator" class="list-group-item">Want to register club to competition?</p>
         <button *ngIf="isAdministrator" color="primary" mat-raised-button type="submit"
                 (click)="registerClubToCompetition(c.competitionId)">Register club</button>
+        <p *ngIf="isCoach" class="list-group-item">Want to register students to competition?</p>
+        <button *ngIf="isCoach" color="primary" mat-raised-button type="submit"
+                (click)="checkIfClubIsRegistered(c.competitionId)">Register students</button>
       </ul>
 
     </div>

@@ -18,8 +18,6 @@ export class UpdateUserComponent implements OnInit {
   user = new User()
   passwordRepeated: string= "";
   submitted = false;
-  isHostLoggedIn: boolean = false;
-  isSuper = false;
 
   ngOnInit(): void {
     this.user = this.userService.getCurrentUser();

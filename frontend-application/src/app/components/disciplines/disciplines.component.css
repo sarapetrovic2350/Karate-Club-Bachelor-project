@@ -1,0 +1,20 @@
+.commands{
+  display: flex;
+  justify-content: end;
+}
+.form-button{
+  width: 120px;
+  height: 35px;
+  justify-content: center;
+  align-items: center;
+  background-color: #0451aa;
+  border: none;
+  color: white;
+}
+
+.container {
+  width: 650px;
+  margin: 20px auto auto;
+  border-radius: 3px;
+  border: #DCD6CC 1px solid;
+}

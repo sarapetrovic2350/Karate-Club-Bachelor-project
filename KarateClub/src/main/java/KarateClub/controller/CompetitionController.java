@@ -2,6 +2,8 @@ package KarateClub.controller;
 
 import KarateClub.dto.CompetitionDTO;
 import KarateClub.dto.DisciplineDTO;
+import KarateClub.model.Discipline;
+import KarateClub.model.User;
 import KarateClub.service.CompetitionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -42,6 +44,15 @@ public class CompetitionController {
     public ResponseEntity<List<DisciplineDTO>> getDisciplinesForCompetition(@PathVariable Long competitionId) {
         return new ResponseEntity<List<DisciplineDTO>>(competitionService.getDisciplinesForCompetition(competitionId), HttpStatus.OK);
     }
+    @GetMapping(value = "/getDisciplineByCompetitionDisciplineId/{competitionId}/{disciplineId}")
+    public ResponseEntity<DisciplineDTO> getDisciplineByCompetitionDisciplineId(@PathVariable Long competitionId, @PathVariable Long disciplineId) {
+        return new ResponseEntity<DisciplineDTO>(competitionService.findDisciplineByCompetitionDisciplineId(competitionId, disciplineId), HttpStatus.OK);
+    }
+    @GetMapping(value = "/getCompetitionById/{competitionId}")
+    public CompetitionDTO getCompetitionById(@PathVariable Long competitionId) {
+        return new CompetitionDTO(this.competitionService.findById(competitionId));
+    }
+
     @GetMapping("/findAll")
     public ResponseEntity<Map<String, Object>> findAllWithPagination(
             @RequestParam(defaultValue = "0") int page,
@@ -78,6 +89,7 @@ public class CompetitionController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
+
     @GetMapping("/checkIfClubIsRegistered")
     public ResponseEntity<Boolean> checkIfClubIsRegistered(
             @RequestParam(required = true) Long competitionId,
@@ -87,6 +99,18 @@ public class CompetitionController {
                 return new ResponseEntity<>(true,HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(false,HttpStatus.BAD_REQUEST);
+            }
+    }
+
+    @PostMapping("/registerStudentToDisciplineForCompetition")
+    public ResponseEntity<?> checkIfClubIsRegistered(
+            @RequestParam(required = true) Long competitionId,
+            @RequestParam(required = true) Long disciplineId,
+            @RequestParam(required = true) Long userId) {
+            try{
+                return new ResponseEntity<>( this.competitionService.registerStudentToDisciplineForCompetition(competitionId, disciplineId, userId),HttpStatus.OK);
+            } catch (Exception e){
+                return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
             }
     }
 

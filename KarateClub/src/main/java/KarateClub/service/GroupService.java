@@ -2,8 +2,7 @@ package KarateClub.service;
 
 import KarateClub.dto.NewGroupDTO;
 import KarateClub.iservice.IGroupService;
-import KarateClub.model.Coach;
-import KarateClub.model.Group;
+import KarateClub.model.*;
 import KarateClub.repository.IGroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

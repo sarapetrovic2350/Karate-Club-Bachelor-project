@@ -3,6 +3,7 @@ package KarateClub.controller;
 import java.util.List;
 
 import KarateClub.exception.ResourceConflictException;
+import KarateClub.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -60,8 +61,8 @@ public class UserController {
 	}
 
 	@GetMapping(value = "/getAllStudents")
-	public ResponseEntity<List<User>> getAllStudents() {
-		return new ResponseEntity<List<User>>(userService.getAllStudents(), HttpStatus.OK);
+	public ResponseEntity<List<Student>> getAllStudents() {
+		return new ResponseEntity<List<Student>>(userService.getAllStudents(), HttpStatus.OK);
 	}
 	@GetMapping(value = "/getAllCoaches")
 	public ResponseEntity<List<User>> getAllCoaches() {
@@ -116,6 +117,10 @@ public class UserController {
 
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
+	}
+	@GetMapping(value = "/getStudentsInGroup/{groupId}")
+	public ResponseEntity<List<Student>> getStudentsInGroup(@PathVariable Long groupId) {
+		return new ResponseEntity<List<Student>>(userService.getStudentsInGroup(groupId), HttpStatus.OK);
 	}
 
 }

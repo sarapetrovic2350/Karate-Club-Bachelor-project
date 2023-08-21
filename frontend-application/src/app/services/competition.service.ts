@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Competition} from "../models/competition.model";
 import {Group} from "../models/group.model";
+import {Discipline} from "../models/discipline.model";
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,16 @@ export class CompetitionService {
     console.log(queryParams);
     return this.http.post<any>(this.apiHostRegisterClub, null, {params: queryParams});
   }
+  registerStudentToDiscipline(competitionId: string, disciplineId: string, userId: string) {
+    let queryParams = new HttpParams()
+    console.log(competitionId);
+    console.log(userId);
+    queryParams = queryParams.append("competitionId", competitionId)
+    queryParams = queryParams.append("disciplineId", disciplineId)
+    queryParams = queryParams.append("userId", userId)
+    console.log(queryParams);
+    return this.http.post<any>(this.apiHost + '/registerStudentToDisciplineForCompetition', null, {params: queryParams});
+  }
 
   checkIfClubIsRegistered(competitionId: any, clubId: any) {
     let queryParams = new HttpParams()
@@ -42,6 +53,15 @@ export class CompetitionService {
     queryParams = queryParams.append("clubId", clubId)
     console.log(queryParams);
     return this.http.get<any>(this.apiHost + '/checkIfClubIsRegistered', {params: queryParams});
+  }
+  getDisciplinesForCompetition(competitionId: any): Observable<Discipline[]> {
+    return this.http.get<Discipline[]>(this.apiHost + '/getDisciplinesForCompetition/' + competitionId);
+  }
+  getDisciplineByCompetitionDisciplineId(competitionId: any, disciplineId: any) {
+    return this.http.get<Discipline>(this.apiHost + '/getDisciplineByCompetitionDisciplineId/' + competitionId + '/' + disciplineId);
+  }
+  getCompetitionById(competitionId: string) {
+    return this.http.get<Competition>(this.apiHost + '/getCompetitionById/' + competitionId);
   }
 
 }

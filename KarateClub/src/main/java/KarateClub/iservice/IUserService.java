@@ -2,6 +2,7 @@ package KarateClub.iservice;
 
 import java.util.List;
 
+import KarateClub.model.Student;
 import org.springframework.stereotype.Service;
 
 import KarateClub.dto.UserRegistrationDTO;
@@ -17,8 +18,9 @@ public interface IUserService {
 	User login(JwtAuthenticationRequest authenticationRequest);
 
 	List<User> getAllUsers();
-	List<User> getAllStudents();
+	List<Student> getAllStudents();
 	List<User> getAllCoaches();
+	List<Student> getStudentsInGroup(Long groupId);
 
 	User findLoggedInUser();
 

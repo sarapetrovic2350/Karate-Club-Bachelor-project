@@ -95,11 +95,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // Zahtevi koji se mecuju za web.ignoring().antMatchers() nemaju pristup SecurityContext-u
         // Dozvoljena POST metoda na ruti /auth/login, za svaki drugi tip HTTP metode greska je 401 Unauthorized
 
-        web.ignoring().antMatchers(HttpMethod.POST, "/auth/login", "/user/registerUser", "/group/createGroup", "/competition/registerClubToCompetition");
+        web.ignoring().antMatchers(HttpMethod.POST, "/auth/login", "/user/registerUser", "/group/createGroup", "/competition/registerClubToCompetition", "/competition/registerStudentToDisciplineForCompetition");
         web.ignoring().antMatchers(HttpMethod.PUT, "/centerAdministrator/changePassword", "/user/changePassword", "/auth/activate-account/*");
-        web.ignoring().antMatchers(HttpMethod.GET, "/user/getAll", "/user/getAllStudents", "/user/getAllCoaches",
-                "/group/getAll", "/competition/findAll", "/competition/getAll", "/competition/checkIfClubIsRegistered",
+        web.ignoring().antMatchers(HttpMethod.GET, "/user/getAll", "/user/getAllStudents", "/user/getAllCoaches", "/user/getStudentsInGroup/{groupId}",
+                "/group/getAll",
+                "/competition/findAll", "/competition/getAll", "/competition/checkIfClubIsRegistered","/competition/getCompetitionById/{competitionId}",
                 "/competition/getCompetitionsClubIsRegisteredTo/{clubId}", "/competition/getDisciplinesForCompetition/{competitionId}",
+                "/competition/getDisciplineByCompetitionDisciplineId/{competitionId}/{disciplineId}",
                 "/centerAdministrator/getAll", "/user/getUserById/{userId}", "/user/getUserByEmail/{email}",
                 "/medicalCenter/getMedicalCenterById/{centerId}",
                 "/medicalCenter/searchMedicalCenterByNameAndPlace/{name}/{place}",

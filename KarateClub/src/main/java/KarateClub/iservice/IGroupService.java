@@ -4,6 +4,7 @@ import KarateClub.dto.NewGroupDTO;
 import KarateClub.dto.UserRegistrationDTO;
 import KarateClub.model.Coach;
 import KarateClub.model.Group;
+import KarateClub.model.Student;
 import KarateClub.model.User;
 import org.springframework.stereotype.Service;
 

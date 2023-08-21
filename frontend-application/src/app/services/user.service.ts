@@ -50,6 +50,9 @@ export class UserService {
   getUserByEmail(email: string): Observable<User> {
     return this.http.get<User>(this.apiHost + 'user/getUserByEmail/' + email, {headers: this.headers});
   }
+  getStudentsInGroup(groupId: string): Observable<User> {
+    return this.http.get<User>(this.apiHost + 'user/getStudentsInGroup/' + groupId, {headers: this.headers});
+  }
   updateUser(user: any): Observable<any> {
     return this.http.put<any>(this.apiHost + 'user/update' , user, {headers: this.headers});
   }

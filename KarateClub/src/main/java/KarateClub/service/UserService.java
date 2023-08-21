@@ -158,13 +158,13 @@ public class UserService implements IUserService {
 		return userRepository.findAll();
 	}
 	@Override
-	public List<User> getAllStudents() {
+	public List<Student> getAllStudents() {
 
 		List<User> allUsers = userRepository.findAll();
-		List<User> students = new ArrayList<>();
+		List<Student> students = new ArrayList<>();
 		for (User user : allUsers) {
 			if (user.getUserType().equals(UserType.STUDENT)) {
-				students.add(user);
+				students.add((Student) user);
 			}
 		}
 
@@ -329,6 +329,18 @@ public class UserService implements IUserService {
 		User existingUser = userRepository.findById(user.getUserId()).orElse(null);
 		existingUser.setEnabled(true);
 		userRepository.save(existingUser);
+	}
+	@Override
+	public List<Student> getStudentsInGroup(Long groupId) {
+		Group group = this.groupService.findById(groupId);
+		List<Student> allStudents = getAllStudents();
+		List<Student> studentsInGroup = new ArrayList<>();
+		for(Student student: allStudents) {
+			if(student.getGroup() == group) {
+				studentsInGroup.add(student);
+			}
+		}
+		return studentsInGroup;
 	}
 
 }

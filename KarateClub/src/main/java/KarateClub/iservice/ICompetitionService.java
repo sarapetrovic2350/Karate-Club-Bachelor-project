@@ -17,4 +17,6 @@ public interface ICompetitionService {
     void registerClubToCompetition(Long competitionId, Long clubId);
     Boolean checkIfClubIsRegisteredToCompetition(Long competitionId, Long clubId);
     List<DisciplineDTO> getDisciplinesForCompetition(Long competitionId);
+    DisciplineDTO findDisciplineByCompetitionDisciplineId(Long competitionId, Long disciplineId);
+    DisciplineDTO registerStudentToDisciplineForCompetition(Long competitionId, Long disciplineId, Long userId);
 }

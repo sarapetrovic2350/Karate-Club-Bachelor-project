@@ -27,6 +27,8 @@ import { CompetitionsComponent } from './components/competitions/competitions.co
 import {NgxPaginationModule} from "ngx-pagination";
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { CalendarComponent } from './components/calendar/calendar.component';
+import { DisciplinesComponent } from './components/disciplines/disciplines.component';
+import { RegisterStudentToDisciplineComponent } from './components/register-student-to-discipline/register-student-to-discipline.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +49,8 @@ import { CalendarComponent } from './components/calendar/calendar.component';
     CreateGroupComponent,
     CompetitionsComponent,
     CalendarComponent,
+    DisciplinesComponent,
+    RegisterStudentToDisciplineComponent,
 
   ],
     imports: [

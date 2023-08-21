@@ -17,17 +17,26 @@ export class CompetitionsComponent implements OnInit {
   count = 0;
   pageSize = 3;
   isAdministrator: boolean = false;
+  isCoach: boolean = false;
   loggedInUser: User = new User();
   clubRegistered: boolean = false;
+  clubId: string = "";
   constructor(private competitionService: CompetitionService, private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
+    this.loggedInUser = this.userService.getCurrentUser();
+    this.clubId = this.loggedInUser.karateClub.clubId;
     this.retrieveCompetitions();
     let role = localStorage.getItem('role')
     if (role === "ADMINISTRATOR") {
       this.isAdministrator = true;
+
     }
-    this.loggedInUser = this.userService.getCurrentUser();
+    if (role === "COACH") {
+      this.isCoach = true;
+    }
+
+
   }
   getRequestParams(page: number, pageSize: number): any {
     let params: any = {};
@@ -51,7 +60,13 @@ export class CompetitionsComponent implements OnInit {
       console.log(this.competitions);
     })
   }
-
+  retrieveCompetitionsClubIsRegisteredTo(): void {
+    this.competitionService.getCompetitionsClubIsRegisteredTo(this.clubId).subscribe((data: any) => {
+      this.competitions = data;
+      console.log(data);
+      console.log(this.competitions);
+    })
+  }
   handlePageChange(event: number): void {
     this.page = event;
     console.log(this.page)
@@ -62,9 +77,15 @@ export class CompetitionsComponent implements OnInit {
       {
         next: (res) => {
           this.clubRegistered = true;
+          this.registerStudentsToCompetition(competitionId);
         },
         error: (e) => {
           this.clubRegistered = false;
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Karate Club is not registered to competition.',
+          })
         }
       })
   }
@@ -89,5 +110,10 @@ export class CompetitionsComponent implements OnInit {
         }
       })
   }
+  registerStudentsToCompetition(competitionId: string) {
+    this.router.navigate(['disciplines/' + competitionId])
+
+  }
+
 
 }

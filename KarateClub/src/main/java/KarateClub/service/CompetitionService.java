@@ -3,8 +3,7 @@ package KarateClub.service;
 import KarateClub.dto.CompetitionDTO;
 import KarateClub.dto.DisciplineDTO;
 import KarateClub.iservice.ICompetitionService;
-import KarateClub.model.Competition;
-import KarateClub.model.KarateClub;
+import KarateClub.model.*;
 import KarateClub.repository.ICompetitionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -19,12 +19,17 @@ import java.util.stream.Collectors;
 public class CompetitionService implements ICompetitionService {
     private ICompetitionRepository competitionRepository;
     private KarateClubService karateClubService;
+    private UserService userService;
+    private DisciplineService disciplineService;
 
     @Autowired
-    public CompetitionService(ICompetitionRepository competitionRepository, KarateClubService karateClubService){
+    public CompetitionService(ICompetitionRepository competitionRepository, KarateClubService karateClubService,
+                              UserService userService, DisciplineService disciplineService){
         super();
         this.competitionRepository = competitionRepository;
         this.karateClubService = karateClubService;
+        this.userService = userService;
+        this.disciplineService = disciplineService;
     }
     @Override
     public List<CompetitionDTO> getAllCompetitions() {
@@ -59,7 +64,6 @@ public class CompetitionService implements ICompetitionService {
         KarateClub karateClub = karateClubService.findById(clubId);
         Competition competition = competitionRepository.findByCompetitionId(competitionId);
         competition.getRegisteredClubs().add(karateClub);
-        //karateClub.getCompetitions().add(competition);
         competitionRepository.save(competition);
     }
 
@@ -79,6 +83,33 @@ public class CompetitionService implements ICompetitionService {
     public List<DisciplineDTO> getDisciplinesForCompetition(Long competitionId) {
         Competition competition = competitionRepository.findByCompetitionId(competitionId);
         return competition.getDisciplines().stream().map(discipline -> new DisciplineDTO(discipline)).collect(Collectors.toList());
+    }
+
+    @Override
+    public DisciplineDTO findDisciplineByCompetitionDisciplineId(Long competitionId, Long disciplineId) {
+        Competition competition = competitionRepository.findByCompetitionId(competitionId);
+        Set<Discipline> disciplines = competition.getDisciplines();
+        for(Discipline discipline: disciplines) {
+            if(Objects.equals(discipline.getDisciplineId(), disciplineId)) {
+                return new DisciplineDTO(discipline);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public DisciplineDTO registerStudentToDisciplineForCompetition(Long competitionId, Long disciplineId, Long userId) {
+        Competition competition = competitionRepository.findByCompetitionId(competitionId);
+        Student student = (Student) userService.findById(userId);
+        Set<Discipline> disciplinesForCompetition = competition.getDisciplines();
+        for (Discipline discipline: disciplinesForCompetition) {
+            if(Objects.equals(discipline.getDisciplineId(), disciplineId)) {
+                discipline.getRegisteredStudents().add(student);
+                disciplineService.save(discipline);
+                return new DisciplineDTO(discipline);
+            }
+        }
+        return null;
     }
 
 //    @Override
