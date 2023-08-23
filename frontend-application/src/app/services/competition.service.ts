@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {Competition} from "../models/competition.model";
 import {Group} from "../models/group.model";
 import {Discipline} from "../models/discipline.model";
+import {DisciplineCompetition} from "../models/discipline-competition.model";
 
 @Injectable({
   providedIn: 'root'
@@ -57,6 +58,10 @@ export class CompetitionService {
   getDisciplinesForCompetition(competitionId: any): Observable<Discipline[]> {
     return this.http.get<Discipline[]>(this.apiHost + '/getDisciplinesForCompetition/' + competitionId);
   }
+  getDisciplinesOfCompetitionForStudent(userId: string): Observable<DisciplineCompetition[]> {
+    return this.http.get<DisciplineCompetition[]>(this.apiHost + '/getDisciplinesOfCompetitionForStudent/' + userId);
+  }
+
   getDisciplineByCompetitionDisciplineId(competitionId: any, disciplineId: any) {
     return this.http.get<Discipline>(this.apiHost + '/getDisciplineByCompetitionDisciplineId/' + competitionId + '/' + disciplineId);
   }

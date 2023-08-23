@@ -29,6 +29,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { DisciplinesComponent } from './components/disciplines/disciplines.component';
 import { RegisterStudentToDisciplineComponent } from './components/register-student-to-discipline/register-student-to-discipline.component';
+import { UpcomingCompetitionsComponent } from './components/upcoming-competitions/upcoming-competitions.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +52,7 @@ import { RegisterStudentToDisciplineComponent } from './components/register-stud
     CalendarComponent,
     DisciplinesComponent,
     RegisterStudentToDisciplineComponent,
+    UpcomingCompetitionsComponent,
 
   ],
     imports: [

@@ -42,6 +42,9 @@
       <a mat-list-item routerLink="/competitions">
         <mat-icon>location_on</mat-icon> Competitions
       </a>
+      <a *ngIf="isStudent" mat-list-item routerLink="/upcoming-competitions">
+        <mat-icon>view_list</mat-icon> Competitions you are registered for
+      </a>
       <a mat-list-item>
         <mat-icon>library_books</mat-icon> Competitions Results
       </a>
