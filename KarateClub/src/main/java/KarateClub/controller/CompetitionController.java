@@ -1,9 +1,8 @@
 package KarateClub.controller;
 
 import KarateClub.dto.CompetitionDTO;
+import KarateClub.dto.DisciplineCompetitionDTO;
 import KarateClub.dto.DisciplineDTO;
-import KarateClub.model.Discipline;
-import KarateClub.model.User;
 import KarateClub.service.CompetitionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -48,9 +47,14 @@ public class CompetitionController {
     public ResponseEntity<DisciplineDTO> getDisciplineByCompetitionDisciplineId(@PathVariable Long competitionId, @PathVariable Long disciplineId) {
         return new ResponseEntity<DisciplineDTO>(competitionService.findDisciplineByCompetitionDisciplineId(competitionId, disciplineId), HttpStatus.OK);
     }
+
     @GetMapping(value = "/getCompetitionById/{competitionId}")
     public CompetitionDTO getCompetitionById(@PathVariable Long competitionId) {
         return new CompetitionDTO(this.competitionService.findById(competitionId));
+    }
+    @GetMapping(value = "/getDisciplinesOfCompetitionForStudent/{userId}")
+    public ResponseEntity<List<DisciplineCompetitionDTO>> getDisciplinesOfCompetitionForStudent(@PathVariable Long userId) {
+        return new ResponseEntity<List<DisciplineCompetitionDTO>>(competitionService.getDisciplinesOfCompetitionForStudent(userId), HttpStatus.OK);
     }
 
     @GetMapping("/findAll")

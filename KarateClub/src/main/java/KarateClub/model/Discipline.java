@@ -83,4 +83,5 @@ public class Discipline {
     public void setRegisteredStudents(Set<Student> registeredStudents) {
         this.registeredStudents = registeredStudents;
     }
+
 }

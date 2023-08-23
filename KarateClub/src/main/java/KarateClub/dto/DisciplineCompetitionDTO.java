@@ -4,9 +4,20 @@ import KarateClub.model.*;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDate;
 
 @Data
-public class DisciplineDTO {
+public class DisciplineCompetitionDTO {
+
+    @NotBlank
+    private Long competitionId;
+
+    @NotBlank
+    private String competitionName;
+
+    @NotBlank
+    private LocalDate date;
+
     @NotBlank
     private Long disciplineId;
 
@@ -20,11 +31,16 @@ public class DisciplineDTO {
     private Gender genderCategory;
 
     private String weightCategory;
-    public DisciplineDTO(Discipline discipline) {
+
+    public DisciplineCompetitionDTO(Competition competition, Discipline discipline) {
+        this.competitionId = competition.getCompetitionId();
+        this.competitionName = competition.getCompetitionName();
+        this.date = competition.getDate();
         this.disciplineId = discipline.getDisciplineId();
         this.disciplineType = discipline.getDisciplineType();
         this.genderCategory = discipline.getGenderCategory();
         this.groupCategory = discipline.getGroupCategory();
         this.weightCategory = discipline.getWeightCategory();
     }
+
 }

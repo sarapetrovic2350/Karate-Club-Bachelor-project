@@ -1,6 +1,7 @@
 package KarateClub.service;
 
 import KarateClub.dto.CompetitionDTO;
+import KarateClub.dto.DisciplineCompetitionDTO;
 import KarateClub.dto.DisciplineDTO;
 import KarateClub.iservice.ICompetitionService;
 import KarateClub.model.*;
@@ -110,6 +111,26 @@ public class CompetitionService implements ICompetitionService {
             }
         }
         return null;
+    }
+
+    @Override
+    public List<DisciplineCompetitionDTO> getDisciplinesOfCompetitionForStudent(Long userId) {
+        User user = userService.findById(userId);
+        List<DisciplineDTO> disciplineDTOSForStudent = disciplineService.getDisciplinesStudentIsRegisteredTo(userId);
+        List<Competition> allCompetitions = competitionRepository.findAll();
+        List<DisciplineCompetitionDTO> disciplineCompetitionDTOS = new ArrayList<>();
+        for (Competition competition: allCompetitions) {
+            Set<Discipline> disciplines = competition.getDisciplines();
+            for(Discipline discipline: disciplines) {
+                for (DisciplineDTO disciplineDTO: disciplineDTOSForStudent) {
+                    if(Objects.equals(disciplineDTO.getDisciplineId(), discipline.getDisciplineId())){
+                        DisciplineCompetitionDTO disciplineCompetitionDTO = new DisciplineCompetitionDTO(competition, discipline);
+                        disciplineCompetitionDTOS.add(disciplineCompetitionDTO);
+                    }
+                }
+            }
+        }
+        return disciplineCompetitionDTOS;
     }
 
 //    @Override

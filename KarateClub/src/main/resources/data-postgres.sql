@@ -62,15 +62,15 @@ INSERT INTO public.disciplines(discipline_id, discipline_type, gender_category, 
 INSERT INTO public.disciplines(discipline_id, discipline_type, gender_category, group_category, weight_category, competition_id) VALUES (default, 'KATA', 'MALE', 'JUNIORS', null, '1');
 INSERT INTO public.disciplines(discipline_id, discipline_type, gender_category, group_category, weight_category, competition_id) VALUES (default, 'KATA', 'FEMALE', 'CADETS', null, '1');
 INSERT INTO public.disciplines(discipline_id, discipline_type, gender_category, group_category, weight_category, competition_id) VALUES (default, 'KATA', 'MALE', 'CADETS', null, '1');
-INSERT INTO public.disciplines(discipline_id, discipline_type, gender_category, group_category, weight_category, competition_id) VALUES (default, 'KUMITE', 'MALE', 'JUNIORS', '-55kg', '1');
+INSERT INTO public.disciplines(discipline_id, discipline_type, gender_category, group_category, weight_category, competition_id) VALUES (default, 'KUMITE', 'MALE', 'SENIORS', '-75kg', '5');
 INSERT INTO public.disciplines(discipline_id, discipline_type, gender_category, group_category, weight_category, competition_id) VALUES (default, 'KUMITE', 'FEMALE', 'JUNIORS', '-48kg', '1');
-INSERT INTO public.disciplines(discipline_id, discipline_type, gender_category, group_category, weight_category, competition_id) VALUES (default, 'KATA', 'MALE', 'SENIORS', null, '1');
+INSERT INTO public.disciplines(discipline_id, discipline_type, gender_category, group_category, weight_category, competition_id) VALUES (default, 'KATA', 'MALE', 'SENIORS', null, '5');
 INSERT INTO public.disciplines(discipline_id, discipline_type, gender_category, group_category, weight_category, competition_id) VALUES (default, 'KATA', 'FEMALE', 'CADETS', null, '2');
-INSERT INTO public.disciplines(discipline_id, discipline_type, gender_category, group_category, weight_category, competition_id) VALUES (default, 'KATA', 'FEMALE', 'SENIORS', null, '1');
+INSERT INTO public.disciplines(discipline_id, discipline_type, gender_category, group_category, weight_category, competition_id) VALUES (default, 'KATA', 'FEMALE', 'SENIORS', null, '6');
 INSERT INTO public.disciplines(discipline_id, discipline_type, gender_category, group_category, weight_category, competition_id) VALUES (default, 'KATA', 'MALE', 'SENIORS', null, '6');
 
-INSERT INTO public.disciplines_users(discipline_id, student_id) VALUES ('1', '4');
-INSERT INTO public.disciplines_users(discipline_id, student_id) VALUES ('5', '6');
-INSERT INTO public.disciplines_users(discipline_id, student_id) VALUES ('3', '5');
-INSERT INTO public.disciplines_users(discipline_id, student_id) VALUES ('3', '4');
-INSERT INTO public.disciplines_users(discipline_id, student_id) VALUES ('6', '5');
+INSERT INTO public.disciplines_users(discipline_id, student_id) VALUES ('1', '4'); --marija, kate junior
+INSERT INTO public.disciplines_users(discipline_id, student_id) VALUES ('6', '4'); --marija, kumite junior
+INSERT INTO public.disciplines_users(discipline_id, student_id) VALUES ('9', '6'); --ivana, kate, senior
+INSERT INTO public.disciplines_users(discipline_id, student_id) VALUES ('10', '5'); --filip,kate, senior
+INSERT INTO public.disciplines_users(discipline_id, student_id) VALUES ('5', '5'); --filip,kumite, senior
