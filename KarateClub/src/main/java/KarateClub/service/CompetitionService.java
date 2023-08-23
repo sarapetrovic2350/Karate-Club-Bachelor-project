@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -35,6 +36,17 @@ public class CompetitionService implements ICompetitionService {
     @Override
     public List<CompetitionDTO> getAllCompetitions() {
         return competitionRepository.findAll().stream().map(competition -> new CompetitionDTO(competition)).collect(Collectors.toList());
+    }
+    @Override
+    public List<CompetitionDTO> getUpcomingCompetitions() {
+        List<CompetitionDTO> allCompetitions = this.getAllCompetitions();
+        List<CompetitionDTO> upcomingCompetitions = new ArrayList<>();
+        for (CompetitionDTO competitionDTO: allCompetitions) {
+            if(competitionDTO.getDate().isAfter(LocalDate.now())){
+                upcomingCompetitions.add(competitionDTO);
+            }
+        }
+        return upcomingCompetitions;
     }
 
     @Override

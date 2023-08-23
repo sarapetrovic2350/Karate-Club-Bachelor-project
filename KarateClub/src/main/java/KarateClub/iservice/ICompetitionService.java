@@ -12,6 +12,7 @@ import java.util.List;
 @Service
 public interface ICompetitionService {
     List<CompetitionDTO> getAllCompetitions();
+    List<CompetitionDTO> getUpcomingCompetitions();
     List<CompetitionDTO> getClubIsRegisteredToCompetitions(Long clubId);
     //Page<CompetitionDTO> findAll(Pageable pageable);
 

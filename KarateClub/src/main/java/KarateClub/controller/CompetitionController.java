@@ -73,7 +73,7 @@ public class CompetitionController {
             List<CompetitionDTO> competitions;
             Pageable paging = PageRequest.of(page, size);
 
-            List<CompetitionDTO> competitionsDTO = competitionService.getAllCompetitions();
+            List<CompetitionDTO> competitionsDTO = competitionService.getUpcomingCompetitions();
             Page<CompetitionDTO> pageCompetitions = new PageImpl<>(competitionsDTO);
             competitions = pageCompetitions.getContent();
 
