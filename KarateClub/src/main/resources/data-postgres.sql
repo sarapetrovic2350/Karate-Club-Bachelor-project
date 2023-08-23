@@ -51,12 +51,13 @@ INSERT INTO public.competitions (competition_id, competition_name, description, 
 INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'JKA – WSKA OTVORENI MILOŠ KUP','Miloš Kup 2023 odrzace se u Hali sprotova u Trsteniku.', '2023-10-15', 'Trstenik, Srbija', 'karate2.jpg');
 INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'Mediterranean Karate Championships','The 29th edition of the Mediterranean Karate Championships in Tunis', '2023-10-05', 'Tunis, Tunisia', 'tunis.jpg');
 INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'World Senior Championships','The magnificent Papp Laszlo Sports Arena in Budapest will host the 26th World Senior Championships', '2023-11-26', 'Budapest, Hungary', 'karate1.jpg');
-
+INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'Prvenstvo Evrope','Prvenstvo Evrope za seniore/ke i juniore/ke odrzace se u Bratislavi.', '2023-05-25', 'Bratislava, Slovacka', 'karate1.jpg');
 
 INSERT INTO public.competitions_clubs(competition_id, club_id) VALUES ('1', '2');
 INSERT INTO public.competitions_clubs(competition_id, club_id) VALUES ('1', '3');
 INSERT INTO public.competitions_clubs(competition_id, club_id) VALUES ('2', '3');
 INSERT INTO public.competitions_clubs(competition_id, club_id) VALUES ('1', '1');
+INSERT INTO public.competitions_clubs(competition_id, club_id) VALUES ('7', '1');
 
 INSERT INTO public.disciplines(discipline_id, discipline_type, gender_category, group_category, weight_category, competition_id) VALUES (default, 'KATA', 'FEMALE', 'JUNIORS', null, '1');
 INSERT INTO public.disciplines(discipline_id, discipline_type, gender_category, group_category, weight_category, competition_id) VALUES (default, 'KATA', 'MALE', 'JUNIORS', null, '1');
@@ -69,8 +70,22 @@ INSERT INTO public.disciplines(discipline_id, discipline_type, gender_category, 
 INSERT INTO public.disciplines(discipline_id, discipline_type, gender_category, group_category, weight_category, competition_id) VALUES (default, 'KATA', 'FEMALE', 'SENIORS', null, '6');
 INSERT INTO public.disciplines(discipline_id, discipline_type, gender_category, group_category, weight_category, competition_id) VALUES (default, 'KATA', 'MALE', 'SENIORS', null, '6');
 
+--DISCIPLINE NA ODRZANIM TAKMICENJIMA
+INSERT INTO public.disciplines(discipline_id, discipline_type, gender_category, group_category, weight_category, competition_id) VALUES (default, 'KATA', 'FEMALE', 'JUNIORS', null, '7');
+INSERT INTO public.disciplines(discipline_id, discipline_type, gender_category, group_category, weight_category, competition_id) VALUES (default, 'KATA', 'MALE', 'SENIORS', null, '7');
+INSERT INTO public.disciplines(discipline_id, discipline_type, gender_category, group_category, weight_category, competition_id) VALUES (default, 'KUMITE', 'FEMALE', 'SENIORS', '-62kg', '7');
+
 INSERT INTO public.disciplines_users(discipline_id, student_id) VALUES ('1', '4'); --marija, kate junior
 INSERT INTO public.disciplines_users(discipline_id, student_id) VALUES ('6', '4'); --marija, kumite junior
 INSERT INTO public.disciplines_users(discipline_id, student_id) VALUES ('9', '6'); --ivana, kate, senior
 INSERT INTO public.disciplines_users(discipline_id, student_id) VALUES ('10', '5'); --filip,kate, senior
 INSERT INTO public.disciplines_users(discipline_id, student_id) VALUES ('5', '5'); --filip,kumite, senior
+
+--ZA ODRZANA TAKMICENJA:
+INSERT INTO public.disciplines_users(discipline_id, student_id) VALUES ('11', '4'); --marija,kate, junior
+INSERT INTO public.disciplines_users(discipline_id, student_id) VALUES ('12', '5'); --filip,kate, senior
+INSERT INTO public.disciplines_users(discipline_id, student_id) VALUES ('13', '6'); --ivana,kumite, senior
+
+INSERT INTO public.medals(medal_id, medal_name, medal_type, student_id, discipline_id) VALUES (default, 'Zlatna medalja Evropsko prvenstvo', 'GOLD', '4', '11');
+INSERT INTO public.medals(medal_id, medal_name, medal_type, student_id, discipline_id) VALUES (default, 'Srebrna medalja Evropsko prvenstvo', 'SILVER', '5', '12');
+INSERT INTO public.medals(medal_id, medal_name, medal_type, student_id, discipline_id) VALUES (default, 'Bronzana medalja Evropsko prvenstvo', 'BRONZE', '6', '13');

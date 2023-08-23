@@ -32,6 +32,8 @@ public class Discipline {
                     @JoinColumn(name = "student_id", referencedColumnName = "userId",
                             nullable = false, updatable = false)})
     private Set<Student> registeredStudents = new HashSet<>();
+    @OneToMany(mappedBy="discipline")
+    private Set<Medal> medals;
 
     public Discipline() {
     }

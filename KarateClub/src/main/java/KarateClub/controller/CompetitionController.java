@@ -1,6 +1,7 @@
 package KarateClub.controller;
 
 import KarateClub.dto.CompetitionDTO;
+import KarateClub.dto.CompetitionMedalDTO;
 import KarateClub.dto.DisciplineCompetitionDTO;
 import KarateClub.dto.DisciplineDTO;
 import KarateClub.service.CompetitionService;
@@ -56,6 +57,12 @@ public class CompetitionController {
     public ResponseEntity<List<DisciplineCompetitionDTO>> getDisciplinesOfCompetitionForStudent(@PathVariable Long userId) {
         return new ResponseEntity<List<DisciplineCompetitionDTO>>(competitionService.getDisciplinesOfCompetitionForStudent(userId), HttpStatus.OK);
     }
+
+    @GetMapping(value = "/getCompetitionMedalsForKarateClub/{clubId}")
+    public ResponseEntity<List<CompetitionMedalDTO>> getCompetitionMedalsForKarateClub(@PathVariable Long clubId) {
+        return new ResponseEntity<List<CompetitionMedalDTO>>(competitionService.getCompetitionMedalsForKarateClub(clubId), HttpStatus.OK);
+    }
+
 
     @GetMapping("/findAll")
     public ResponseEntity<Map<String, Object>> findAllWithPagination(

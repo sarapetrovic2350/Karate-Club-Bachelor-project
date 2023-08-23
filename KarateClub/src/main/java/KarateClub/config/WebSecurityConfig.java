@@ -104,6 +104,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/competition/findAll", "/competition/getAll", "/competition/checkIfClubIsRegistered","/competition/getCompetitionById/{competitionId}",
                 "/competition/getCompetitionsClubIsRegisteredTo/{clubId}", "/competition/getDisciplinesForCompetition/{competitionId}",
                 "/competition/getDisciplineByCompetitionDisciplineId/{competitionId}/{disciplineId}",
+                "/competition/getCompetitionMedalsForKarateClub/{clubId}",
+                "/medal/getAll",
                 "/centerAdministrator/getAll", "/user/getUserById/{userId}", "/user/getUserByEmail/{email}",
                 "/medicalCenter/getMedicalCenterById/{centerId}",
                 "/medicalCenter/searchMedicalCenterByNameAndPlace/{name}/{place}",

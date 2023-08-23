@@ -1,8 +1,6 @@
 package KarateClub.service;
 
-import KarateClub.dto.CompetitionDTO;
-import KarateClub.dto.DisciplineCompetitionDTO;
-import KarateClub.dto.DisciplineDTO;
+import KarateClub.dto.*;
 import KarateClub.iservice.ICompetitionService;
 import KarateClub.model.*;
 import KarateClub.repository.ICompetitionRepository;
@@ -22,15 +20,17 @@ public class CompetitionService implements ICompetitionService {
     private KarateClubService karateClubService;
     private UserService userService;
     private DisciplineService disciplineService;
+    private MedalService medalService;
 
     @Autowired
     public CompetitionService(ICompetitionRepository competitionRepository, KarateClubService karateClubService,
-                              UserService userService, DisciplineService disciplineService){
+                              UserService userService, DisciplineService disciplineService, MedalService medalService){
         super();
         this.competitionRepository = competitionRepository;
         this.karateClubService = karateClubService;
         this.userService = userService;
         this.disciplineService = disciplineService;
+        this.medalService = medalService;
     }
     @Override
     public List<CompetitionDTO> getAllCompetitions() {
@@ -131,6 +131,27 @@ public class CompetitionService implements ICompetitionService {
             }
         }
         return disciplineCompetitionDTOS;
+    }
+
+    @Override
+    public List<CompetitionMedalDTO> getCompetitionMedalsForKarateClub(Long clubId) {
+        List<MedalDisciplineDTO> medals = medalService.getAllMedals();
+        List<Competition> allCompetitions = competitionRepository.findAll();
+        List<CompetitionMedalDTO> competitionMedalDTOS = new ArrayList<>();
+        for (Competition competition: allCompetitions) {
+            Set<Discipline> disciplines = competition.getDisciplines();
+            for(Discipline discipline: disciplines) {
+                for (MedalDisciplineDTO medalDisciplineDTO: medals) {
+                    if(Objects.equals(medalDisciplineDTO.getDisciplineId(), discipline.getDisciplineId()) && Objects.equals(medalDisciplineDTO.getStudentClubId(), clubId)) {
+                        CompetitionMedalDTO competitionMedalDTO = new CompetitionMedalDTO(competition, medalDisciplineDTO);
+                        competitionMedalDTOS.add(competitionMedalDTO);
+                    }
+                }
+
+            }
+        }
+        return competitionMedalDTOS;
+
     }
 
 //    @Override
