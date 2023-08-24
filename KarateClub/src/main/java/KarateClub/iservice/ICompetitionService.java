@@ -1,9 +1,6 @@
 package KarateClub.iservice;
 
-import KarateClub.dto.CompetitionDTO;
-import KarateClub.dto.CompetitionMedalDTO;
-import KarateClub.dto.DisciplineCompetitionDTO;
-import KarateClub.dto.DisciplineDTO;
+import KarateClub.dto.*;
 import KarateClub.model.Competition;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +20,7 @@ public interface ICompetitionService {
     DisciplineDTO findDisciplineByCompetitionDisciplineId(Long competitionId, Long disciplineId);
     DisciplineDTO registerStudentToDisciplineForCompetition(Long competitionId, Long disciplineId, Long userId);
     List<DisciplineCompetitionDTO> getDisciplinesOfCompetitionForStudent(Long userId);
+
+    List<CompetitionRegisteredStudentsDTO> getCompetitionsDisciplinesWithRegisteredStudents();
     List<CompetitionMedalDTO> getCompetitionMedalsForKarateClub(Long clubId);
 }

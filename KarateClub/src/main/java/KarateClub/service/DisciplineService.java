@@ -2,7 +2,6 @@ package KarateClub.service;
 
 import KarateClub.dto.DisciplineDTO;
 import KarateClub.iservice.IDisciplineService;
-import KarateClub.iservice.IUserService;
 import KarateClub.model.Discipline;
 import KarateClub.model.Student;
 import KarateClub.model.User;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,6 +26,23 @@ public class DisciplineService implements IDisciplineService {
     @Override
     public Discipline save(Discipline discipline) {
         return disciplineRepository.save(discipline);
+    }
+
+    @Override
+    public List<Discipline> findAll() {
+        return disciplineRepository.findAll();
+    }
+
+    @Override
+    public List<Discipline> getDisciplinesWhichHaveRegisteredUsers() {
+        List<Discipline> allDisciplines = this.findAll();
+        List<Discipline> disciplines = new ArrayList<>();
+        for (Discipline discipline: allDisciplines) {
+            if(discipline.getRegisteredStudents().size() > 0) {
+                disciplines.add(discipline);
+            }
+        }
+        return disciplines;
     }
 
     @Override

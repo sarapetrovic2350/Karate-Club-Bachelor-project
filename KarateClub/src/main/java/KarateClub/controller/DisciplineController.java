@@ -30,4 +30,9 @@ public class DisciplineController {
     public ResponseEntity<List<DisciplineDTO>> getDisciplinesStudentIsRegisteredTo(@PathVariable Long userId) {
         return new ResponseEntity<List<DisciplineDTO>>(disciplineService.getDisciplinesStudentIsRegisteredTo(userId), HttpStatus.OK);
     }
+
+    @GetMapping(value = "/getDisciplinesWhichHaveRegisteredUsers")
+    public ResponseEntity<List<Discipline>> getDisciplinesWhichHaveRegisteredUsers() {
+        return new ResponseEntity<List<Discipline>>(disciplineService.getDisciplinesWhichHaveRegisteredUsers(), HttpStatus.OK);
+    }
 }

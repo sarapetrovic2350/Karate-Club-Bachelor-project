@@ -10,5 +10,7 @@ import java.util.List;
 public interface IDisciplineService {
 
     Discipline save(Discipline discipline);
+    List<Discipline> findAll();
+    List<Discipline> getDisciplinesWhichHaveRegisteredUsers();
     List<DisciplineDTO> getDisciplinesStudentIsRegisteredTo(Long userId);
 }

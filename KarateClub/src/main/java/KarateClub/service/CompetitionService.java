@@ -135,7 +135,7 @@ public class CompetitionService implements ICompetitionService {
             Set<Discipline> disciplines = competition.getDisciplines();
             for(Discipline discipline: disciplines) {
                 for (DisciplineDTO disciplineDTO: disciplineDTOSForStudent) {
-                    if(Objects.equals(disciplineDTO.getDisciplineId(), discipline.getDisciplineId())){
+                    if(Objects.equals(disciplineDTO.getDisciplineId(), discipline.getDisciplineId()) && competition.getDate().isAfter(LocalDate.now())){
                         DisciplineCompetitionDTO disciplineCompetitionDTO = new DisciplineCompetitionDTO(competition, discipline);
                         disciplineCompetitionDTOS.add(disciplineCompetitionDTO);
                     }
@@ -143,6 +143,33 @@ public class CompetitionService implements ICompetitionService {
             }
         }
         return disciplineCompetitionDTOS;
+    }
+
+    @Override
+    public List<CompetitionRegisteredStudentsDTO> getCompetitionsDisciplinesWithRegisteredStudents() {
+        List<Competition> allCompetitions = competitionRepository.findAll();
+        List<Discipline> disciplines = disciplineService.getDisciplinesWhichHaveRegisteredUsers();
+        List<CompetitionRegisteredStudentsDTO> competitionRegisteredStudentsDTOS = new ArrayList<>();
+
+        for (Discipline discipline: disciplines) {
+            for (Competition competition: allCompetitions) {
+                if (competition.getDate().isAfter(LocalDate.now())) {
+                    Set<Discipline> disciplineSet = competition.getDisciplines();
+                    for(Discipline discipline1: disciplineSet) {
+                        if(discipline1 == discipline) {
+                            List<StudentGroupDTO> studentGroupDTOS = new ArrayList<>();
+                            for(Student student: discipline.getRegisteredStudents()){
+                                StudentGroupDTO studentGroupDTO = new StudentGroupDTO(student,student.getGroup(), student.getGroup().getCoach());
+                                studentGroupDTOS.add(studentGroupDTO);
+                            }
+                            CompetitionRegisteredStudentsDTO competitionRegisteredStudentsDTO = new CompetitionRegisteredStudentsDTO(competition, discipline, studentGroupDTOS);
+                            competitionRegisteredStudentsDTOS.add(competitionRegisteredStudentsDTO);
+                        }
+                    }
+                }
+            }
+        }
+        return competitionRegisteredStudentsDTOS;
     }
 
     @Override

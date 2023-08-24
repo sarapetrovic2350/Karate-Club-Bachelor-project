@@ -35,7 +35,7 @@ INSERT INTO public.groups (group_id, group_name, group_category, coach_id) VALUE
 
 -- STUDENT email: marija@gmail.com password: marija Juniori G1, Klub Nippon
 INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)
-VALUES ('Student', default, 'Marija', 'Nikolic', '03080058805039', 'marija@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'ETk76xQWhz1JOKRDzp/CDQ==', 'FEMALE', '+381642258974', 'STUDENT','RED', '4', '1','3', '3', true);
+VALUES ('Student', default, 'Marija', 'Nikolic', '0308005805039', 'marija@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'ETk76xQWhz1JOKRDzp/CDQ==', 'FEMALE', '+381642258974', 'STUDENT','RED', '4', '1','3', '3', true);
 
 -- STUDENT email: filip@gmail.com password: gfilip Mladji seniori, Klub Nippon
 INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)
@@ -44,6 +44,10 @@ VALUES ('Student', default, 'Filip', 'Grbic', '1309996800018', 'filip@gmail.com'
 -- STUDENT email: ivana@gmail.com password: iivana Mladji seniori, Klub Nippon
 INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)
 VALUES ('Student', default, 'Ivana', 'Ivanovic', '1210000805018', 'ivana@gmail.com','$2a$12$TqCDOZ5kPi90w1TOVD5aOuIIqquVboW/tkxlk8gQE8g18zaubbM0q', '5mMgcmWfxa+FCNxZBHnqzg==', 'FEMALE', '+381648454877', 'STUDENT','BROWN', '5', '1','5', '3', true);
+
+-- STUDENT email: ana@gmail.com password: marija Juniori G2, Klub Nippon
+INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)
+VALUES ('Student', default, 'Ana Marija', 'Lukic', '2305006805045', 'ana@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'EYk76xQWhz1JOKRDzp/CDQ==', 'FEMALE', '+381611585875', 'STUDENT','RED', '4', '1','4', '3', true);
 
 INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'KUP VOJVODINE','Kup Vojvodine za kadete/kinje i juniore/ke odrzace se u Sportskoj hali- Novi Becej.', '2023-09-15', 'Novi Becej, Srbija', 'karate1.jpg');
 INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'BALKANSKO PRVENSTVO','Balkansko prvenstvo za pionire i kadete', '2023-09-22', 'Skopje, Makedonija', 'karate3.jpg');
@@ -76,6 +80,7 @@ INSERT INTO public.disciplines(discipline_id, discipline_type, gender_category, 
 INSERT INTO public.disciplines(discipline_id, discipline_type, gender_category, group_category, weight_category, competition_id) VALUES (default, 'KUMITE', 'FEMALE', 'SENIORS', '-62kg', '7');
 
 INSERT INTO public.disciplines_users(discipline_id, student_id) VALUES ('1', '4'); --marija, kate junior
+INSERT INTO public.disciplines_users(discipline_id, student_id) VALUES ('1', '7'); --ana-marija, kate junior
 INSERT INTO public.disciplines_users(discipline_id, student_id) VALUES ('6', '4'); --marija, kumite junior
 INSERT INTO public.disciplines_users(discipline_id, student_id) VALUES ('9', '6'); --ivana, kate, senior
 INSERT INTO public.disciplines_users(discipline_id, student_id) VALUES ('10', '5'); --filip,kate, senior

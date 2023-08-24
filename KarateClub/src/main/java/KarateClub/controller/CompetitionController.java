@@ -1,9 +1,6 @@
 package KarateClub.controller;
 
-import KarateClub.dto.CompetitionDTO;
-import KarateClub.dto.CompetitionMedalDTO;
-import KarateClub.dto.DisciplineCompetitionDTO;
-import KarateClub.dto.DisciplineDTO;
+import KarateClub.dto.*;
 import KarateClub.service.CompetitionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -61,6 +58,10 @@ public class CompetitionController {
     @GetMapping(value = "/getCompetitionMedalsForKarateClub/{clubId}")
     public ResponseEntity<List<CompetitionMedalDTO>> getCompetitionMedalsForKarateClub(@PathVariable Long clubId) {
         return new ResponseEntity<List<CompetitionMedalDTO>>(competitionService.getCompetitionMedalsForKarateClub(clubId), HttpStatus.OK);
+    }
+    @GetMapping(value = "/getCompetitionsDisciplinesWithRegisteredStudents")
+    public ResponseEntity<List<CompetitionRegisteredStudentsDTO>> getCompetitionsDisciplinesWithRegisteredStudents() {
+        return new ResponseEntity<List<CompetitionRegisteredStudentsDTO>>(competitionService.getCompetitionsDisciplinesWithRegisteredStudents(), HttpStatus.OK);
     }
 
 
