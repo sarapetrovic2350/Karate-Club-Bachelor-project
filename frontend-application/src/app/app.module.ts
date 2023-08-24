@@ -30,6 +30,7 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { DisciplinesComponent } from './components/disciplines/disciplines.component';
 import { RegisterStudentToDisciplineComponent } from './components/register-student-to-discipline/register-student-to-discipline.component';
 import { UpcomingCompetitionsComponent } from './components/upcoming-competitions/upcoming-competitions.component';
+import { MedalsComponent } from './components/medals/medals.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +54,7 @@ import { UpcomingCompetitionsComponent } from './components/upcoming-competition
     DisciplinesComponent,
     RegisterStudentToDisciplineComponent,
     UpcomingCompetitionsComponent,
+    MedalsComponent,
 
   ],
     imports: [

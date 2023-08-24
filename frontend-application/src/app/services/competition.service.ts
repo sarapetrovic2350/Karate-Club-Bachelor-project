@@ -5,6 +5,7 @@ import {Competition} from "../models/competition.model";
 import {Group} from "../models/group.model";
 import {Discipline} from "../models/discipline.model";
 import {DisciplineCompetition} from "../models/discipline-competition.model";
+import {Medal} from "../models/medal.model";
 
 @Injectable({
   providedIn: 'root'
@@ -67,6 +68,9 @@ export class CompetitionService {
   }
   getCompetitionById(competitionId: string) {
     return this.http.get<Competition>(this.apiHost + '/getCompetitionById/' + competitionId);
+  }
+  getCompetitionMedalsForKarateClub(clubId: string): Observable<Medal[]> {
+    return this.http.get<Medal[]>(this.apiHost + '/getCompetitionMedalsForKarateClub/' + clubId);
   }
 
 }

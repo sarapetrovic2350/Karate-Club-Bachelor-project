@@ -19,7 +19,7 @@ export class CalendarComponent implements OnInit {
     initialView: 'dayGridMonth',
     height: 500,
     plugins: [dayGridPlugin],
-    eventColor: '#0b349a',
+    eventColor: '#0451aa',
     //dateClick: this.handleDateClick.bind(this), // MUST ensure `this` context is maintained
     // events: [
     //   { title: 'event 1', date: '2023-08-21' },

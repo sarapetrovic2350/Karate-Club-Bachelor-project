@@ -17,7 +17,7 @@ body {
 }
 .icon-button{
   background: none;
-  padding: 0;
+  padding-left: 2px;
   border: 0;
   cursor: pointer;
 }
@@ -233,5 +233,5 @@ mat-grid-tile {
 }
 
 .fc .fc-daygrid-day.fc-day-today {
-  background-color: rgb(228, 235, 255);
+  background-color: rgba(255, 242, 172, 0.62);
 }
