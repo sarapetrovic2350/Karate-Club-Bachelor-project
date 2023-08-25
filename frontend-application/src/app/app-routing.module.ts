@@ -21,6 +21,10 @@ import {
 } from "./components/register-student-to-discipline/register-student-to-discipline.component";
 import {UpcomingCompetitionsComponent} from "./components/upcoming-competitions/upcoming-competitions.component";
 import {MedalsComponent} from "./components/medals/medals.component";
+import {DisciplineRegisteredStudents} from "./models/discipline-registered-students.model";
+import {
+  DisciplinesRegisteredStudentsComponent
+} from "./components/disciplines-registered-students/disciplines-registered-students.component";
 
 const routes: Routes = [
   {
@@ -66,6 +70,10 @@ const routes: Routes = [
   {
     path: 'medals',
     component: MedalsComponent
+  },
+  {
+    path: 'disciplines-registered-students',
+    component: DisciplinesRegisteredStudentsComponent
   },
   {
     path: 'disciplines/:competitionId',

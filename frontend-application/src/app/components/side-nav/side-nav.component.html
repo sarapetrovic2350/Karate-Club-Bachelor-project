@@ -45,6 +45,9 @@
       <a *ngIf="isStudent" mat-list-item routerLink="/upcoming-competitions">
         <button class="icon-button"><img class="icon" src="../../../assets/images/kata.png"></button>  Competitions you are registered for
       </a>
+      <a *ngIf="isCoach || isAdministrator" mat-list-item routerLink="/disciplines-registered-students">
+        <button class="icon-button"><img class="icon" src="../../../assets/images/kata.png"></button>  Disciplines and registered students
+      </a>
       <a mat-list-item routerLink="/medals">
         <button class="icon-button"><img class="icon" src="../../../assets/images/medal.png"></button> Club Medals
       </a>

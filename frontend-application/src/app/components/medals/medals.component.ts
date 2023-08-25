@@ -21,17 +21,8 @@ export class MedalsComponent implements OnInit {
   ngOnInit(): void {
     this.loggedInUser = this.userService.getCurrentUser();
     this.competitionService.getCompetitionMedalsForKarateClub(this.loggedInUser.karateClub.clubId).subscribe(res => {
-      // for (let i=0; i < res.length; i++) {
-      //   if (res[i].weightCategory == null) {
-      //     this.disciplinesMedals.push(res[i]);
-      //   }
-      //   else {
-      //     this.disciplinesKumite.push(res[i]);
-      //   }
-      // }
       this.medals = res;
       this.dataSourceMedals.data = this.medals;
-      //this.dataSourceDisciplinesKumite.data = this.disciplinesKumite;
     })
   }
 

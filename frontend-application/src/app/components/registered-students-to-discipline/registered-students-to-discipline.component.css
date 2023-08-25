@@ -1,0 +1,9 @@
+.table {
+  width: 450px;
+}
+
+.cancel-button{
+  width: 30px;
+  height: 40px;
+  justify-content: center;
+}

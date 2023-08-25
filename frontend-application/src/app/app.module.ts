@@ -31,6 +31,8 @@ import { DisciplinesComponent } from './components/disciplines/disciplines.compo
 import { RegisterStudentToDisciplineComponent } from './components/register-student-to-discipline/register-student-to-discipline.component';
 import { UpcomingCompetitionsComponent } from './components/upcoming-competitions/upcoming-competitions.component';
 import { MedalsComponent } from './components/medals/medals.component';
+import { DisciplinesRegisteredStudentsComponent } from './components/disciplines-registered-students/disciplines-registered-students.component';
+import { RegisteredStudentsToDisciplineComponent } from './components/registered-students-to-discipline/registered-students-to-discipline.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +57,8 @@ import { MedalsComponent } from './components/medals/medals.component';
     RegisterStudentToDisciplineComponent,
     UpcomingCompetitionsComponent,
     MedalsComponent,
+    DisciplinesRegisteredStudentsComponent,
+    RegisteredStudentsToDisciplineComponent,
 
   ],
     imports: [
