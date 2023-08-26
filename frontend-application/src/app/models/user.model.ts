@@ -25,3 +25,10 @@ export class AuthRequest {
   constructor(public email: string = '', public password: string = '') {}
 }
 
+export class ChangePassword {
+  constructor(public email: string = '',
+              public oldPassword: string = '',
+              public password: string = '',
+              public passwordRepeated: string = '') {}
+}
+

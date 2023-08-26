@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {AuthRequest, User} from "../models/user.model";
+import {AuthRequest, ChangePassword, User} from "../models/user.model";
 import {Observable} from "rxjs";
 
 @Injectable({
@@ -22,6 +22,10 @@ export class UserService {
   }
   registerUser(user: User) {
     return this.http.post<any>(this.apiHost + 'user/registerUser', user);
+  }
+
+  changePassword(password: ChangePassword) {
+    return this.http.put<any>(this.apiHost + 'user/changePassword' , password, {headers: this.headers});
   }
 
   setLoggedUser(data: any) {

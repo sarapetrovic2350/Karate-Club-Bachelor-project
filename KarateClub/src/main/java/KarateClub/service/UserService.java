@@ -213,10 +213,10 @@ public class UserService implements IUserService {
 		return userRepository.findByUserId(user.getUserId());
 	}
 
-	public User changePassword(ChangePasswordDTO newPassword) {
-		User user = findByEmail(newPassword.getEmail());
-		checkInput(newPassword, user);
-		generateNewSecurePassword(newPassword, user);
+	public User changePassword(ChangePasswordDTO changePasswordDTO) {
+		User user = findByEmail(changePasswordDTO.getEmail());
+		checkInput(changePasswordDTO, user);
+		generateNewSecurePassword(changePasswordDTO.getPassword(), user);
 		return userRepository.save(user);
 	}
 
@@ -238,11 +238,11 @@ public class UserService implements IUserService {
 		}
 	}
 
-	private void generateNewSecurePassword(ChangePasswordDTO changePasswordDTO, User user) {
+	private void generateNewSecurePassword(String newPassword, User user) {
 		byte[] salt = generateSalt();
 		String encodedSalt = Base64.getEncoder().encodeToString(salt);
 		user.setSalt(encodedSalt);
-		String passwordWithSalt = generatePasswordWithSalt(changePasswordDTO.getPassword(), encodedSalt);
+		String passwordWithSalt = generatePasswordWithSalt(newPassword, encodedSalt);
 		String newSecurePassword = hashPassword(passwordWithSalt);
 		user.setPassword(newSecurePassword);
 	}

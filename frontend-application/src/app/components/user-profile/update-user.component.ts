@@ -4,7 +4,11 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
-
+import { MatDialog } from '@angular/material/dialog';
+import {ChangePasswordComponent} from "../change-password/change-password.component";
+import {
+  RegisteredStudentsToDisciplineComponent
+} from "../registered-students-to-discipline/registered-students-to-discipline.component";
 @Component({
   selector: 'app-update-user',
   templateUrl: './update-user.component.html',
@@ -12,7 +16,7 @@ import Swal from 'sweetalert2';
 })
 export class UpdateUserComponent implements OnInit {
 
-  constructor(private router: Router, private userService : UserService) { }
+  constructor(private router: Router, private userService : UserService, private dialog: MatDialog) { }
 
   title = 'User profile';
   user = new User()
@@ -20,6 +24,9 @@ export class UpdateUserComponent implements OnInit {
   submitted = false;
 
   ngOnInit(): void {
+   this.getUser()
+  }
+  getUser() {
     this.user = this.userService.getCurrentUser();
     if (this.user != null) {
       this.userService.getUserByEmail(this.user.email).subscribe(res => {
@@ -46,7 +53,19 @@ export class UpdateUserComponent implements OnInit {
   passwordMatchValidator() {
     return this.user.password === this.passwordRepeated
   }
-  onSubmit(){
+  changePassword(user: User) {
+    console.log(user);
+    let dialogRef = this.dialog.open(ChangePasswordComponent, {
+      data: user,
+      autoFocus: false
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (!result) return;
+      if(result.event != 'cancel') this.getUser();
+    });
+  }
+  update(){
     this.userService.updateUser(this.user).subscribe(
       {next: (res) => {
           this.router.navigate(['/user-profile']);
@@ -68,6 +87,7 @@ export class UpdateUserComponent implements OnInit {
       });
 
   }
+
 
 
 }

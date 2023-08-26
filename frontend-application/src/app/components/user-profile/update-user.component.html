@@ -4,7 +4,7 @@
   </mat-card-title>
   <mat-card-content>
     <p></p>
-    <form (ngSubmit)="onSubmit()" *ngIf="!submitted">
+    <form *ngIf="!submitted">
       <div class="row" *ngIf="user">
         <div>
           <mat-form-field appearance="fill">
@@ -88,9 +88,13 @@
 
         </div>
       </div>
-      <br><br>
+      <button mat-button style="alignment: center" class="change-password-button"
+              color="primary"
+              (click)="changePassword(user)">
+        Want to change password?</button>
+      <br>
       <button color="primary"
-              style="width: 45%; margin-left: 27%;" mat-raised-button type="submit">Update</button><br>
+              style="width: 45%; margin-left: 27%;" mat-raised-button type="submit" (click)="update()">Update</button><br>
     </form>
     <mat-spinner *ngIf="submitted" mode="indeterminate"></mat-spinner>
   </mat-card-content>

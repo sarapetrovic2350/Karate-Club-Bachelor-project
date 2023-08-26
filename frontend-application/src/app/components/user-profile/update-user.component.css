@@ -30,6 +30,11 @@ button {
   display: block;
   width: 100%;
 }
+.change-password-button {
+  background: none;
+  width: 200px;
+  margin-left: 15px;
+}
 
 a {
   text-decoration: none;

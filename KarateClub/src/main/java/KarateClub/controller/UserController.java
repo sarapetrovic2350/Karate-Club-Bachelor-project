@@ -86,8 +86,8 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/changePassword", method = RequestMethod.PUT)
-	public @ResponseBody User changePassword(@RequestBody ChangePasswordDTO dto) {
-		return userService.changePassword(dto);
+	public @ResponseBody User changePassword(@RequestBody ChangePasswordDTO changePasswordDTO) {
+		return userService.changePassword(changePasswordDTO);
 	}
 
 	@GetMapping(value = "/findUserByNameAndSurnameForSystemAdmin/{name}/{surname}")

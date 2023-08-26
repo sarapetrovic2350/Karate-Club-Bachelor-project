@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Medal} from "../../models/medal.model";
 import {MatTableDataSource} from "@angular/material/table";
-import {User} from "../../models/user.model";
 import {DisciplineRegisteredStudents} from "../../models/discipline-registered-students.model";
 import {CompetitionService} from "../../services/competition.service";
 import { MatDialog } from '@angular/material/dialog';
