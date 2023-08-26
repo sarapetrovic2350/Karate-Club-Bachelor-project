@@ -38,8 +38,14 @@ public class GroupController {
     public ResponseEntity<?> createGroup(@RequestBody NewGroupDTO newGroupDTO,
                                           UriComponentsBuilder uriComponentsBuilder) {
         try {
-            Coach coach = (Coach)userService.findById(newGroupDTO.getCoachId());
-            return new ResponseEntity<>(groupService.createGroup(newGroupDTO, coach), HttpStatus.CREATED);
+            if(!(newGroupDTO.getCoachId() == null)) {
+                Coach coach = (Coach) userService.findById(newGroupDTO.getCoachId());
+                return new ResponseEntity<>(groupService.createGroup(newGroupDTO, coach), HttpStatus.CREATED);
+            }
+            else {
+                return new ResponseEntity<>(groupService.createGroupWithoutCoach(newGroupDTO), HttpStatus.CREATED);
+            }
+
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }

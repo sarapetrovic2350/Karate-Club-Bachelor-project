@@ -41,4 +41,12 @@ public class GroupService implements IGroupService {
         group.setCoach(coach);
         return groupRepository.save(group);
     }
+
+    @Override
+    public Group createGroupWithoutCoach(NewGroupDTO newGroupDTO) {
+        Group group = new Group();
+        group.setGroupName(newGroupDTO.getGroupName());
+        group.setGroupCategory(newGroupDTO.getGroupCategory());
+        return groupRepository.save(group);
+    }
 }

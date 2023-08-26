@@ -18,4 +18,5 @@ public interface IGroupService {
 
     Group saveGroupWithCoach(Group group);
     Group createGroup(NewGroupDTO newGroupDTO, Coach coach);
+    Group createGroupWithoutCoach(NewGroupDTO newGroupDTO);
 }
