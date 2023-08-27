@@ -45,7 +45,7 @@ export class CompetitionService {
     queryParams = queryParams.append("disciplineId", disciplineId)
     queryParams = queryParams.append("userId", userId)
     console.log(queryParams);
-    return this.http.post<any>(this.apiHost + '/registerStudentToDisciplineForCompetition', null, {params: queryParams});
+    return this.http.post<any>(this.apiHost + '/registerStudentToDisciplineForCompetition', null, {params: queryParams, headers: this.headers});
   }
 
   checkIfClubIsRegistered(competitionId: any, clubId: any) {
@@ -55,7 +55,7 @@ export class CompetitionService {
     queryParams = queryParams.append("competitionId", competitionId)
     queryParams = queryParams.append("clubId", clubId)
     console.log(queryParams);
-    return this.http.get<any>(this.apiHost + '/checkIfClubIsRegistered', {params: queryParams});
+    return this.http.get<any>(this.apiHost + '/checkIfClubIsRegistered', {params: queryParams, headers: this.headers});
   }
   getDisciplinesForCompetition(competitionId: any): Observable<Discipline[]> {
     return this.http.get<Discipline[]>(this.apiHost + '/getDisciplinesForCompetition/' + competitionId);

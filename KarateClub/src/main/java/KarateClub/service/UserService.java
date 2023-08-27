@@ -75,7 +75,7 @@ public class UserService implements IUserService {
 		coach.setJmbg(Long.parseLong(userRegistrationDTO.getJmbg()));
 		coach.setGender(userRegistrationDTO.getGender());
 		coach.setUserType(userRegistrationDTO.getUserType());
-		Authority authority = authorityService.findByName("COACH");
+		Authority authority = authorityService.findByName("ROLE_COACH");
 		coach.setAuthority(authority);
 		coach.setLicenceNumber(userRegistrationDTO.getLicenceNumber());
 		coach.setKarateClub(userRegistrationDTO.getKarateClub());
@@ -111,7 +111,7 @@ public class UserService implements IUserService {
 		student.setBeltColor(userRegistrationDTO.getBeltColor());
 		Group group = this.groupService.findById(userRegistrationDTO.getGroupId());
 		student.setGroup(group);
-		Authority authority = authorityService.findByName("STUDENT");
+		Authority authority = authorityService.findByName("ROLE_STUDENT");
 		student.setAuthority(authority);
 		student.setEnabled(true);
 		userRepository.save(student);

@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {AngularMaterialModule} from "./angular-material/angular-material.module";
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
 
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { LoginComponent } from "./components/login/login.component";
@@ -27,6 +27,11 @@ import { MedalsComponent } from './components/medals/medals.component';
 import { DisciplinesRegisteredStudentsComponent } from './components/disciplines-registered-students/disciplines-registered-students.component';
 import { RegisteredStudentsToDisciplineComponent } from './components/registered-students-to-discipline/registered-students-to-discipline.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { ForbiddenComponent } from './components/forbidden/forbidden.component';
+import {JWT_OPTIONS, JwtHelperService} from "@auth0/angular-jwt";
+import {AuthGuardService} from "./services/auth-guard.service";
+import {TokenInterceptor} from "./interceptor/TokenInterceptor";
+// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +51,7 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
     DisciplinesRegisteredStudentsComponent,
     RegisteredStudentsToDisciplineComponent,
     ChangePasswordComponent,
+    ForbiddenComponent,
 
   ],
     imports: [
@@ -59,7 +65,16 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
         FullCalendarModule
 
     ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    AuthGuardService,
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

@@ -37,10 +37,10 @@ export class UserRegistrationComponent implements OnInit {
   ngOnInit(): void {
     let role = localStorage.getItem('role')
 
-    if (role == "ADMINISTRATOR") {
+    if (role == "ROLE_ADMINISTRATOR") {
       this.isAdministrator = true;
     }
-    if (role == "COACH") {
+    if (role == "ROLE_COACH") {
       this.isCoach = true;
     }
     this.groupService.getAllGroups().subscribe((data:any) => {

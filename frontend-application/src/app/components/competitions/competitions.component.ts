@@ -28,11 +28,11 @@ export class CompetitionsComponent implements OnInit {
     this.clubId = this.loggedInUser.karateClub.clubId;
     this.retrieveCompetitions();
     let role = localStorage.getItem('role')
-    if (role === "ADMINISTRATOR") {
+    if (role === "ROLE_ADMINISTRATOR") {
       this.isAdministrator = true;
 
     }
-    if (role === "COACH") {
+    if (role === "ROLE_COACH") {
       this.isCoach = true;
     }
 

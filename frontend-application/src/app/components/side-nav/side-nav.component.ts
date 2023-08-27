@@ -31,13 +31,13 @@ export class SideNavComponent implements OnInit {
       this.name = user.karateClub.name;
       this.opened = true;
     }
-    if (role == "ADMINISTRATOR") {
+    if (role == "ROLE_ADMINISTRATOR") {
       this.isAdministrator = true;
     }
-    if (role == "COACH") {
+    if (role == "ROLE_COACH") {
       this.isCoach = true;
     }
-    if (role == "STUDENT") {
+    if (role == "ROLE_STUDENT") {
       this.isStudent = true;
     }
     console.log(window.innerWidth)

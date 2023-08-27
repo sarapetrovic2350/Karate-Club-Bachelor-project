@@ -3,6 +3,7 @@ package KarateClub.controller;
 import KarateClub.dto.*;
 import KarateClub.service.CompetitionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -16,12 +17,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(value = "/competition", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CompetitionController {
 
-    @Autowired
     private CompetitionService competitionService;
 
     @Autowired
@@ -37,6 +36,8 @@ public class CompetitionController {
     public ResponseEntity<List<CompetitionDTO>> getClubIsRegisteredToCompetitions(@PathVariable Long clubId) {
         return new ResponseEntity<List<CompetitionDTO>>(competitionService.getClubIsRegisteredToCompetitions(clubId), HttpStatus.OK);
     }
+
+    @PreAuthorize("hasRole('ROLE_COACH')")
     @GetMapping(value = "/getDisciplinesForCompetition/{competitionId}")
     public ResponseEntity<List<DisciplineDTO>> getDisciplinesForCompetition(@PathVariable Long competitionId) {
         return new ResponseEntity<List<DisciplineDTO>>(competitionService.getDisciplinesForCompetition(competitionId), HttpStatus.OK);
@@ -59,6 +60,7 @@ public class CompetitionController {
     public ResponseEntity<List<CompetitionMedalDTO>> getCompetitionMedalsForKarateClub(@PathVariable Long clubId) {
         return new ResponseEntity<List<CompetitionMedalDTO>>(competitionService.getCompetitionMedalsForKarateClub(clubId), HttpStatus.OK);
     }
+    @PreAuthorize("hasAnyRole('ROLE_COACH', 'ROLE_ADMINISTRATOR')")
     @GetMapping(value = "/getCompetitionsDisciplinesWithRegisteredStudents")
     public ResponseEntity<List<CompetitionRegisteredStudentsDTO>> getCompetitionsDisciplinesWithRegisteredStudents() {
         return new ResponseEntity<List<CompetitionRegisteredStudentsDTO>>(competitionService.getCompetitionsDisciplinesWithRegisteredStudents(), HttpStatus.OK);
@@ -102,7 +104,8 @@ public class CompetitionController {
         }
     }
 
-    @GetMapping("/checkIfClubIsRegistered")
+    @PreAuthorize("hasRole('ROLE_COACH')")
+    @RequestMapping(value = "/checkIfClubIsRegistered", method = RequestMethod.GET)
     public ResponseEntity<Boolean> checkIfClubIsRegistered(
             @RequestParam(required = true) Long competitionId,
             @RequestParam(required = true) Long clubId) {
@@ -114,8 +117,9 @@ public class CompetitionController {
             }
     }
 
-    @PostMapping("/registerStudentToDisciplineForCompetition")
-    public ResponseEntity<?> checkIfClubIsRegistered(
+    @PreAuthorize("hasRole('ROLE_COACH')")
+    @PostMapping(value = "/registerStudentToDisciplineForCompetition")
+    public ResponseEntity<?> registerStudentToDisciplineForCompetition(
             @RequestParam(required = true) Long competitionId,
             @RequestParam(required = true) Long disciplineId,
             @RequestParam(required = true) Long userId) {

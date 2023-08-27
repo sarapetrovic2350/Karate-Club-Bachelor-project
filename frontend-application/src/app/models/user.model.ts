@@ -32,3 +32,8 @@ export class ChangePassword {
               public passwordRepeated: string = '') {}
 }
 
+export enum Role {
+  Student = 'ROLE_STUDENT',
+  Admin = 'ROLE_ADMINISTRATOR',
+  Coach = 'ROLE_COACH'
+}

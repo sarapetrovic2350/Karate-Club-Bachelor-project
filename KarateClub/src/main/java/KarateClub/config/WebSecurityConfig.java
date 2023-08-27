@@ -72,6 +72,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/donorQuestionnaire/*").permitAll()
                 .antMatchers("/appointment/*").permitAll()
                 .antMatchers("/user/update").permitAll()
+                .antMatchers( "/competition/checkIfClubIsRegistered","/competition/registerStudentToDisciplineForCompetition", "/competition/getDisciplinesForCompetition/{competitionId}", "/competition/getCompetitionsDisciplinesWithRegisteredStudents").permitAll()
                 .antMatchers("/medicalCenter/updateCenter", "/medicalCenter/createCenter", "/medicalCenter/findAll", "/medicalCenter/getAll", "/medicalCenter/findAllSortedByName", "/medicalCenter/findAllSortedByAverageGrade", "/medicalCenter/findAllSortedByCityName").permitAll()
                 .antMatchers("/centerAdministrator/update", "/centerAdministrator/registerCenterAdministrator").permitAll()
                 .antMatchers("/systemAdministrator/*").permitAll()
@@ -84,8 +85,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // umesto cistih korisnickog imena i lozinke (koje radi BasicAuthenticationFilter)
                 .addFilterBefore(new TokenAuthenticationFilter(tokenUtils, jwtUserDetailsService),
                         BasicAuthenticationFilter.class);
-        http.cors();
-        http.csrf().disable();
+                http.cors();
+                http.csrf().disable();
     }
 
     // Definisanje konfiguracije koja utice na generalnu bezbednost aplikacije
@@ -95,16 +96,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // Zahtevi koji se mecuju za web.ignoring().antMatchers() nemaju pristup SecurityContext-u
         // Dozvoljena POST metoda na ruti /auth/login, za svaki drugi tip HTTP metode greska je 401 Unauthorized
 
-        web.ignoring().antMatchers(HttpMethod.POST, "/auth/login", "/user/registerUser", "/group/createGroup", "/competition/registerClubToCompetition", "/competition/registerStudentToDisciplineForCompetition");
+        web.ignoring().antMatchers(HttpMethod.POST, "/auth/login", "/user/registerUser", "/group/createGroup", "/competition/registerClubToCompetition");
         web.ignoring().antMatchers(HttpMethod.PUT, "/centerAdministrator/changePassword", "/user/changePassword", "/auth/activate-account/*");
         web.ignoring().antMatchers(HttpMethod.GET, "/user/getAll", "/user/getAllStudents", "/user/getAllCoaches", "/user/getStudentsInGroup/{groupId}",
                 "/group/getAll",
                 "/discipline/getDisciplinesStudentIsRegisteredTo/{userId}", "/discipline/getDisciplinesWhichHaveRegisteredUsers",
                 "/competition/getDisciplinesOfCompetitionForStudent/{userId}",
-                "/competition/findAll", "/competition/getAll", "/competition/checkIfClubIsRegistered","/competition/getCompetitionById/{competitionId}",
-                "/competition/getCompetitionsClubIsRegisteredTo/{clubId}", "/competition/getDisciplinesForCompetition/{competitionId}",
+                "/competition/findAll", "/competition/getAll","/competition/getCompetitionById/{competitionId}",
+                "/competition/getCompetitionsClubIsRegisteredTo/{clubId}",
                 "/competition/getDisciplineByCompetitionDisciplineId/{competitionId}/{disciplineId}",
-                "/competition/getCompetitionMedalsForKarateClub/{clubId}", "/competition/getCompetitionsDisciplinesWithRegisteredStudents",
+                "/competition/getCompetitionMedalsForKarateClub/{clubId}",
                 "/medal/getAll",
                 "/centerAdministrator/getAll", "/user/getUserById/{userId}", "/user/getUserByEmail/{email}",
                 "/medicalCenter/getMedicalCenterById/{centerId}",

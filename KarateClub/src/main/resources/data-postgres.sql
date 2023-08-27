@@ -1,6 +1,6 @@
-INSERT INTO public.authority (name) VALUES ('ADMINISTRATOR');
-INSERT INTO public.authority (name) VALUES ('COACH');
-INSERT INTO public.authority (name) VALUES ('STUDENT');
+INSERT INTO public.authority (name) VALUES ('ROLE_ADMINISTRATOR');
+INSERT INTO public.authority (name) VALUES ('ROLE_COACH');
+INSERT INTO public.authority (name) VALUES ('ROLE_STUDENT');
 
 INSERT INTO public.address (city, country, street, street_number) VALUES ('Beograd', 'Srbija', 'Vitanovačka', '42');
 INSERT INTO public.address (city, country, street, street_number) VALUES ('Novi Sad', 'Srbija', 'Bulevar Oslobodjenja', '21');

@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from "./components/login/login.component";
 import {UpdateUserComponent} from "./components/user-profile/update-user.component";
 import {UserRegistrationComponent} from "./components/user-registration/user-registration.component";
@@ -17,6 +17,9 @@ import {MedalsComponent} from "./components/medals/medals.component";
 import {
   DisciplinesRegisteredStudentsComponent
 } from "./components/disciplines-registered-students/disciplines-registered-students.component";
+import {RoleGuardService} from "./services/role-guard.service";
+import {ForbiddenComponent} from "./components/forbidden/forbidden.component";
+import {Role} from "./models/user.model";
 
 const routes: Routes = [
   {
@@ -61,15 +64,31 @@ const routes: Routes = [
   },
   {
     path: 'disciplines-registered-students',
-    component: DisciplinesRegisteredStudentsComponent
+    component: DisciplinesRegisteredStudentsComponent,
+    canActivate: [RoleGuardService],
+    data: {
+      roles: [Role.Coach, Role.Admin]
+    }
   },
   {
     path: 'disciplines/:competitionId',
-    component: DisciplinesComponent
+    component: DisciplinesComponent,
+    canActivate: [RoleGuardService],
+    data: {
+      roles: [Role.Coach]
+    }
   },
   {
     path: 'disciplines/:competitionId/register-student/:disciplineId',
-    component: RegisterStudentToDisciplineComponent
+    component: RegisterStudentToDisciplineComponent,
+    canActivate: [RoleGuardService],
+    data: {
+      roles: [Role.Coach]
+    }
+  },
+  {
+    path: 'forbidden',
+    component: ForbiddenComponent
   }
 
 ];
