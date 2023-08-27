@@ -32,7 +32,6 @@ import KarateClub.service.UserService;
 @RequestMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserController {
 
-	@Autowired
 	private UserService userService;
 
 	@Autowired
@@ -41,6 +40,7 @@ public class UserController {
 		this.userService = userService;
 	}
 
+	@PreAuthorize("hasAnyRole('ROLE_COACH', 'ROLE_ADMINISTRATOR')")
 	@PostMapping(value = "/registerUser")
 	public ResponseEntity<?> registerUser(@RequestBody UserRegistrationDTO userRegistrationDTO,
 			UriComponentsBuilder uriComponentsBuilder) {
@@ -55,69 +55,49 @@ public class UserController {
 		}
 	}
 
+	@PreAuthorize("hasAnyRole('ROLE_COACH', 'ROLE_ADMINISTRATOR')")
 	@GetMapping(value = "/getAll")
 	public ResponseEntity<List<User>> getAllUsers() {
 		return new ResponseEntity<List<User>>(userService.getAllUsers(), HttpStatus.OK);
 	}
 
+	@PreAuthorize("hasAnyRole('ROLE_COACH', 'ROLE_ADMINISTRATOR')")
 	@GetMapping(value = "/getAllStudents")
 	public ResponseEntity<List<Student>> getAllStudents() {
 		return new ResponseEntity<List<Student>>(userService.getAllStudents(), HttpStatus.OK);
 	}
+
+	@PreAuthorize("hasAnyRole('ROLE_COACH', 'ROLE_ADMINISTRATOR')")
 	@GetMapping(value = "/getAllCoaches")
 	public ResponseEntity<List<User>> getAllCoaches() {
 		return new ResponseEntity<List<User>>(userService.getAllCoaches(), HttpStatus.OK);
 	}
 
-	//@PreAuthorize("hasRole('ROLE_REGISTERED_USER')")
+	@PreAuthorize("hasAnyRole('ROLE_COACH', 'ROLE_ADMINISTRATOR', 'ROLE_STUDENT')")
 	@PutMapping(value = "/update")
 	public @ResponseBody UserUpdateDTO update(@RequestBody UserUpdateDTO u) {
 		return userService.updateUser(u);
 	}
 
+	@PreAuthorize("hasAnyRole('ROLE_COACH', 'ROLE_ADMINISTRATOR')")
 	@GetMapping(value = "/getUserById/{userId}")
 	public User loadById(@PathVariable Long userId) {
 		return this.userService.findById(userId);
 	}
 
+	@PreAuthorize("hasAnyRole('ROLE_COACH', 'ROLE_ADMINISTRATOR', 'ROLE_STUDENT')")
 	@GetMapping(value = "/getUserByEmail/{email}")
 	public User findById(@PathVariable String email) {
 		return this.userService.findByEmail(email);
 	}
 
+	@PreAuthorize("hasAnyRole('ROLE_COACH', 'ROLE_ADMINISTRATOR', 'ROLE_STUDENT')")
 	@RequestMapping(value = "/changePassword", method = RequestMethod.PUT)
 	public @ResponseBody User changePassword(@RequestBody ChangePasswordDTO changePasswordDTO) {
 		return userService.changePassword(changePasswordDTO);
 	}
 
-	@GetMapping(value = "/findUserByNameAndSurnameForSystemAdmin/{name}/{surname}")
-	public ResponseEntity<List<User>> findUserByNameAndSurname(@PathVariable String name,
-			@PathVariable String surname) {
-		return new ResponseEntity<List<User>>(userService.findUserByNameAndSurnameForSystemAdmin(name, surname),
-				HttpStatus.OK);
-	}
-
-	@GetMapping(value = "/findUserByNameAndSurnameForCenterAdmin/{name}/{surname}")
-	public ResponseEntity<List<User>> findUserByNameAndSurnameForCenterAdmin(@PathVariable String name,
-			@PathVariable String surname) {
-		return new ResponseEntity<List<User>>(userService.findUserByNameAndSurnameForCenterAdmin(name, surname),
-				HttpStatus.OK);
-	}
-
-	@GetMapping(value = "/checkPenalties/{id}/{present}")
-	public ResponseEntity<?> checkPenalties(@PathVariable Long id, @PathVariable String present) {
-//			return new ResponseEntity<List<User>>(userService.findUserByNameAndSurnameForCenterAdmin(name, surname), HttpStatus.OK);
-		String comp = "NO";
-		if (present.equals(comp)) {
-			// ovde nije dosao
-			userService.updatePenal(id);
-			String ret = "Penalties well refreshed!";
-			return new ResponseEntity<>(ret, HttpStatus.BAD_REQUEST);
-		} else {
-
-			return new ResponseEntity<>(HttpStatus.OK);
-		}
-	}
+	@PreAuthorize("hasAnyRole('ROLE_COACH', 'ROLE_ADMINISTRATOR')")
 	@GetMapping(value = "/getStudentsInGroup/{groupId}")
 	public ResponseEntity<List<Student>> getStudentsInGroup(@PathVariable Long groupId) {
 		return new ResponseEntity<List<Student>>(userService.getStudentsInGroup(groupId), HttpStatus.OK);

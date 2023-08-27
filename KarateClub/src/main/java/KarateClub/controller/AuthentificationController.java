@@ -53,7 +53,7 @@ public class AuthentificationController {
 		this.confirmationTokenService = confirmationTokenService;
 	}
 
-	@PreAuthorize("hasAnyRole('ROLE_REGISTERED_USER', 'ROLE_CENTER_ADMINISTRATOR', 'ROLE_SYSTEM_ADMINISTRATOR')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMINISTRATOR', 'ROLE_COACH', 'ROLE_STUDENT')")
 	@GetMapping
 	public ResponseEntity<User> getLoggedInUser() {
 		return new ResponseEntity<User>(userService.findLoggedInUser(), HttpStatus.OK);

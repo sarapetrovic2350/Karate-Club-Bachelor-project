@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Discipline} from "../../models/discipline.model";
 import {MatTableDataSource} from "@angular/material/table";
 import {DisciplineCompetition} from "../../models/discipline-competition.model";
 import {CompetitionService} from "../../services/competition.service";

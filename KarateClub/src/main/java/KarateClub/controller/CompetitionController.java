@@ -28,45 +28,56 @@ public class CompetitionController {
         super();
         this.competitionService = competitionService;
     }
+
+    @PreAuthorize("hasAnyRole('ROLE_COACH', 'ROLE_ADMINISTRATOR')")
     @GetMapping(value = "/getAll")
     public ResponseEntity<List<CompetitionDTO>> getAllCompetitions() {
         return new ResponseEntity<List<CompetitionDTO>>(competitionService.getAllCompetitions(), HttpStatus.OK);
     }
+
+    @PreAuthorize("hasAnyRole('ROLE_COACH', 'ROLE_ADMINISTRATOR', 'ROLE_STUDENT')")
     @GetMapping(value = "/getCompetitionsClubIsRegisteredTo/{clubId}")
     public ResponseEntity<List<CompetitionDTO>> getClubIsRegisteredToCompetitions(@PathVariable Long clubId) {
         return new ResponseEntity<List<CompetitionDTO>>(competitionService.getClubIsRegisteredToCompetitions(clubId), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('ROLE_COACH')")
+    @PreAuthorize("hasAnyRole('ROLE_COACH', 'ROLE_ADMINISTRATOR')")
     @GetMapping(value = "/getDisciplinesForCompetition/{competitionId}")
     public ResponseEntity<List<DisciplineDTO>> getDisciplinesForCompetition(@PathVariable Long competitionId) {
         return new ResponseEntity<List<DisciplineDTO>>(competitionService.getDisciplinesForCompetition(competitionId), HttpStatus.OK);
     }
+
+    @PreAuthorize("hasAnyRole('ROLE_COACH', 'ROLE_ADMINISTRATOR')")
     @GetMapping(value = "/getDisciplineByCompetitionDisciplineId/{competitionId}/{disciplineId}")
     public ResponseEntity<DisciplineDTO> getDisciplineByCompetitionDisciplineId(@PathVariable Long competitionId, @PathVariable Long disciplineId) {
         return new ResponseEntity<DisciplineDTO>(competitionService.findDisciplineByCompetitionDisciplineId(competitionId, disciplineId), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_COACH', 'ROLE_ADMINISTRATOR')")
     @GetMapping(value = "/getCompetitionById/{competitionId}")
     public CompetitionDTO getCompetitionById(@PathVariable Long competitionId) {
         return new CompetitionDTO(this.competitionService.findById(competitionId));
     }
+
+    @PreAuthorize("hasRole('ROLE_STUDENT')")
     @GetMapping(value = "/getDisciplinesOfCompetitionForStudent/{userId}")
     public ResponseEntity<List<DisciplineCompetitionDTO>> getDisciplinesOfCompetitionForStudent(@PathVariable Long userId) {
         return new ResponseEntity<List<DisciplineCompetitionDTO>>(competitionService.getDisciplinesOfCompetitionForStudent(userId), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_COACH', 'ROLE_ADMINISTRATOR', 'ROLE_STUDENT')")
     @GetMapping(value = "/getCompetitionMedalsForKarateClub/{clubId}")
     public ResponseEntity<List<CompetitionMedalDTO>> getCompetitionMedalsForKarateClub(@PathVariable Long clubId) {
         return new ResponseEntity<List<CompetitionMedalDTO>>(competitionService.getCompetitionMedalsForKarateClub(clubId), HttpStatus.OK);
     }
+
     @PreAuthorize("hasAnyRole('ROLE_COACH', 'ROLE_ADMINISTRATOR')")
     @GetMapping(value = "/getCompetitionsDisciplinesWithRegisteredStudents")
     public ResponseEntity<List<CompetitionRegisteredStudentsDTO>> getCompetitionsDisciplinesWithRegisteredStudents() {
         return new ResponseEntity<List<CompetitionRegisteredStudentsDTO>>(competitionService.getCompetitionsDisciplinesWithRegisteredStudents(), HttpStatus.OK);
     }
 
-
+    @PreAuthorize("hasAnyRole('ROLE_COACH', 'ROLE_ADMINISTRATOR', 'ROLE_STUDENT')")
     @GetMapping("/findAll")
     public ResponseEntity<Map<String, Object>> findAllWithPagination(
             @RequestParam(defaultValue = "0") int page,
@@ -92,6 +103,7 @@ public class CompetitionController {
         }
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMINISTRATOR')")
     @PostMapping("/registerClubToCompetition")
     public ResponseEntity<?> registerClubToCompetition(
             @RequestParam(required = true) Long competitionId,
@@ -104,7 +116,7 @@ public class CompetitionController {
         }
     }
 
-    @PreAuthorize("hasRole('ROLE_COACH')")
+    @PreAuthorize("hasAnyRole('ROLE_COACH', 'ROLE_ADMINISTRATOR')")
     @RequestMapping(value = "/checkIfClubIsRegistered", method = RequestMethod.GET)
     public ResponseEntity<Boolean> checkIfClubIsRegistered(
             @RequestParam(required = true) Long competitionId,

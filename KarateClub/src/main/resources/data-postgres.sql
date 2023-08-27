@@ -49,13 +49,17 @@ VALUES ('Student', default, 'Ivana', 'Ivanovic', '1210000805018', 'ivana@gmail.c
 INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)
 VALUES ('Student', default, 'Ana Marija', 'Lukic', '2305006805045', 'ana@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'EYk76xQWhz1JOKRDzp/CDQ==', 'FEMALE', '+381611585875', 'STUDENT','RED', '4', '1','4', '3', true);
 
+-- STUDENT email: perica@gmail.com password: perica Juniori G1, Klub Nippon
+INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)
+VALUES ('Student', default, 'Perica', 'Ilic', '2505005800085', 'perica@gmail.com','$2a$12$cyRtSVodfntEj.1VSLGO6u/F8lNhQFsSaMjD0u52N7Bgn0T6NIig6', 'GuUWzK6i4OHZJm4Eb2H9nQ==', 'MALE', '+381641585875', 'STUDENT','RED', '4', '1','3', '3', true);
+
 INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'KUP VOJVODINE','Kup Vojvodine za kadete/kinje i juniore/ke odrzace se u Sportskoj hali- Novi Becej.', '2023-09-15', 'Novi Becej, Srbija', 'karate1.jpg');
-INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'BALKANSKO PRVENSTVO','Balkansko prvenstvo za pionire i kadete', '2023-09-22', 'Skopje, Makedonija', 'karate3.jpg');
+INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'World Senior Championships','The magnificent Papp Laszlo Sports Arena in Budapest will host the 26th World Senior Championships', '2023-10-09', 'Budapest, Hungary', 'senior.png');
 INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'Prvenstvo Balkana 2023','Prvenstvo Balkana za seniore i juniore u Porecu', '2023-10-17', 'Porec, Hrvatska', 'porec.jpg');
-INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'JKA – WSKA OTVORENI MILOŠ KUP','Miloš Kup 2023 odrzace se u Hali sprotova u Trsteniku.', '2023-10-15', 'Trstenik, Srbija', 'karate2.jpg');
-INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'Mediterranean Karate Championships','The 29th edition of the Mediterranean Karate Championships in Tunis', '2023-10-05', 'Tunis, Tunisia', 'tunis.jpg');
-INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'World Senior Championships','The magnificent Papp Laszlo Sports Arena in Budapest will host the 26th World Senior Championships', '2023-11-26', 'Budapest, Hungary', 'karate1.jpg');
-INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'Prvenstvo Evrope','Prvenstvo Evrope za seniore/ke i juniore/ke odrzace se u Bratislavi.', '2023-05-25', 'Bratislava, Slovacka', 'karate1.jpg');
+INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'JKA – WSKA OTVORENI MILOŠ KUP','Miloš Kup 2023 odrzace se u Hali sprotova u Trsteniku.', '2023-10-25', 'Trstenik, Srbija', 'karate2.jpg');
+INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'Mediterranean Karate Championships','The 29th edition of the Mediterranean Karate Championships in Tunis', '2023-11-12', 'Tunis, Tunisia', 'tunis.jpg');
+INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'BALKANSKO PRVENSTVO','Balkansko prvenstvo za pionire i kadete', '2023-11-22', 'Skopje, Makedonija', 'karate3.jpg');
+INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'Prvenstvo Evrope','Prvenstvo Evrope za seniore/ke i juniore/ke odrzace se u Bratislavi.', '2023-05-25', 'Bratislava, Slovacka', null);
 
 INSERT INTO public.competitions_clubs(competition_id, club_id) VALUES ('1', '2');
 INSERT INTO public.competitions_clubs(competition_id, club_id) VALUES ('1', '3');

@@ -60,13 +60,6 @@ export class CompetitionsComponent implements OnInit {
       console.log(this.competitions);
     })
   }
-  retrieveCompetitionsClubIsRegisteredTo(): void {
-    this.competitionService.getCompetitionsClubIsRegisteredTo(this.clubId).subscribe((data: any) => {
-      this.competitions = data;
-      console.log(data);
-      console.log(this.competitions);
-    })
-  }
   handlePageChange(event: number): void {
     this.page = event;
     console.log(this.page)

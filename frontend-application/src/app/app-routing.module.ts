@@ -28,39 +28,75 @@ const routes: Routes = [
   },
   {
     path: 'user-profile',
-    component: UpdateUserComponent
+    component: UpdateUserComponent,
+    canActivate: [RoleGuardService],
+    data: {
+      roles: [Role.Coach, Role.Admin, Role.Student]
+    }
   },
   {
     path: 'user-registration',
-    component: UserRegistrationComponent
+    component: UserRegistrationComponent,
+    canActivate: [RoleGuardService],
+    data: {
+      roles: [Role.Coach, Role.Admin]
+    }
   },
   {
     path: 'create-group',
-    component: CreateGroupComponent
+    component: CreateGroupComponent,
+    canActivate: [RoleGuardService],
+    data: {
+      roles: [Role.Admin]
+    }
   },
   {
     path: 'club-members',
-    component: ClubMembersComponent
+    component: ClubMembersComponent,
+    canActivate: [RoleGuardService],
+    data: {
+      roles: [Role.Coach, Role.Admin]
+    }
   },
   {
     path: 'group-info',
-    component: StudentGroupInfoComponent
+    component: StudentGroupInfoComponent,
+    canActivate: [RoleGuardService],
+    data: {
+      roles: [Role.Student]
+    }
   },
   {
     path: 'competitions',
-    component: CompetitionsComponent
+    component: CompetitionsComponent,
+    canActivate: [RoleGuardService],
+    data: {
+      roles: [Role.Coach, Role.Admin, Role.Student]
+    }
   },
   {
     path: 'calendar',
-    component: CalendarComponent
+    component: CalendarComponent,
+    canActivate: [RoleGuardService],
+    data: {
+      roles: [Role.Coach, Role.Admin, Role.Student]
+    }
   },
   {
     path: 'upcoming-competitions',
-    component: UpcomingCompetitionsComponent
+    component: UpcomingCompetitionsComponent,
+    canActivate: [RoleGuardService],
+    data: {
+      roles: [Role.Student]
+    }
   },
   {
     path: 'medals',
-    component: MedalsComponent
+    component: MedalsComponent,
+    canActivate: [RoleGuardService],
+    data: {
+      roles: [Role.Coach, Role.Admin, Role.Student]
+    }
   },
   {
     path: 'disciplines-registered-students',

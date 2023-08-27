@@ -8,7 +8,6 @@ import java.util.List;
 import KarateClub.iservice.IUserService;
 import KarateClub.model.*;
 import KarateClub.repository.IUserRepository;
-import KarateClub.repository.RegisteredUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -34,19 +33,16 @@ public class UserService implements IUserService {
 
 	private EmailService emailService;
 
-	private RegisteredUserRepository registeredUserRepository;
 
 	@Autowired
 	public UserService(IUserRepository userRepository, GroupService groupService, AuthorityService authorityService,
-					   ConfirmationTokenService confirmationTokenService, EmailService emailService,
-					   RegisteredUserRepository registeredUserRepository) {
+					   ConfirmationTokenService confirmationTokenService, EmailService emailService) {
 		super();
 		this.userRepository = userRepository;
 		this.groupService = groupService;
 		this.authorityService = authorityService;
 		this.confirmationTokenService = confirmationTokenService;
 		this.emailService = emailService;
-		this.registeredUserRepository = registeredUserRepository;
 
 	}
 
@@ -280,7 +276,7 @@ public class UserService implements IUserService {
 		}
 		return usersFind;
 	}
-
+	/*
 	public void updatePenal(Long id) {
 
 		RegisteredUser user = (RegisteredUser) registeredUserRepository.findById(id).get();
@@ -299,7 +295,6 @@ public class UserService implements IUserService {
 		}
 	}
 
-	/*
 	 * public void checkDateToClearPenalties(Long registeredUserId) { //LocalDate
 	 * startOfNextMonth = DateUtility.getStartOfNextMonth(); //LocalDate dt1 =
 	 * LocalDate.parse("2023-02-04"); //if

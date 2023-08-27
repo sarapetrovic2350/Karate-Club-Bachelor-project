@@ -69,15 +69,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // svim korisnicima dopusti da pristupe sledecim putanjama:
                 .authorizeRequests()
                 .antMatchers("/auth/*").permitAll()
-                .antMatchers("/donorQuestionnaire/*").permitAll()
-                .antMatchers("/appointment/*").permitAll()
-                .antMatchers("/user/update").permitAll()
-                .antMatchers( "/competition/checkIfClubIsRegistered","/competition/registerStudentToDisciplineForCompetition", "/competition/getDisciplinesForCompetition/{competitionId}", "/competition/getCompetitionsDisciplinesWithRegisteredStudents").permitAll()
-                .antMatchers("/medicalCenter/updateCenter", "/medicalCenter/createCenter", "/medicalCenter/findAll", "/medicalCenter/getAll", "/medicalCenter/findAllSortedByName", "/medicalCenter/findAllSortedByAverageGrade", "/medicalCenter/findAllSortedByCityName").permitAll()
-                .antMatchers("/centerAdministrator/update", "/centerAdministrator/registerCenterAdministrator").permitAll()
-                .antMatchers("/systemAdministrator/*").permitAll()
-                .antMatchers("/blood/*").permitAll()
-                .antMatchers("/report/*").permitAll()
+                .antMatchers("/user/*").permitAll()
+                .antMatchers("/group/*").permitAll()
+                .antMatchers( "/competition/checkIfClubIsRegistered","/competition/registerStudentToDisciplineForCompetition",
+                        "/competition/getDisciplinesForCompetition/{competitionId}", "/competition/getCompetitionsDisciplinesWithRegisteredStudents",
+                        "/competition/registerClubToCompetition", "/competition/findAll", "/competition/getCompetitionMedalsForKarateClub/{clubId}",
+                        "/competition/getDisciplinesOfCompetitionForStudent/{userId}","/competition/getDisciplineByCompetitionDisciplineId/{competitionId}/{disciplineId}",
+                        "/competition/getCompetitionsClubIsRegisteredTo/{clubId}","/competition/getCompetitionById/{competitionId}","/competition/getAll").permitAll()
+                .antMatchers("/discipline/*").permitAll()
+                .antMatchers("/medal/*").permitAll()
                 // za svaki drugi zahtev korisnik mora biti autentifikovan
                 .anyRequest().authenticated().and().httpBasic().and().cors().and()
 
@@ -96,29 +96,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // Zahtevi koji se mecuju za web.ignoring().antMatchers() nemaju pristup SecurityContext-u
         // Dozvoljena POST metoda na ruti /auth/login, za svaki drugi tip HTTP metode greska je 401 Unauthorized
 
-        web.ignoring().antMatchers(HttpMethod.POST, "/auth/login", "/user/registerUser", "/group/createGroup", "/competition/registerClubToCompetition");
-        web.ignoring().antMatchers(HttpMethod.PUT, "/centerAdministrator/changePassword", "/user/changePassword", "/auth/activate-account/*");
-        web.ignoring().antMatchers(HttpMethod.GET, "/user/getAll", "/user/getAllStudents", "/user/getAllCoaches", "/user/getStudentsInGroup/{groupId}",
-                "/group/getAll",
-                "/discipline/getDisciplinesStudentIsRegisteredTo/{userId}", "/discipline/getDisciplinesWhichHaveRegisteredUsers",
-                "/competition/getDisciplinesOfCompetitionForStudent/{userId}",
-                "/competition/findAll", "/competition/getAll","/competition/getCompetitionById/{competitionId}",
-                "/competition/getCompetitionsClubIsRegisteredTo/{clubId}",
-                "/competition/getDisciplineByCompetitionDisciplineId/{competitionId}/{disciplineId}",
-                "/competition/getCompetitionMedalsForKarateClub/{clubId}",
-                "/medal/getAll",
-                "/centerAdministrator/getAll", "/user/getUserById/{userId}", "/user/getUserByEmail/{email}",
-                "/medicalCenter/getMedicalCenterById/{centerId}",
-                "/medicalCenter/searchMedicalCenterByNameAndPlace/{name}/{place}",
-                "/user/findUserByNameAndSurnameForSystemAdmin/{name}/{surname}",
-                "/user/findUserByNameAndSurnameForCenterAdmin/{name}/{surname}",
-                "/medicalCenter/filterMedicalCenter/{name}/{place}/{grade}",
-                "/centerAdministrator/getCenterAdministratorById/{adminId}",
-                "/centerAdministrator/getCenterAdministratorByEmail/{email}",
-                "/centerAdministrator/getMedicalCenterByAdminEmail/{email}",
-                "/centerAdministrator/getCenterAdministratorsByCenterId/{centerId}",
-                "/user/checkPenalties/{id}/{present}",
-                "/medicalCenter/medicalCentersWithAvailableAppointment",
+        web.ignoring().antMatchers(HttpMethod.POST, "/auth/login");
+        web.ignoring().antMatchers(HttpMethod.PUT, "/auth/activate-account/*");
+        web.ignoring().antMatchers(HttpMethod.GET,
                 "/webjars/**", "/*.html", "/favicon.ico",
                 "/**/*.html", "/**/*.css", "/**/*.js");
 
