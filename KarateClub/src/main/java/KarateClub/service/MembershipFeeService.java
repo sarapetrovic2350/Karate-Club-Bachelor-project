@@ -7,6 +7,7 @@ import KarateClub.repository.IMembershipFeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -33,5 +34,28 @@ public class MembershipFeeService implements IMembershipFeeService {
             }
         }
         return membershipFeeRepository.save(membershipFee);
+    }
+
+    @Override
+    public MembershipFee payMembership(Long studentId) {
+        MembershipFee membershipFee = membershipFeeRepository.findMembershipFeeByStudent_UserId(studentId);
+        membershipFee.setPaymentDate(LocalDate.now());
+        membershipFee.setPaidForMonth(true);
+        return membershipFeeRepository.save(membershipFee);
+    }
+
+    @Override
+    public boolean checkIfMembershipIsPaidForMonth(Long studentId) {
+        MembershipFee membershipFee = membershipFeeRepository.findMembershipFeeByStudent_UserId(studentId);
+        if(membershipFee.getPaymentDate() == null)
+            return false;
+
+        LocalDate validDate = membershipFee.getPaymentDate().plusMonths(1);
+        if(membershipFee.isPaidForMonth() && LocalDate.now().isBefore(validDate))
+            return true;
+
+        membershipFee.setPaidForMonth(false);
+        membershipFeeRepository.save(membershipFee);
+        return false;
     }
 }

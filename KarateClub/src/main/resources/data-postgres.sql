@@ -64,8 +64,9 @@ INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, s
 VALUES ('Student', default, 'Perica', 'Ilic', '2505005800085', 'perica@gmail.com','$2a$12$cyRtSVodfntEj.1VSLGO6u/F8lNhQFsSaMjD0u52N7Bgn0T6NIig6', 'GuUWzK6i4OHZJm4Eb2H9nQ==', 'MALE', '+381641585875', 'STUDENT','GREEN', '4', '2','4', '3', true);
 
 
-INSERT INTO public.membership_fees (membership_fee_id, membership_fee_name, payment_date, price, is_paid_for_month, student_id, club_id) VALUES (default, 'Mesecna clanarina u Karate klubu Nippon', null, 2900, false, '4', '1');
-INSERT INTO public.membership_fees (membership_fee_id, membership_fee_name, payment_date, price, is_paid_for_month, student_id, club_id) VALUES (default, 'Mesecna clanarina Klub Mladost', null, 2700, false, '10', '2');
+INSERT INTO public.membership_fees (membership_fee_id, membership_fee_name, payment_date, price, is_paid_for_month, student_id, club_id) VALUES (default, 'Mesecna clanarina u Karate klubu Nippon', null, 2900, false, '7', '1');
+INSERT INTO public.membership_fees (membership_fee_id, membership_fee_name, payment_date, price, is_paid_for_month, student_id, club_id) VALUES (default, 'Mesecna clanarina u Karate klubu Nippon', '2023-07-27', 2900, true, '6', '1');
+INSERT INTO public.membership_fees (membership_fee_id, membership_fee_name, payment_date, price, is_paid_for_month, student_id, club_id) VALUES (default, 'Mesecna clanarina Klub Mladost', '2023-08-15', 2700, true, '10', '2');
 
 INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'KUP VOJVODINE','Kup Vojvodine za kadete/kinje i juniore/ke odrzace se u Sportskoj hali- Novi Becej.', '2023-09-15', 'Novi Becej, Srbija', 'karate1.jpg');
 INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'World Senior Championships','The magnificent Papp Laszlo Sports Arena in Budapest will host the 26th World Senior Championships', '2023-10-09', 'Budapest, Hungary', 'senior.png');

@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IMembershipFeeRepository extends JpaRepository<MembershipFee, Long> {
+    MembershipFee findMembershipFeeByStudent_UserId(Long userId);
 }

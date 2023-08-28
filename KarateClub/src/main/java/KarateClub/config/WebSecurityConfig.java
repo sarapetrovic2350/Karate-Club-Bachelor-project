@@ -78,6 +78,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/competition/getCompetitionsClubIsRegisteredTo/{clubId}","/competition/getCompetitionById/{competitionId}","/competition/getAll").permitAll()
                 .antMatchers("/discipline/*").permitAll()
                 .antMatchers("/medal/*").permitAll()
+                .antMatchers("/membershipFee/*").permitAll()
                 // za svaki drugi zahtev korisnik mora biti autentifikovan
                 .anyRequest().authenticated().and().httpBasic().and().cors().and()
 

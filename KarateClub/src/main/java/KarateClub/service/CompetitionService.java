@@ -172,15 +172,15 @@ public class CompetitionService implements ICompetitionService {
                     for(Discipline discipline1: disciplineSet) {
                         if(discipline1 == discipline) {
                             List<StudentGroupDTO> studentGroupDTOS = new ArrayList<>();
-                            boolean studentsInClub = false;
+                            boolean disciplineForClub = false;
                             for(Student student: discipline.getRegisteredStudents()){
                                 if(Objects.equals(student.getKarateClub().getClubId(), clubId)) {
-                                    studentsInClub = true;
+                                    disciplineForClub = true;
                                 }
                                 StudentGroupDTO studentGroupDTO = new StudentGroupDTO(student, student.getGroup(), student.getGroup().getCoach());
                                 studentGroupDTOS.add(studentGroupDTO);
                             }
-                            if(studentsInClub) {
+                            if(disciplineForClub) {
                                 CompetitionRegisteredStudentsDTO competitionRegisteredStudentsDTO = new CompetitionRegisteredStudentsDTO(competition, discipline, studentGroupDTOS);
                                 competitionRegisteredStudentsDTOS.add(competitionRegisteredStudentsDTO);
                             }
