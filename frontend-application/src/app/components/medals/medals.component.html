@@ -1,5 +1,5 @@
 <div class="container">
-  <table mat-table [dataSource]="dataSourceMedals">
+  <table  id="excel-table" mat-table [dataSource]="dataSourceMedals">
 
     <ng-container matColumnDef="competitionName">
       <th mat-header-cell *matHeaderCellDef class="cell-center"> Competition name </th>
@@ -44,5 +44,6 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumnsMedals; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumnsMedals;"></tr>
   </table>
+  <button mat-raised-button class="export-button" (click)="exportExcel()">Export to Excel</button>
 </div>
 
