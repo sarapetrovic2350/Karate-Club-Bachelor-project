@@ -7,7 +7,9 @@ import KarateClub.repository.IGroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class GroupService implements IGroupService {
@@ -21,6 +23,29 @@ public class GroupService implements IGroupService {
     @Override
     public List<Group> getAllGroups() {
         return groupRepository.findAll();
+    }
+
+    @Override
+    public List<Group> getAllClubGroups(Long clubId) {
+        List<Group> allGroups = groupRepository.findAll();
+        List<Group> clubGroups = new ArrayList<>();
+        for (Group group: allGroups) {
+            if(group.getCoach() != null && Objects.equals(group.getCoach().getKarateClub().getClubId(), clubId)) {
+                clubGroups.add(group);
+            }
+        }
+        return clubGroups;
+    }
+    @Override
+    public List<Group> getAllGroupsWithoutCoach() {
+        List<Group> allGroups = groupRepository.findAll();
+        List<Group> groupsWithoutCoach = new ArrayList<>();
+        for (Group group: allGroups) {
+            if(group.getCoach() == null) {
+                groupsWithoutCoach.add(group);
+            }
+        }
+        return groupsWithoutCoach;
     }
 
     @Override

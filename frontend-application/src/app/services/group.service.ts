@@ -11,8 +11,11 @@ export class GroupService {
   headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(private http: HttpClient) { }
-  getAllGroups() {
-    return this.http.get<Group[]>(this.apiHost + "/getAll", {headers: this.headers});
+  getAllGroups(clubId: string) {
+    return this.http.get<Group[]>(this.apiHost + "/getAllClubGroups/" + clubId, {headers: this.headers});
+  }
+  getAllGroupsWithoutCoach() {
+    return this.http.get<Group[]>(this.apiHost + "/getAllGroupsWithoutCoach", {headers: this.headers});
   }
   createGroup(group: Group) {
     return this.http.post<Group>(this.apiHost + '/createGroup', group);

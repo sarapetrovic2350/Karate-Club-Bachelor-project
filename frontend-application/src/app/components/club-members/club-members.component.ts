@@ -29,8 +29,8 @@ export class ClubMembersComponent implements OnInit {
   constructor(private userService: UserService, private groupService: GroupService) { }
 
   ngOnInit(): void {
-
-    this.userService.getAllCoaches().subscribe(
+    let user = this.userService.getCurrentUser();
+    this.userService.getAllClubCoaches(user.karateClub.clubId).subscribe(
       {
         next: (res) => {
           this.coaches = res;
@@ -42,7 +42,7 @@ export class ClubMembersComponent implements OnInit {
         }
 
       });
-    this.userService.getAllStudents().subscribe(
+    this.userService.getAllClubStudents(user.karateClub.clubId).subscribe(
       {
         next: (res) => {
           this.students = res;
@@ -54,21 +54,27 @@ export class ClubMembersComponent implements OnInit {
         }
 
       });
-    this.groupService.getAllGroups().subscribe(
+    this.groupService.getAllGroups(user.karateClub.clubId).subscribe(
       {
         next: (res: any) => {
-          for (let i=0; i < res.length; i++) {
-            if (res[i].coach == null) {
-              this.groupsWithoutCoach.push(res[i]);
-            }
-            else {
-              this.groups.push(res[i]);
-            }
-          }
+
+          this.groups = res;
           this.dataSourceGroups.data = this.groups
+
+        },
+        error: (e) => {
+          console.log(e);
+        }
+
+      });
+
+    this.groupService.getAllGroupsWithoutCoach().subscribe(
+      {
+        next: (res: any) => {
+
+          this.groupsWithoutCoach = res;
           this.dataSourceGroupsWithoutCoaches.data = this.groupsWithoutCoach
 
-          console.log(this.groups)
         },
         error: (e) => {
           console.log(e);

@@ -13,6 +13,8 @@ import java.util.List;
 @Service
 public interface IGroupService {
     List<Group> getAllGroups();
+    List<Group> getAllClubGroups(Long clubId);
+    List<Group> getAllGroupsWithoutCoach();
 
     Group findById(Long id);
 

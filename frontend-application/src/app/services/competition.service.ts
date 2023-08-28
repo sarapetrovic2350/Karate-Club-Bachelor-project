@@ -73,8 +73,8 @@ export class CompetitionService {
   getCompetitionMedalsForKarateClub(clubId: string): Observable<Medal[]> {
     return this.http.get<Medal[]>(this.apiHost + '/getCompetitionMedalsForKarateClub/' + clubId);
   }
-  getCompetitionsDisciplinesWithRegisteredStudents(): Observable<DisciplineRegisteredStudents[]> {
-    return this.http.get<DisciplineRegisteredStudents[]>(this.apiHost + '/getCompetitionsDisciplinesWithRegisteredStudents');
+  getCompetitionsDisciplinesWithRegisteredStudents(clubId: string): Observable<DisciplineRegisteredStudents[]> {
+    return this.http.get<DisciplineRegisteredStudents[]>(this.apiHost + '/getCompetitionsDisciplinesWithRegisteredStudents/' + clubId);
   }
 
 }

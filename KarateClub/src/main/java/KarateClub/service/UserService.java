@@ -4,6 +4,7 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
+import java.util.Objects;
 
 import KarateClub.iservice.IUserService;
 import KarateClub.model.*;
@@ -32,17 +33,20 @@ public class UserService implements IUserService {
 	private ConfirmationTokenService confirmationTokenService;
 
 	private EmailService emailService;
+	private MembershipFeeService membershipFeeService;
 
 
 	@Autowired
 	public UserService(IUserRepository userRepository, GroupService groupService, AuthorityService authorityService,
-					   ConfirmationTokenService confirmationTokenService, EmailService emailService) {
+					   ConfirmationTokenService confirmationTokenService, EmailService emailService,
+					   MembershipFeeService membershipFeeService) {
 		super();
 		this.userRepository = userRepository;
 		this.groupService = groupService;
 		this.authorityService = authorityService;
 		this.confirmationTokenService = confirmationTokenService;
 		this.emailService = emailService;
+		this.membershipFeeService = membershipFeeService;
 
 	}
 
@@ -111,6 +115,7 @@ public class UserService implements IUserService {
 		student.setAuthority(authority);
 		student.setEnabled(true);
 		userRepository.save(student);
+		this.membershipFeeService.createMembershipFeeForStudent(student);
 		ConfirmationToken confirmationToken = confirmationTokenService.saveConfirmationToken(student);
 		//sendConfirmationEmail(registeredUser, confirmationToken);
 		return student;
@@ -166,6 +171,20 @@ public class UserService implements IUserService {
 
 		return students;
 	}
+
+	@Override
+	public List<Student> getAllClubStudents(Long clubId) {
+		List<User> allUsers = userRepository.findAll();
+		List<Student> students = new ArrayList<>();
+		for (User user : allUsers) {
+			if (user.getUserType().equals(UserType.STUDENT) && Objects.equals(user.getKarateClub().getClubId(), clubId)) {
+				students.add((Student) user);
+			}
+		}
+
+		return students;
+	}
+
 	@Override
 	public List<User> getAllCoaches() {
 
@@ -173,6 +192,19 @@ public class UserService implements IUserService {
 		List<User> coaches = new ArrayList<>();
 		for (User user : allUsers) {
 			if (user.getUserType().equals(UserType.COACH)) {
+				coaches.add(user);
+			}
+		}
+
+		return coaches;
+	}
+
+	@Override
+	public List<User> getAllClubCoaches(Long clubId) {
+		List<User> allUsers = userRepository.findAll();
+		List<User> coaches = new ArrayList<>();
+		for (User user : allUsers) {
+			if (user.getUserType().equals(UserType.COACH) && Objects.equals(user.getKarateClub().getClubId(), clubId)) {
 				coaches.add(user);
 			}
 		}
@@ -190,10 +222,8 @@ public class UserService implements IUserService {
 		updatedUser.setName(user.getName());
 		updatedUser.setSurname(user.getSurname());
 		updatedUser.setEmail(user.getEmail());
-		//updatedUser.setPassword(user.getPassword());
 		updatedUser.setAddress(user.getAddress());
 		updatedUser.setPhoneNumber(user.getPhoneNumber());
-		//updatedUser.setJmbg(user.getJmbg());
 		updatedUser.setGender(user.getGender());
 		this.userRepository.save(updatedUser);
 		return user;
@@ -243,39 +273,6 @@ public class UserService implements IUserService {
 		user.setPassword(newSecurePassword);
 	}
 
-	public List<User> findUserByNameAndSurnameForSystemAdmin(String name, String surname) {
-		List<User> usersFind = new ArrayList<User>();
-		List<User> users = getAllUsers();
-		for (User user : users) {
-			if (name.equals("null") || surname.equals("null")) {
-				if (user.getName().toLowerCase().contains(name.toLowerCase().trim())
-						|| user.getSurname().toLowerCase().contains(surname.toLowerCase().trim()))
-					usersFind.add(user);
-			} else {
-				if (user.getName().toLowerCase().contains(name.toLowerCase().trim())
-						&& user.getSurname().toLowerCase().contains(surname.toLowerCase().trim()))
-					usersFind.add(user);
-			}
-		}
-		return usersFind;
-	}
-
-	public List<User> findUserByNameAndSurnameForCenterAdmin(String name, String surname) {
-		List<User> usersFind = new ArrayList<User>();
-		List<User> users = getAllUsers();
-		for (User user : users) {
-			if (name.equals("null") || surname.equals("null")) {
-				if (user.getName().toLowerCase().contains(name.toLowerCase().trim())
-						|| user.getSurname().toLowerCase().contains(surname.toLowerCase().trim()))
-					usersFind.add(user);
-			} else {
-				if (user.getName().toLowerCase().contains(name.toLowerCase().trim())
-						&& user.getSurname().toLowerCase().contains(surname.toLowerCase().trim()))
-					usersFind.add(user);
-			}
-		}
-		return usersFind;
-	}
 	/*
 	public void updatePenal(Long id) {
 

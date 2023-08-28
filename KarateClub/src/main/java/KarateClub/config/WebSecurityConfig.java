@@ -72,7 +72,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/*").permitAll()
                 .antMatchers("/group/*").permitAll()
                 .antMatchers( "/competition/checkIfClubIsRegistered","/competition/registerStudentToDisciplineForCompetition",
-                        "/competition/getDisciplinesForCompetition/{competitionId}", "/competition/getCompetitionsDisciplinesWithRegisteredStudents",
+                        "/competition/getDisciplinesForCompetition/{competitionId}", "/competition/getCompetitionsDisciplinesWithRegisteredStudents/{clubId}",
                         "/competition/registerClubToCompetition", "/competition/findAll", "/competition/getCompetitionMedalsForKarateClub/{clubId}",
                         "/competition/getDisciplinesOfCompetitionForStudent/{userId}","/competition/getDisciplineByCompetitionDisciplineId/{competitionId}/{disciplineId}",
                         "/competition/getCompetitionsClubIsRegisteredTo/{clubId}","/competition/getCompetitionById/{competitionId}","/competition/getAll").permitAll()

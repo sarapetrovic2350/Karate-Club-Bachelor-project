@@ -72,9 +72,9 @@ public class CompetitionController {
     }
 
     @PreAuthorize("hasAnyRole('ROLE_COACH', 'ROLE_ADMINISTRATOR')")
-    @GetMapping(value = "/getCompetitionsDisciplinesWithRegisteredStudents")
-    public ResponseEntity<List<CompetitionRegisteredStudentsDTO>> getCompetitionsDisciplinesWithRegisteredStudents() {
-        return new ResponseEntity<List<CompetitionRegisteredStudentsDTO>>(competitionService.getCompetitionsDisciplinesWithRegisteredStudents(), HttpStatus.OK);
+    @GetMapping(value = "/getCompetitionsDisciplinesWithRegisteredStudents/{clubId}")
+    public ResponseEntity<List<CompetitionRegisteredStudentsDTO>> getCompetitionsDisciplinesWithRegisteredStudents(@PathVariable Long clubId) {
+        return new ResponseEntity<List<CompetitionRegisteredStudentsDTO>>(competitionService.getCompetitionsDisciplinesWithRegisteredStudents(clubId), HttpStatus.OK);
     }
 
     @PreAuthorize("hasAnyRole('ROLE_COACH', 'ROLE_ADMINISTRATOR', 'ROLE_STUDENT')")

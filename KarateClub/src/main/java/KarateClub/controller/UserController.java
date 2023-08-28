@@ -68,9 +68,21 @@ public class UserController {
 	}
 
 	@PreAuthorize("hasAnyRole('ROLE_COACH', 'ROLE_ADMINISTRATOR')")
+	@GetMapping(value = "/getAllClubStudents/{clubId}")
+	public ResponseEntity<List<Student>> getAllClubStudents(@PathVariable Long clubId) {
+		return new ResponseEntity<List<Student>>(userService.getAllClubStudents(clubId), HttpStatus.OK);
+	}
+
+	@PreAuthorize("hasAnyRole('ROLE_COACH', 'ROLE_ADMINISTRATOR')")
 	@GetMapping(value = "/getAllCoaches")
 	public ResponseEntity<List<User>> getAllCoaches() {
 		return new ResponseEntity<List<User>>(userService.getAllCoaches(), HttpStatus.OK);
+	}
+
+	@PreAuthorize("hasAnyRole('ROLE_COACH', 'ROLE_ADMINISTRATOR')")
+	@GetMapping(value = "/getAllClubCoaches/{clubId}")
+	public ResponseEntity<List<User>> getAllClubCoaches(@PathVariable Long clubId) {
+		return new ResponseEntity<List<User>>(userService.getAllClubCoaches(clubId), HttpStatus.OK);
 	}
 
 	@PreAuthorize("hasAnyRole('ROLE_COACH', 'ROLE_ADMINISTRATOR', 'ROLE_STUDENT')")

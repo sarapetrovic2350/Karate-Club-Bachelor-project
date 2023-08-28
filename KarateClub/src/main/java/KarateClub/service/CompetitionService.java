@@ -145,25 +145,45 @@ public class CompetitionService implements ICompetitionService {
         return disciplineCompetitionDTOS;
     }
 
-    @Override
-    public List<CompetitionRegisteredStudentsDTO> getCompetitionsDisciplinesWithRegisteredStudents() {
+    public List<Competition> findCompetitionsForClub(Long clubId) {
         List<Competition> allCompetitions = competitionRepository.findAll();
+        List<Competition> competitionsForClub = new ArrayList<>();
+        for(Competition competition: allCompetitions) {
+            if (competition.getDate().isAfter(LocalDate.now())) {
+                for (KarateClub karateClub : competition.getRegisteredClubs()) {
+                    if (Objects.equals(karateClub.getClubId(), clubId)) {
+                        competitionsForClub.add(competition);
+                    }
+
+                }
+            }
+        }
+        return competitionsForClub;
+    }
+    @Override
+    public List<CompetitionRegisteredStudentsDTO> getCompetitionsDisciplinesWithRegisteredStudents(Long clubId) {
+        List<Competition> competitionsForClub = this.findCompetitionsForClub(clubId);
         List<Discipline> disciplines = disciplineService.getDisciplinesWhichHaveRegisteredUsers();
         List<CompetitionRegisteredStudentsDTO> competitionRegisteredStudentsDTOS = new ArrayList<>();
-
         for (Discipline discipline: disciplines) {
-            for (Competition competition: allCompetitions) {
+            for (Competition competition: competitionsForClub) {
                 if (competition.getDate().isAfter(LocalDate.now())) {
                     Set<Discipline> disciplineSet = competition.getDisciplines();
                     for(Discipline discipline1: disciplineSet) {
                         if(discipline1 == discipline) {
                             List<StudentGroupDTO> studentGroupDTOS = new ArrayList<>();
+                            boolean studentsInClub = false;
                             for(Student student: discipline.getRegisteredStudents()){
-                                StudentGroupDTO studentGroupDTO = new StudentGroupDTO(student,student.getGroup(), student.getGroup().getCoach());
+                                if(Objects.equals(student.getKarateClub().getClubId(), clubId)) {
+                                    studentsInClub = true;
+                                }
+                                StudentGroupDTO studentGroupDTO = new StudentGroupDTO(student, student.getGroup(), student.getGroup().getCoach());
                                 studentGroupDTOS.add(studentGroupDTO);
                             }
-                            CompetitionRegisteredStudentsDTO competitionRegisteredStudentsDTO = new CompetitionRegisteredStudentsDTO(competition, discipline, studentGroupDTOS);
-                            competitionRegisteredStudentsDTOS.add(competitionRegisteredStudentsDTO);
+                            if(studentsInClub) {
+                                CompetitionRegisteredStudentsDTO competitionRegisteredStudentsDTO = new CompetitionRegisteredStudentsDTO(competition, discipline, studentGroupDTOS);
+                                competitionRegisteredStudentsDTOS.add(competitionRegisteredStudentsDTO);
+                            }
                         }
                     }
                 }

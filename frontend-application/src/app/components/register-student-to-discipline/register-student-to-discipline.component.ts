@@ -29,6 +29,8 @@ export class RegisterStudentToDisciplineComponent implements OnInit {
               private userService: UserService) { }
 
   ngOnInit(): void {
+    let user = this.userService.getCurrentUser();
+
     this.route.params.subscribe((params: Params) => {
       console.log(params['disciplineId']);
       console.log(params['competitionId']);
@@ -44,7 +46,7 @@ export class RegisterStudentToDisciplineComponent implements OnInit {
 
       })
     })
-    this.groupService.getAllGroups().subscribe(
+    this.groupService.getAllGroups(user.karateClub.clubId).subscribe(
       {
         next: (res: any) => {
           this.groups = res;

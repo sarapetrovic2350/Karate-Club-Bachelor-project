@@ -6,6 +6,8 @@ import { MatDialog } from '@angular/material/dialog';
 import {
   RegisteredStudentsToDisciplineComponent
 } from "../registered-students-to-discipline/registered-students-to-discipline.component";
+import {UserService} from "../../services/user.service";
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-disciplines-registered-students',
@@ -13,15 +15,18 @@ import {
   styleUrls: ['./disciplines-registered-students.component.css']
 })
 export class DisciplinesRegisteredStudentsComponent implements OnInit {
+  loggedInUser= new User();
+
   public disciplines: DisciplineRegisteredStudents[] = [];
   public dataSourceDisciplines= new MatTableDataSource<DisciplineRegisteredStudents>();
   public displayedColumnsDisciplines = ['competitionName', 'date', 'discipline', 'gender category', 'group category', 'weight category', 'commands'];
-  constructor(private competitionService: CompetitionService, private dialog: MatDialog) {}
+  constructor(private competitionService: CompetitionService, private userService: UserService, private dialog: MatDialog) {}
   ngOnInit(): void {
+    this.loggedInUser = this.userService.getCurrentUser();
     this.getAllDisciplinesCompetitions();
   }
   getAllDisciplinesCompetitions() {
-    this.competitionService.getCompetitionsDisciplinesWithRegisteredStudents().subscribe(res => {
+    this.competitionService.getCompetitionsDisciplinesWithRegisteredStudents(this.loggedInUser.karateClub.clubId).subscribe(res => {
       this.disciplines = res;
       this.dataSourceDisciplines.data = this.disciplines;
     })
