@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface IMembershipFeeService {
     MembershipFee createMembershipFeeForStudent(Student student);
-    MembershipFee payMembership(Long studentId);
+    MembershipFeeDTO payMembership(Long studentId);
     boolean checkIfMembershipIsPaidForMonth(Long studentId);
 
     MembershipFeeDTO getMembershipFee(Long studentId);

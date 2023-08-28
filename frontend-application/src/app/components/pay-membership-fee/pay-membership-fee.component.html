@@ -1,0 +1,20 @@
+<h2 mat-dialog-title style="margin-left: 10px">You need to pay membership fee</h2>
+<div mat-dialog-content class="dialog">
+  <div class="content">
+    <mat-form-field style="width: 280px" appearance="standard">
+      <mat-label>Name:</mat-label>
+      <input matInput name="name" [(ngModel)]="data.membershipFeeName">
+    </mat-form-field>
+    <mat-form-field appearance="standard">
+      <mat-label>Price: </mat-label>
+      <input matInput name="price" [(ngModel)]="data.price">
+    </mat-form-field>
+    <br>
+  </div>
+  <button color="primary" class="submit-button" (click)="payMembershipFee()" mat-raised-button type="submit">Pay membership fee</button>
+</div>
+<!--<div mat-dialog-actions style="alignment: center">-->
+<!--  <button class="cancel-button" mat-raised-button color="secondary" (click)="closeDialog()">cancel</button>-->
+<!--</div>-->
+
+

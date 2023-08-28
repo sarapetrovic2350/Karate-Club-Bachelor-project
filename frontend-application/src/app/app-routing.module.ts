@@ -20,6 +20,7 @@ import {
 import {RoleGuardService} from "./services/role-guard.service";
 import {ForbiddenComponent} from "./components/forbidden/forbidden.component";
 import {Role} from "./models/user.model";
+import {MembershipFeeComponent} from "./components/membership-fee/membership-fee.component";
 
 const routes: Routes = [
   {
@@ -120,6 +121,14 @@ const routes: Routes = [
     canActivate: [RoleGuardService],
     data: {
       roles: [Role.Coach]
+    },
+  },
+  {
+    path: 'membership-fee',
+    component: MembershipFeeComponent,
+    canActivate: [RoleGuardService],
+    data: {
+      roles: [Role.Student]
     }
   },
   {

@@ -6,9 +6,7 @@ import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 import { MatDialog } from '@angular/material/dialog';
 import {ChangePasswordComponent} from "../change-password/change-password.component";
-import {
-  RegisteredStudentsToDisciplineComponent
-} from "../registered-students-to-discipline/registered-students-to-discipline.component";
+
 @Component({
   selector: 'app-update-user',
   templateUrl: './update-user.component.html',

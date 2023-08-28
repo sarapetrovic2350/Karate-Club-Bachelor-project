@@ -38,11 +38,12 @@ public class MembershipFeeService implements IMembershipFeeService {
     }
 
     @Override
-    public MembershipFee payMembership(Long studentId) {
+    public MembershipFeeDTO payMembership(Long studentId) {
         MembershipFee membershipFee = membershipFeeRepository.findMembershipFeeByStudent_UserId(studentId);
         membershipFee.setPaymentDate(LocalDate.now());
         membershipFee.setPaidForMonth(true);
-        return membershipFeeRepository.save(membershipFee);
+        membershipFeeRepository.save(membershipFee);
+        return new MembershipFeeDTO(membershipFee);
     }
 
     @Override

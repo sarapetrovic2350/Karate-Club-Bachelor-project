@@ -24,8 +24,8 @@ public class MembershipFeeController {
 
     @PreAuthorize("hasRole('ROLE_STUDENT')")
     @PostMapping(value = "/payMembership/{studentId}")
-    public ResponseEntity<MembershipFee> payMembership(@PathVariable Long studentId) {
-        return new ResponseEntity<MembershipFee>(membershipFeeService.payMembership(studentId), HttpStatus.OK);
+    public ResponseEntity<MembershipFeeDTO> payMembership(@PathVariable Long studentId) {
+        return new ResponseEntity<MembershipFeeDTO>(membershipFeeService.payMembership(studentId), HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('ROLE_STUDENT')")

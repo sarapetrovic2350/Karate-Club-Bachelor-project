@@ -5,6 +5,12 @@ import {CompetitionService} from "../../services/competition.service";
 import {Competition} from "../../models/competition.model";
 import {UserService} from "../../services/user.service";
 import {User} from "../../models/user.model";
+import {MembershipFeeService} from "../../services/membership-fee.service";
+import { MatDialog } from '@angular/material/dialog';
+import {PayMembershipFeeComponent} from "../pay-membership-fee/pay-membership-fee.component";
+import {Router} from "@angular/router";
+import {MembershipFee} from "../../models/membership-fee.model";
+import {ChangePasswordComponent} from "../change-password/change-password.component";
 
 @Component({
   selector: 'app-calendar',
@@ -14,7 +20,9 @@ import {User} from "../../models/user.model";
 export class CalendarComponent implements OnInit {
   public competitions: Competition[] = [];
   private currentUser: User;
+  private membershipFeeIsPaid: boolean = false;
   private clubId: string = "";
+  private membershipFee: MembershipFee;
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
     height: 500,
@@ -34,15 +42,35 @@ export class CalendarComponent implements OnInit {
     alert('date click! ' + arg.dateStr)
   }
 
-  constructor(private competitionService: CompetitionService, private userService: UserService) {
+  constructor(private competitionService: CompetitionService,
+              private userService: UserService,
+              private router: Router,
+              private membershipFeeService: MembershipFeeService,
+              private dialog: MatDialog){
   }
 
   ngOnInit(): void {
     this.currentUser = this.userService.getCurrentUser();
     this.clubId = this.currentUser.karateClub.clubId;
+    if(this.currentUser.userType == "STUDENT")
+      this.checkIfMembershipIsPaid(this.currentUser.userId);
     this.findEvents();
-  }
 
+  }
+  checkIfMembershipIsPaid(studentId: string) {
+    this.membershipFeeService.checkIfMembershipIsPaidForMonth(studentId).subscribe(
+      {
+        next: (res) => {
+          if(res == true) {
+            this.membershipFeeIsPaid = true;
+          }
+          else {
+            this.membershipFeeIsPaid = false;
+            this.payMembership(this.currentUser.userId);
+          }
+        }
+      })
+  }
   findEvents() {
 
     this.competitionService.getCompetitionsClubIsRegisteredTo(this.clubId).subscribe(
@@ -82,6 +110,23 @@ export class CalendarComponent implements OnInit {
   })
 
   }
+  payMembership(studentId: string) {
+    this.membershipFeeService.getMembershipFee(studentId).subscribe(res => {
+      this.membershipFee = res;
+      console.log(this.membershipFee)
+      let dialogRef = this.dialog.open(PayMembershipFeeComponent, {
+        data: this.membershipFee,
+        autoFocus: false,
+        disableClose: true
+      });
 
+      dialogRef.afterClosed().subscribe((result: any) => {
+        if (!result) return;
+        if(result.event != 'cancel') this.findEvents();
+      });
+    })
+
+
+  }
 }
 
