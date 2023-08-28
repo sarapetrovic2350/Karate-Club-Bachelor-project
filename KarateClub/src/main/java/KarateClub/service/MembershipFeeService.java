@@ -1,5 +1,6 @@
 package KarateClub.service;
 
+import KarateClub.dto.MembershipFeeDTO;
 import KarateClub.iservice.IMembershipFeeService;
 import KarateClub.model.MembershipFee;
 import KarateClub.model.Student;
@@ -57,5 +58,11 @@ public class MembershipFeeService implements IMembershipFeeService {
         membershipFee.setPaidForMonth(false);
         membershipFeeRepository.save(membershipFee);
         return false;
+    }
+
+    @Override
+    public MembershipFeeDTO getMembershipFee(Long studentId) {
+        MembershipFee membershipFee = membershipFeeRepository.findMembershipFeeByStudent_UserId(studentId);
+        return new MembershipFeeDTO(membershipFee);
     }
 }

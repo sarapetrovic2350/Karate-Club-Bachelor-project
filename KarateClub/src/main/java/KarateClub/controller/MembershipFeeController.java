@@ -1,5 +1,6 @@
 package KarateClub.controller;
 
+import KarateClub.dto.MembershipFeeDTO;
 import KarateClub.model.MembershipFee;
 import KarateClub.service.MembershipFeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,11 @@ public class MembershipFeeController {
     @GetMapping(value = "/checkIfMembershipIsPaidForMonth/{studentId}")
     public ResponseEntity<Boolean> checkIfMembershipIsPaidForMonth(@PathVariable Long studentId) {
         return new ResponseEntity<Boolean>(membershipFeeService.checkIfMembershipIsPaidForMonth(studentId), HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasRole('ROLE_STUDENT')")
+    @GetMapping(value = "/getMembershipFee/{studentId}")
+    public ResponseEntity<MembershipFeeDTO> getMembershipFee(@PathVariable Long studentId) {
+        return new ResponseEntity<MembershipFeeDTO>(membershipFeeService.getMembershipFee(studentId), HttpStatus.OK);
     }
 }
