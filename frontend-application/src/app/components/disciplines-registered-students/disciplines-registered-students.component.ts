@@ -17,9 +17,12 @@ import { User } from 'src/app/models/user.model';
 export class DisciplinesRegisteredStudentsComponent implements OnInit {
   loggedInUser= new User();
 
-  public disciplines: DisciplineRegisteredStudents[] = [];
-  public dataSourceDisciplines= new MatTableDataSource<DisciplineRegisteredStudents>();
-  public displayedColumnsDisciplines = ['competitionName', 'date', 'discipline', 'gender category', 'group category', 'weight category', 'commands'];
+  public disciplinesKata: DisciplineRegisteredStudents[] = [];
+  public dataSourceDisciplinesKata= new MatTableDataSource<DisciplineRegisteredStudents>();
+  public disciplinesKumite: DisciplineRegisteredStudents[] = [];
+  public dataSourceDisciplinesKumite= new MatTableDataSource<DisciplineRegisteredStudents>();
+  public displayedColumnsDisciplinesKumite = ['competitionName', 'date', 'discipline', 'gender category', 'group category', 'weight category', 'commands'];
+  public displayedColumnsDisciplinesKata = ['competitionName', 'date', 'discipline', 'gender category', 'group category', 'commands'];
   constructor(private competitionService: CompetitionService, private userService: UserService, private dialog: MatDialog) {}
   ngOnInit(): void {
     this.loggedInUser = this.userService.getCurrentUser();
@@ -27,8 +30,16 @@ export class DisciplinesRegisteredStudentsComponent implements OnInit {
   }
   getAllDisciplinesCompetitions() {
     this.competitionService.getCompetitionsDisciplinesWithRegisteredStudents(this.loggedInUser.karateClub.clubId).subscribe(res => {
-      this.disciplines = res;
-      this.dataSourceDisciplines.data = this.disciplines;
+      for(let i = 0; i < res.length; i ++) {
+        if(res[i].disciplineType == "KATA") {
+          this.disciplinesKata.push(res[i])
+        }
+        else {
+          this.disciplinesKumite.push(res[i])
+        }
+      }
+      this.dataSourceDisciplinesKata.data = this.disciplinesKata;
+      this.dataSourceDisciplinesKumite.data = this.disciplinesKumite;
     })
   }
   viewStudents(discipline: DisciplineRegisteredStudents) {

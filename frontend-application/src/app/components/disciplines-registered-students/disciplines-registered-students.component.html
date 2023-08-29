@@ -1,49 +1,97 @@
-<div class="container">
-  <table mat-table [dataSource]="dataSourceDisciplines">
+<mat-tab-group mat-align-tabs="center">
+  <mat-tab label="Kata">
+  <div class="container">
+    <table mat-table [dataSource]="dataSourceDisciplinesKata">
 
-    <ng-container matColumnDef="competitionName">
-      <th mat-header-cell *matHeaderCellDef class="cell-center"> Competition name </th>
-      <td mat-cell *matCellDef="let discipline" class="cell-center"> {{discipline.competitionName}} </td>
-    </ng-container>
+      <ng-container matColumnDef="competitionName">
+        <th mat-header-cell *matHeaderCellDef class="cell-center"> Competition name </th>
+        <td mat-cell *matCellDef="let discipline" class="cell-center"> {{discipline.competitionName}} </td>
+      </ng-container>
 
-    <ng-container matColumnDef="date">
-      <th mat-header-cell *matHeaderCellDef class="cell-center"> Date </th>
-      <td mat-cell *matCellDef="let discipline" class="cell-center"> {{discipline.date[2]}}.{{discipline.date[1]}}.{{discipline.date[0]}}. </td>
-    </ng-container>
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef class="cell-center"> Date </th>
+        <td mat-cell *matCellDef="let discipline" class="cell-center"> {{discipline.date[2]}}.{{discipline.date[1]}}.{{discipline.date[0]}}. </td>
+      </ng-container>
 
-    <ng-container matColumnDef="discipline">
-      <th mat-header-cell *matHeaderCellDef class="cell-center"> discipline </th>
-      <td mat-cell *matCellDef="let discipline" class="cell-center"> {{discipline.disciplineType}} </td>
-    </ng-container>
+      <ng-container matColumnDef="discipline">
+        <th mat-header-cell *matHeaderCellDef class="cell-center"> discipline </th>
+        <td mat-cell *matCellDef="let discipline" class="cell-center"> {{discipline.disciplineType}} </td>
+      </ng-container>
 
-    <ng-container matColumnDef="gender category">
-      <th mat-header-cell *matHeaderCellDef class="cell-center"> Gender category </th>
-      <td mat-cell *matCellDef="let discipline" class="cell-center"> {{discipline.genderCategory}} </td>
-    </ng-container>
+      <ng-container matColumnDef="gender category">
+        <th mat-header-cell *matHeaderCellDef class="cell-center"> Gender category </th>
+        <td mat-cell *matCellDef="let discipline" class="cell-center"> {{discipline.genderCategory}} </td>
+      </ng-container>
 
-    <ng-container matColumnDef="group category">
-      <th mat-header-cell *matHeaderCellDef class="cell-center"> Group category </th>
-      <td mat-cell *matCellDef="let discipline" class="cell-center"> {{discipline.groupCategory}} </td>
-    </ng-container>
+      <ng-container matColumnDef="group category">
+        <th mat-header-cell *matHeaderCellDef class="cell-center"> Group category </th>
+        <td mat-cell *matCellDef="let discipline" class="cell-center"> {{discipline.groupCategory}} </td>
+      </ng-container>
 
-    <ng-container matColumnDef="weight category">
-      <th mat-header-cell *matHeaderCellDef class="cell-center"> Weight category </th>
-      <td mat-cell *matCellDef="let discipline" class="cell-center"> {{discipline.weightCategory}} </td>
-    </ng-container>
+      <ng-container matColumnDef="commands">
+        <th mat-header-cell *matHeaderCellDef>Registered students </th>
+        <td mat-cell *matCellDef="let discipline">
+          <button mat-button matTooltip="view students" class="icon-button"
+                  color="primary"
+                  (click)="viewStudents(discipline)">
+            <img class="icon" src="../../../assets/images/kata.png"></button>
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="commands">
-      <th mat-header-cell *matHeaderCellDef>Registered students </th>
-      <td mat-cell *matCellDef="let discipline">
-        <button mat-button matTooltip="view students" class="icon-button"
-                color="primary"
-                (click)="viewStudents(discipline)">
-          <img class="icon" src="../../../assets/images/kata.png"></button>
-      </td>
-    </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsDisciplinesKata; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsDisciplinesKata;"></tr>
+    </table>
+  </div>
+  </mat-tab>
+  <mat-tab label="Kumite">
+    <div class="container">
+      <table mat-table [dataSource]="dataSourceDisciplinesKumite">
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumnsDisciplines; sticky: true"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumnsDisciplines;"></tr>
-  </table>
-</div>
+        <ng-container matColumnDef="competitionName">
+          <th mat-header-cell *matHeaderCellDef class="cell-center"> Competition name </th>
+          <td mat-cell *matCellDef="let discipline" class="cell-center"> {{discipline.competitionName}} </td>
+        </ng-container>
 
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef class="cell-center"> Date </th>
+          <td mat-cell *matCellDef="let discipline" class="cell-center"> {{discipline.date[2]}}.{{discipline.date[1]}}.{{discipline.date[0]}}. </td>
+        </ng-container>
+
+        <ng-container matColumnDef="discipline">
+          <th mat-header-cell *matHeaderCellDef class="cell-center"> discipline </th>
+          <td mat-cell *matCellDef="let discipline" class="cell-center"> {{discipline.disciplineType}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="gender category">
+          <th mat-header-cell *matHeaderCellDef class="cell-center"> Gender category </th>
+          <td mat-cell *matCellDef="let discipline" class="cell-center"> {{discipline.genderCategory}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="group category">
+          <th mat-header-cell *matHeaderCellDef class="cell-center"> Group category </th>
+          <td mat-cell *matCellDef="let discipline" class="cell-center"> {{discipline.groupCategory}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="weight category">
+          <th mat-header-cell *matHeaderCellDef class="cell-center"> Weight category </th>
+          <td mat-cell *matCellDef="let discipline" class="cell-center"> {{discipline.weightCategory}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="commands">
+          <th mat-header-cell *matHeaderCellDef>Registered students </th>
+          <td mat-cell *matCellDef="let discipline">
+            <button mat-button matTooltip="view students" class="icon-button"
+                    color="primary"
+                    (click)="viewStudents(discipline)">
+              <img class="icon" src="../../../assets/images/kata.png"></button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsDisciplinesKumite; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsDisciplinesKumite;"></tr>
+      </table>
+    </div>
+
+  </mat-tab>
+</mat-tab-group>
 

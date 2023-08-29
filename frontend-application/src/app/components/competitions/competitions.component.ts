@@ -69,19 +69,41 @@ export class CompetitionsComponent implements OnInit {
     this.competitionService.checkIfClubIsRegistered(competitionId, this.loggedInUser.karateClub.clubId).subscribe(
       {
         next: (res) => {
-          this.clubRegistered = true;
-          this.registerStudentsToCompetition(competitionId);
-        },
-        error: (e) => {
-          this.clubRegistered = false;
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Karate Club is not registered to competition.',
-          })
+          this.clubRegistered = res;
+          if(this.clubRegistered) {
+            this.registerStudentsToCompetition(competitionId);
+          }
+          else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Karate Club is not registered to competition.',
+            })
+          }
         }
       })
   }
+
+  checkIfClubIsAlreadyRegisteredToCompetition(competitionId: string) {
+    this.competitionService.checkIfClubIsRegistered(competitionId, this.loggedInUser.karateClub.clubId).subscribe(
+      {
+        next: (res) => {
+          this.clubRegistered = res;
+          if(!this.clubRegistered) {
+            this.registerClubToCompetition(competitionId);
+          }
+          else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Karate Club is already registered to competition.',
+            })
+          }
+        }
+      })
+
+  }
+
   registerClubToCompetition(competitionId: string) {
     this.competitionService.registerClubToCompetition(competitionId, this.loggedInUser.karateClub.clubId).subscribe(
       {

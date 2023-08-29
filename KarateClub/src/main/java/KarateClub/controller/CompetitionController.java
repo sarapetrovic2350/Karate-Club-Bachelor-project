@@ -121,12 +121,7 @@ public class CompetitionController {
     public ResponseEntity<Boolean> checkIfClubIsRegistered(
             @RequestParam(required = true) Long competitionId,
             @RequestParam(required = true) Long clubId) {
-            boolean isRegistered = this.competitionService.checkIfClubIsRegisteredToCompetition(competitionId, clubId);
-            if(isRegistered) {
-                return new ResponseEntity<>(true,HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(false,HttpStatus.BAD_REQUEST);
-            }
+            return new ResponseEntity<>(this.competitionService.checkIfClubIsRegisteredToCompetition(competitionId, clubId), HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('ROLE_COACH')")

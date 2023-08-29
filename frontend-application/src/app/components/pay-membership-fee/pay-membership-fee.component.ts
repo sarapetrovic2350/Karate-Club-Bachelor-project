@@ -29,7 +29,7 @@ export class PayMembershipFeeComponent implements OnInit {
         Swal.fire({
           icon: 'success',
           title: 'Success!',
-          text: 'Successfully paid membership fee! You can now continue using application',
+          text: 'Successfully paid membership fee! You can now continue using application!',
         })
         this.closeDialog();
       },
