@@ -30,13 +30,12 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumnsCoaches; sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumnsCoaches;"></tr>
       </table>
-      <button mat-raised-button class="export-button" (click)="exportCoachesToExcel()">Export to Excel</button>
     </div>
-
+    <button mat-raised-button class="export-button" (click)="exportCoachesToExcel()">Export to Excel</button>
   </mat-tab>
 
   <mat-tab label="Students">
-    <div class="container">
+    <div class="container" style="height: 450px; overflow-y: auto">
       <table id="excel-table-students" mat-table [dataSource]="dataSourceStudents">
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef class="cell-center"> Name </th>
@@ -71,8 +70,8 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumnsStudents; sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumnsStudents;"></tr>
       </table>
-      <button mat-raised-button class="export-button" (click)="exportStudentsToExcel()">Export to Excel</button>
     </div>
+    <button mat-raised-button class="export-button" (click)="exportStudentsToExcel()">Export to Excel</button>
 
   </mat-tab>
 
@@ -97,9 +96,10 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumnsGroups; sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumnsGroups;"></tr>
       </table>
-      <button mat-raised-button class="export-button" (click)="exportGroupsToExcel()">Export to Excel</button>
     </div>
+    <button mat-raised-button class="export-button" (click)="exportGroupsToExcel()">Export to Excel</button>
   </mat-tab>
+
   <mat-tab label="Groups without coach">
     <div class="container">
       <table mat-table [dataSource]="dataSourceGroupsWithoutCoaches">
