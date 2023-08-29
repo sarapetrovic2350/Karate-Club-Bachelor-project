@@ -21,7 +21,7 @@ public class MembershipFee {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "studentId", referencedColumnName = "userId")
     private Student student;
-    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "clubId", referencedColumnName = "clubId")
     private KarateClub karateClub;
 
