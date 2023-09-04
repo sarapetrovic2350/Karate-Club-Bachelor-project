@@ -34,6 +34,7 @@ public class Competition {
     private Set<KarateClub> registeredClubs = new HashSet<>();
     @OneToMany(mappedBy="competition")
     private Set<Discipline> disciplines;
+
     public Competition(String competitionName, String description, LocalDate date, String place, String image) {
         this.competitionName = competitionName;
         this.description = description;

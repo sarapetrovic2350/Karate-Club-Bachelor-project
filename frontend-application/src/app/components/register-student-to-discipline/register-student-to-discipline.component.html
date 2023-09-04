@@ -36,12 +36,20 @@
             </mat-select>
           </mat-form-field>
           <br>
-          <mat-form-field appearance="fill" >
+          <mat-form-field appearance="fill" *ngIf="!disciplineKumite">
             <mat-label>Select student</mat-label>
             <mat-select name="students" [(ngModel)]="userId" [formControl]="studentFormControl">
               <mat-option [value]="null" disabled>Select student</mat-option>
               <mat-option *ngFor="let student of students" [value]="student.userId">
                 {{student.name}} {{student.surname}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="fill" *ngIf="disciplineKumite">
+            <mat-label>Select student</mat-label>
+            <mat-select name="students" [(ngModel)]="userId" [formControl]="studentFormControl">
+              <mat-option [value]="null" disabled>Select student</mat-option>
+              <mat-option *ngFor="let student of students" [value]="student.userId">
+                {{student.name}} {{student.surname}} {{student.weight}}kg</mat-option>
             </mat-select>
           </mat-form-field>
         </div>

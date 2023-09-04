@@ -33,6 +33,9 @@ public class UserRegistrationDTO {
 	private String jmbg;
 
 	@NotBlank
+	private Double weight;
+
+	@NotBlank
 	private KarateClub karateClub;
 
 	@NotBlank

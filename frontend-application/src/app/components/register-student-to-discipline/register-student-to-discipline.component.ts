@@ -23,6 +23,7 @@ export class RegisterStudentToDisciplineComponent implements OnInit {
   userId: string = ""
   selectedGroup: Group;
   disciplineKumite: boolean = false
+
   constructor(private route: ActivatedRoute, private router: Router,
               private competitionService: CompetitionService,
               private groupService: GroupService,

@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 
 import KarateClub.model.Address;
 import KarateClub.model.Gender;
+import KarateClub.model.UserType;
 import lombok.Data;
 
 @Data
@@ -18,6 +19,9 @@ public class UserUpdateDTO {
 
 	@NotBlank
 	private String password;
+
+	@NotBlank
+	private UserType userType;
 
 	@NotBlank
 	private String name;
@@ -36,5 +40,8 @@ public class UserUpdateDTO {
 
 	@NotBlank
 	private Long jmbg;
+
+	@NotBlank
+	private Double weight;
 
 }

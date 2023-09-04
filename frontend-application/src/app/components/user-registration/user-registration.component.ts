@@ -33,6 +33,7 @@ export class UserRegistrationComponent implements OnInit {
   groupsForStudents: Group[] = [];
   availableGroupsForCoach: Group[] = [];
   chosenGroup: string = "";
+  weight: string = "";
   noAvailableGroups: boolean = false;
 
   ngOnInit(): void {
@@ -64,6 +65,7 @@ export class UserRegistrationComponent implements OnInit {
   beltFormControl = new FormControl( '', [Validators.required])
   genderFormControl = new FormControl( '', [Validators.required])
   licenceNumberFormControl = new FormControl('', [Validators.required])
+  weightFormControl = new FormControl('', [Validators.required])
   jmbgFormControl = new FormControl('', [Validators.required, Validators.minLength(13), Validators.maxLength(13)])
 
   groupFormControl = new FormControl( '', [Validators.required])
@@ -83,6 +85,7 @@ export class UserRegistrationComponent implements OnInit {
     this.user.address.country = this.country;
     this.user.karateClub = admin.karateClub;
     this.user.groupId = this.chosenGroup;
+    this.user.weight = parseInt(this.weight)
     console.log(this.chosenGroup)
     if (this.isCoach) {
       this.user.userType = "STUDENT";

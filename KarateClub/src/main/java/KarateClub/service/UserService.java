@@ -109,6 +109,7 @@ public class UserService implements IUserService {
 		student.setUserType(userRegistrationDTO.getUserType());
 		student.setKarateClub(userRegistrationDTO.getKarateClub());
 		student.setBeltColor(userRegistrationDTO.getBeltColor());
+		student.setWeight(userRegistrationDTO.getWeight());
 		Group group = this.groupService.findById(userRegistrationDTO.getGroupId());
 		student.setGroup(group);
 		Authority authority = authorityService.findByName("ROLE_STUDENT");
@@ -158,6 +159,7 @@ public class UserService implements IUserService {
 	public List<User> getAllUsers() {
 		return userRepository.findAll();
 	}
+
 	@Override
 	public List<Student> getAllStudents() {
 
@@ -226,6 +228,12 @@ public class UserService implements IUserService {
 		updatedUser.setPhoneNumber(user.getPhoneNumber());
 		updatedUser.setGender(user.getGender());
 		this.userRepository.save(updatedUser);
+		if(user.getUserType().equals(UserType.STUDENT)) {
+			Student studentToUpdate = (Student) updatedUser;
+			studentToUpdate.setWeight(user.getWeight());
+			this.userRepository.save(studentToUpdate);
+		}
+
 		return user;
 	}
 
@@ -273,7 +281,7 @@ public class UserService implements IUserService {
 		user.setPassword(newSecurePassword);
 	}
 
-	/*
+    /*
 	public void updatePenal(Long id) {
 
 		RegisteredUser user = (RegisteredUser) registeredUserRepository.findById(id).get();
@@ -322,6 +330,7 @@ public class UserService implements IUserService {
 		existingUser.setEnabled(true);
 		userRepository.save(existingUser);
 	}
+
 	@Override
 	public List<Student> getStudentsInGroup(Long groupId) {
 		Group group = this.groupService.findById(groupId);

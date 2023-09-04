@@ -22,6 +22,10 @@
             <input name ="email" [(ngModel)]="user.email" matInput [formControl]="email" required>
             <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
           </mat-form-field>
+          <mat-form-field appearance="fill" *ngIf="this.user.userType == 'STUDENT' ">
+            <mat-label>Weight: </mat-label>
+            <input name ="weight" type="number" [(ngModel)]="user.weight" matInput>
+          </mat-form-field>
           <mat-form-field appearance="fill">
             <mat-label>JMBG: </mat-label>
             <input matInput name="lastName" [(ngModel)]="user.jmbg" disabled>
@@ -73,19 +77,21 @@
             <mat-label>Phone number: </mat-label>
             <input name ="phoneNumber" [(ngModel)]="user.phoneNumber" matInput required>
           </mat-form-field>
-          <mat-form-field appearance="fill" *ngIf="this.user.userType == 'ADMINISTRATOR' ">
-            <mat-label>Club phone number: </mat-label>
-            <input name ="karatePhoneNumber" [(ngModel)]="user.karateClub.phoneNumber" matInput disabled>
-          </mat-form-field>
+          
           <mat-form-field appearance="fill" *ngIf="this.user.userType == 'STUDENT' ">
             <mat-label>Belt color: </mat-label>
             <input name ="beltColor" [(ngModel)]="user.beltColor" matInput disabled>
           </mat-form-field>
+
+          <mat-form-field appearance="fill" *ngIf="this.user.userType == 'ADMINISTRATOR' || this.user.userType == 'STUDENT'">
+            <mat-label>Club phone number: </mat-label>
+            <input name ="karatePhoneNumber" [(ngModel)]="user.karateClub.phoneNumber" matInput disabled>
+          </mat-form-field>
+
           <mat-form-field appearance="fill" *ngIf="this.user.userType == 'COACH' ">
             <mat-label>Coach licence number: </mat-label>
             <input name ="licenceNumber" [(ngModel)]="user.licenceNumber" matInput disabled>
           </mat-form-field>
-
         </div>
       </div>
       <button mat-button style="alignment: center" class="change-password-button"

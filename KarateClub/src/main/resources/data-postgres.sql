@@ -48,90 +48,90 @@ INSERT INTO public.groups (group_id, group_name, group_category, coach_id) VALUE
 
 
 --7 STUDENT email: marija@gmail.com password: marija Juniori G1, Klub Nippon
-INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)
-VALUES ('Student', default, 'Marija', 'Nikolic', '0308005805039', 'marija@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'ETk76xQWhz1JOKRDzp/CDQ==', 'FEMALE', '+381642258974', 'STUDENT','RED', '4', '1','2', '3', true);
+INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled, weight)
+VALUES ('Student', default, 'Marija', 'Nikolic', '0308005805039', 'marija@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'ETk76xQWhz1JOKRDzp/CDQ==', 'FEMALE', '+381642258974', 'STUDENT','RED', '4', '1','2', '3', true, 47.5);
 
 --8 STUDENT Juniori G1, Klub Nippon
-INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)
-VALUES ('Student', default, 'Nemanja', 'Madic', '2706004800071', 'nemanja@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'NMj76xQWhz1JOKRDzp/CDQ==', 'MALE', '+381648051018', 'STUDENT','GREEN', '5', '1','2', '3', true);
+INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled, weight)
+VALUES ('Student', default, 'Nemanja', 'Madic', '2706004800071', 'nemanja@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'NMj76xQWhz1JOKRDzp/CDQ==', 'MALE', '+381648051018', 'STUDENT','GREEN', '5', '1','2', '3', true, 58);
 --9 Juniori G1, Klub Nippon
-INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)
-VALUES ('Student', default, 'Svetlana', 'Vidic', '1503005805145', 'vidic@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'SVk76xQWhz1JOKRDzp/CDQ==', 'FEMALE', '+381615857154', 'STUDENT','BLUE', '5', '1','2', '3', true);
+INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled, weight)
+VALUES ('Student', default, 'Svetlana', 'Vidic', '1503005805145', 'vidic@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'SVk76xQWhz1JOKRDzp/CDQ==', 'FEMALE', '+381615857154', 'STUDENT','BLUE', '5', '1','2', '3', true, 60.5);
 --10 Juniori G1, Klub Nippon
-INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)
-VALUES ('Student', default, 'Mladen', 'Stojanovic', '1708005800173', 'mladen@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'MLs76xQWhz1JOKRDzp/CDQ==', 'MALE', '+381645963478', 'STUDENT','BLUE', '5', '1','2', '3', true);
+INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled, weight)
+VALUES ('Student', default, 'Mladen', 'Stojanovic', '1708005800173', 'mladen@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'MLs76xQWhz1JOKRDzp/CDQ==', 'MALE', '+381645963478', 'STUDENT','BLUE', '5', '1','2', '3', true, 73);
 --11 Juniori G1, Klub Nippon
-INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)
-VALUES ('Student', default, 'Zoran', 'Plavsic', '1802006800853', 'plavsic@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'HJN76xQWhz1JOKRDzp/CDQ==', 'MALE', '+381641524117', 'STUDENT','GREEN', '5', '1','2', '3', true);
+INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled, weight)
+VALUES ('Student', default, 'Zoran', 'Plavsic', '1802006800853', 'plavsic@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'HJN76xQWhz1JOKRDzp/CDQ==', 'MALE', '+381641524117', 'STUDENT','GREEN', '5', '1','2', '3', true, 55);
 
 --12 STUDENT email: filip@gmail.com password: gfilip Mladji seniori, Klub Nippon
-INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)
-VALUES ('Student', default, 'Filip', 'Grbic', '1309996800018', 'filip@gmail.com','$2a$12$3xaKzUuZGGhs6YXmet0drOvP0CpF8w3GBvT9jOrGZzbp/5Llt6Ty2', 'YoG3rNtjgcSRNxwyYpOwDQ==', 'MALE', '+381612458944', 'STUDENT','BROWN', '5', '1','4', '3', true);
+INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled, weight)
+VALUES ('Student', default, 'Filip', 'Grbic', '1309996800018', 'filip@gmail.com','$2a$12$3xaKzUuZGGhs6YXmet0drOvP0CpF8w3GBvT9jOrGZzbp/5Llt6Ty2', 'YoG3rNtjgcSRNxwyYpOwDQ==', 'MALE', '+381612458944', 'STUDENT','BROWN', '5', '1','4', '3', true, 76.2);
 
 --13 STUDENT email: ivana@gmail.com password: iivana Mladji seniori, Klub Nippon
-INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)
-VALUES ('Student', default, 'Ivana', 'Ivanovic', '1210000805018', 'ivana@gmail.com','$2a$12$TqCDOZ5kPi90w1TOVD5aOuIIqquVboW/tkxlk8gQE8g18zaubbM0q', '5mMgcmWfxa+FCNxZBHnqzg==', 'FEMALE', '+381648454877', 'STUDENT','PURPLE', '5', '1','4', '3', true);
+INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled, weight)
+VALUES ('Student', default, 'Ivana', 'Ivanovic', '1210000805018', 'ivana@gmail.com','$2a$12$TqCDOZ5kPi90w1TOVD5aOuIIqquVboW/tkxlk8gQE8g18zaubbM0q', '5mMgcmWfxa+FCNxZBHnqzg==', 'FEMALE', '+381648454877', 'STUDENT','PURPLE', '5', '1','4', '3', true, 58.4);
 
 
 --14 STUDENT  Mladji seniori, Klub Nippon
-INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)
-VALUES ('Student', default, 'Nevena', 'Vasic', '1712005805067', 'nevena@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'NYk76xQWhz1JOKRDzp/CDQ==', 'FEMALE', '+381616895421', 'STUDENT','PURPLE', '5', '1','4', '3', true);
+INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled, weight)
+VALUES ('Student', default, 'Nevena', 'Vasic', '1712005805067', 'nevena@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'NYk76xQWhz1JOKRDzp/CDQ==', 'FEMALE', '+381616895421', 'STUDENT','PURPLE', '5', '1','4', '3', true, 57.5);
 --15 STUDENT  Mladji seniori, Klub Nippon
-INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)
-VALUES ('Student', default, 'Nemanja', 'Lovric', '2110000800034', 'lovric@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'NLv36xQWhz1JOKRDzp/CDQ==', 'FEMALE', '+381611825186', 'STUDENT','BROWN', '5', '1','4', '3', true);
+INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled, weight)
+VALUES ('Student', default, 'Nemanja', 'Lovric', '2110000800034', 'lovric@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'NLv36xQWhz1JOKRDzp/CDQ==', 'FEMALE', '+381611825186', 'STUDENT','BROWN', '5', '1','4', '3', true, 61);
 --16 STUDENT Mladji seniori, Klub Nippon
-INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)
-VALUES ('Student', default, 'Petar', 'Mazic', '0603999800198', 'mazic@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'M456xQWhz1JOKRDzp/CDQ==', 'MALE', '+381647856745', 'STUDENT','BLACK', '5', '1','4', '3', true);
+INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled, weight)
+VALUES ('Student', default, 'Petar', 'Mazic', '0603999800198', 'mazic@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'M456xQWhz1JOKRDzp/CDQ==', 'MALE', '+381647856745', 'STUDENT','BLACK', '5', '1','4', '3', true, 77);
 --17 STUDENT Mladji seniori, Klub Nippon
-INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)
-VALUES ('Student', default, 'Marko', 'Lozajic', '2908001800952', 'markol@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'NYk76xQWhz1JOKRDml/CDQ==', 'MALE', '+381616895421', 'STUDENT','PURPLE', '5', '1','4', '3', true);
+INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled, weight)
+VALUES ('Student', default, 'Marko', 'Lozajic', '2908001800952', 'markol@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'NYk76xQWhz1JOKRDml/CDQ==', 'MALE', '+381616895421', 'STUDENT','PURPLE', '5', '1','4', '3', true, 68);
 --18 STUDENT Mladji seniori, Klub Nippon
-INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)
-VALUES ('Student', default, 'Nikoleta', 'Jaksic', '1206002805365', 'jaksic@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'NYk76xNKsz1JOKRDzp/CDQ==', 'FEMALE', '+381618036487', 'STUDENT','BLUE', '5', '1','4', '3', true);
+INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled, weight)
+VALUES ('Student', default, 'Nikoleta', 'Jaksic', '1206002805365', 'jaksic@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'NYk76xNKsz1JOKRDzp/CDQ==', 'FEMALE', '+381618036487', 'STUDENT','BLUE', '5', '1','4', '3', true, 52);
 
 
 --19 STUDENT email: ana@gmail.com password: marija Juniori G2, Klub Nippon
-INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)
-VALUES ('Student', default, 'Ana Marija', 'Lukic', '2305006805045', 'ana@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'EYk76xQWhz1JOKRDzp/CDQ==', 'FEMALE', '+381611585875', 'STUDENT','RED', '4', '1','3', '3', true);
+INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled, weight)
+VALUES ('Student', default, 'Ana Marija', 'Lukic', '2305006805045', 'ana@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'EYk76xQWhz1JOKRDzp/CDQ==', 'FEMALE', '+381611585875', 'STUDENT','RED', '4', '1','3', '3', true, 44);
 
 --20 STUDENT Juniori G2, Klub Nippon
-INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)
-VALUES ('Student', default, 'Masa', 'Antic', '0712005805036', 'antic@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'MAk76xQWhz1JOKRDzp/CDQ==', 'FEMALE', '+381643362354', 'STUDENT','GREEN', '4', '1','3', '3', true);
+INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled, weight)
+VALUES ('Student', default, 'Masa', 'Antic', '0712005805036', 'antic@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'MAk76xQWhz1JOKRDzp/CDQ==', 'FEMALE', '+381643362354', 'STUDENT','GREEN', '4', '1','3', '3', true, 45.8);
 --21 STUDENT Juniori G2, Klub Nippon
-INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)
-VALUES ('Student', default, 'Nikola', 'Vasilic', '1503006800165', 'nikolav@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'NVl76xQWhz1JOKRDzp/CDQ==', 'MALE', '+381645093212', 'STUDENT','GREEN', '4', '1','3', '3', true);
+INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled, weight)
+VALUES ('Student', default, 'Nikola', 'Vasilic', '1503006800165', 'nikolav@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'NVl76xQWhz1JOKRDzp/CDQ==', 'MALE', '+381645093212', 'STUDENT','GREEN', '4', '1','3', '3', true, 52);
 --22 STUDENT Juniori G2, Klub Nippon
-INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)
-VALUES ('Student', default, 'Uros', 'Zivkovic', '0112006800458', 'uros@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'UZk76xQWhz1JOKRDzp/CDQ==', 'MALE', '+381611585875', 'STUDENT','GREEN', '4', '1','3', '3', true);
+INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled, weight)
+VALUES ('Student', default, 'Uros', 'Zivkovic', '0112006800458', 'uros@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'UZk76xQWhz1JOKRDzp/CDQ==', 'MALE', '+381611585875', 'STUDENT','GREEN', '4', '1','3', '3', true, 56.9);
 --23 STUDENT Juniori G2, Klub Nippon
-INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)
-VALUES ('Student', default, 'Lara', 'Zivkovic', '2609005805149', 'laraziv@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'LZv76xQWhz1JOKRDzp/CDQ==', 'FEMALE', '+381643369874', 'STUDENT','RED', '4', '1','3', '3', true);
+INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled, weight)
+VALUES ('Student', default, 'Lara', 'Zivkovic', '2609005805149', 'laraziv@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'LZv76xQWhz1JOKRDzp/CDQ==', 'FEMALE', '+381643369874', 'STUDENT','RED', '4', '1','3', '3', true, 50.5);
 
 --24 STUDENT email: perica@gmail.com password: perica Juniori, Klub Mladost
-INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)
-VALUES ('Student', default, 'Perica', 'Ilic', '2505005800085', 'perica@gmail.com','$2a$12$cyRtSVodfntEj.1VSLGO6u/F8lNhQFsSaMjD0u52N7Bgn0T6NIig6', 'GuUWzK6i4OHZJm4Eb2H9nQ==', 'MALE', '+381641585875', 'STUDENT','GREEN', '4', '2','5', '3', true);
+INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled, weight)
+VALUES ('Student', default, 'Perica', 'Ilic', '2505005800085', 'perica@gmail.com','$2a$12$cyRtSVodfntEj.1VSLGO6u/F8lNhQFsSaMjD0u52N7Bgn0T6NIig6', 'GuUWzK6i4OHZJm4Eb2H9nQ==', 'MALE', '+381641585875', 'STUDENT','GREEN', '4', '2','5', '3', true, 60.7);
 --25 STUDENT Juniori, Klub Mladost
-INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)
-VALUES ('Student', default, 'Stasa', 'Lukic', '1105006805143', 'lukic@gmail.com','$2a$12$cyRtSVodfntEj.1VSLGO6u/F8lNhQFsSaMjD0u52N7Bgn0T6NIig6', 'SLUWzK6i4OHZJm4Eb2H9nQ==', 'FEMALE', '+381641585875', 'STUDENT','RED', '4', '2','5', '3', true);
+INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled, weight)
+VALUES ('Student', default, 'Stasa', 'Lukic', '1105006805143', 'lukic@gmail.com','$2a$12$cyRtSVodfntEj.1VSLGO6u/F8lNhQFsSaMjD0u52N7Bgn0T6NIig6', 'SLUWzK6i4OHZJm4Eb2H9nQ==', 'FEMALE', '+381641585875', 'STUDENT','RED', '4', '2','5', '3', true, 48);
 --26 STUDENT Juniori, Klub Mladost
-INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)
-VALUES ('Student', default, 'Uros', 'Ilic', '1903006800123', 'ukiilic@gmail.com','$2a$12$cyRtSVodfntEj.1VSLGO6u/F8lNhQFsSaMjD0u52N7Bgn0T6NIig6', 'ULlWzK6i4OHZJm4Eb2H9nQ==', 'MALE', '+38161458061', 'STUDENT','RED', '4', '2','5', '3', true);
+INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled, weight)
+VALUES ('Student', default, 'Uros', 'Ilic', '1903006800123', 'ukiilic@gmail.com','$2a$12$cyRtSVodfntEj.1VSLGO6u/F8lNhQFsSaMjD0u52N7Bgn0T6NIig6', 'ULlWzK6i4OHZJm4Eb2H9nQ==', 'MALE', '+38161458061', 'STUDENT','RED', '4', '2','5', '3', true, 53);
 
 --27 STUDENT Pioniri, Klub Nippon
-INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)
-VALUES ('Student', default, 'Mihajlo', 'Protic', '2410010800145', 'mihajlo@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'MPk76xQWhz1JOKRDzp/CDQ==', 'MALE', '+381648009575', 'STUDENT','ORANGE', '5', '1','1', '3', true);
+INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled, weight)
+VALUES ('Student', default, 'Mihajlo', 'Protic', '2410010800145', 'mihajlo@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'MPk76xQWhz1JOKRDzp/CDQ==', 'MALE', '+381648009575', 'STUDENT','ORANGE', '5', '1','1', '3', true, 50);
 --28 STUDENT Pioniri, Klub Nippon
-INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)
-VALUES ('Student', default, 'Lana', 'Lazic', '2611009805088', 'lana@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'LLk76xQWhz1JOKRDzp/CDQ==', 'FEMALE', '+381615886254', 'STUDENT','RED', '5', '1','1', '3', true);
+INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled, weight)
+VALUES ('Student', default, 'Lana', 'Lazic', '2611009805088', 'lana@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'LLk76xQWhz1JOKRDzp/CDQ==', 'FEMALE', '+381615886254', 'STUDENT','RED', '5', '1','1', '3', true, 48);
 --29 STUDENT Pioniri, Klub Nippon
-INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)
-VALUES ('Student', default, 'Slavko', 'Jezdic', '1107005805067', 'slavko@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'SJk76xQWhz1JOKRDzp/CDQ==', 'MALE', '+381647548244', 'STUDENT','RED', '3', '1','1', '3', true);
+INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled, weight)
+VALUES ('Student', default, 'Slavko', 'Jezdic', '1107005805067', 'slavko@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'SJk76xQWhz1JOKRDzp/CDQ==', 'MALE', '+381647548244', 'STUDENT','RED', '3', '1','1', '3', true, 51.6);
 --30 STUDENT Pioniri, Klub Nippon
-INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)
-VALUES ('Student', default, 'Zorana', 'Ivic', '08090108051321', 'zorana@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'ZIk76xQWhz1JOKRDzp/CDQ==', 'FEMALE', '+381617753692', 'STUDENT','ORANGE', '4', '1','1', '3', true);
+INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled, weight)
+VALUES ('Student', default, 'Zorana', 'Ivic', '08090108051321', 'zorana@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'ZIk76xQWhz1JOKRDzp/CDQ==', 'FEMALE', '+381617753692', 'STUDENT','ORANGE', '4', '1','1', '3', true, 46.6);
 --31 STUDENT Pioniri, Klub Nippon
-INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled)
-VALUES ('Student', default, 'Vukasin', 'Lovric', '2504009800326', 'lovric@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'VLk76xQWhz1JOKRDzp/CDQ==', 'MALE', '+381645218875', 'STUDENT','RED', '5', '1','1', '3', true);
+INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled, weight)
+VALUES ('Student', default, 'Vukasin', 'Vasic', '2504009800326', 'vasicv@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'VLk76xQWhz1JOKRDzp/CDQ==', 'MALE', '+381645218875', 'STUDENT','RED', '5', '1','1', '3', true, 54.5);
 
 
 

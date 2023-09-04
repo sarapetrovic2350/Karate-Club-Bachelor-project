@@ -11,6 +11,8 @@ public class Student extends User {
 
     @Enumerated(EnumType.STRING)
     private BeltColor beltColor;
+    @Column(name = "weight")
+    private Double weight;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "groupId", referencedColumnName = "groupId")
     private Group group;
@@ -31,5 +33,13 @@ public class Student extends User {
 
     public void setGroup(Group group) {
         this.group = group;
+    }
+
+    public Double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Double weight) {
+        this.weight = weight;
     }
 }

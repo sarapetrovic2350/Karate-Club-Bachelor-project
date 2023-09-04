@@ -39,7 +39,7 @@ public class User implements UserDetails {
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
 
-	@Column(name = "email", nullable = false)
+	@Column(name = "email", unique = true, nullable = false)
 	private String email;
 
 	@Column(name = "password", nullable = false)

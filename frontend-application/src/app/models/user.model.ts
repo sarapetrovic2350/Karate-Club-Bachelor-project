@@ -1,6 +1,5 @@
 import { Address } from "./address.model";
 import {KarateClub} from "./karate-club.model";
-import {Group} from "./group.model";
 
 export class User {
     constructor(
@@ -17,6 +16,7 @@ export class User {
         public userType: string='',
         public licenceNumber: string = '',
         public beltColor: string = '',
+        public weight: number = 0,
         public groupId: string = "",
       ) {}
 }
