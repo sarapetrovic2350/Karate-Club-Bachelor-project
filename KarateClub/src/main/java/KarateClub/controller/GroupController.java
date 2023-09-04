@@ -35,6 +35,18 @@ public class GroupController {
         return new ResponseEntity<List<Group>>(groupService.getAllGroups(), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMINISTRATOR','ROLE_COACH')")
+    @GetMapping(value = "/getAllClubGroups/{clubId}")
+    public ResponseEntity<List<Group>> getAllClubGroups(@PathVariable Long clubId) {
+        return new ResponseEntity<List<Group>>(groupService.getAllClubGroups(clubId), HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_ADMINISTRATOR','ROLE_COACH')")
+    @GetMapping(value = "/getAllGroupsWithoutCoach")
+    public ResponseEntity<List<Group>> getAllGroupsWithoutCoach() {
+        return new ResponseEntity<List<Group>>(groupService.getAllGroupsWithoutCoach(), HttpStatus.OK);
+    }
+
     @PreAuthorize("hasRole('ROLE_ADMINISTRATOR')")
     @PostMapping(value = "/createGroup")
     public ResponseEntity<?> createGroup(@RequestBody NewGroupDTO newGroupDTO,

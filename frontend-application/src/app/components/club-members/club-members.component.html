@@ -1,7 +1,7 @@
 <mat-tab-group mat-align-tabs="center">
   <mat-tab label="Coaches">
     <div class="container">
-      <table mat-table [dataSource]="dataSourceCoaches">
+      <table id="excel-table-coaches" mat-table [dataSource]="dataSourceCoaches">
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef class="cell-center"> Name </th>
           <td mat-cell *matCellDef="let user" class="cell-center"> {{user.name}} </td>
@@ -31,12 +31,12 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumnsCoaches;"></tr>
       </table>
     </div>
-
+    <button mat-raised-button class="export-button" (click)="exportCoachesToExcel()">Export to Excel</button>
   </mat-tab>
 
   <mat-tab label="Students">
-    <div class="container">
-      <table mat-table [dataSource]="dataSourceStudents">
+    <div class="container" style="height: 450px; overflow-y: auto">
+      <table id="excel-table-students" mat-table [dataSource]="dataSourceStudents">
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef class="cell-center"> Name </th>
           <td mat-cell *matCellDef="let student" class="cell-center"> {{student.name}} </td>
@@ -71,13 +71,14 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumnsStudents;"></tr>
       </table>
     </div>
+    <button mat-raised-button class="export-button" (click)="exportStudentsToExcel()">Export to Excel</button>
 
   </mat-tab>
 
   <mat-tab label="Groups">
 
     <div class="container">
-      <table mat-table [dataSource]="dataSourceGroups">
+      <table id="excel-table-groups" mat-table [dataSource]="dataSourceGroups">
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef class="cell-center"> Name </th>
           <td mat-cell *matCellDef="let group" class="cell-center"> {{group.groupName}} </td>
@@ -96,7 +97,9 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumnsGroups;"></tr>
       </table>
     </div>
+    <button mat-raised-button class="export-button" (click)="exportGroupsToExcel()">Export to Excel</button>
   </mat-tab>
+
   <mat-tab label="Groups without coach">
     <div class="container">
       <table mat-table [dataSource]="dataSourceGroupsWithoutCoaches">

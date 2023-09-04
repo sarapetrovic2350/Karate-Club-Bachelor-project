@@ -4,7 +4,8 @@ import {User} from "../../models/user.model";
 import {UserService} from "../../services/user.service";
 import {Group} from "../../models/group.model";
 import {GroupService} from "../../services/group.service";
-
+import * as XLSX from "xlsx";
+const EXCEL_EXTENSION = '.xlsx';
 @Component({
   selector: 'app-club-members',
   templateUrl: './club-members.component.html',
@@ -26,14 +27,19 @@ export class ClubMembersComponent implements OnInit {
   public dataSourceGroupsWithoutCoaches = new MatTableDataSource<Group>();
   public displayedColumnsGroups = ['name', 'category', 'coach'];
 
+  fileNameCoaches= 'ExcelSheetCoaches';
+  fileNameStudents= 'ExcelSheetStudents';
+  fileNameGroups= 'ExcelSheetGroups';
+
   constructor(private userService: UserService, private groupService: GroupService) { }
 
   ngOnInit(): void {
-
-    this.userService.getAllCoaches().subscribe(
+    let user = this.userService.getCurrentUser();
+    this.userService.getAllClubCoaches(user.karateClub.clubId).subscribe(
       {
         next: (res) => {
           this.coaches = res;
+          console.log(res)
           this.dataSourceCoaches.data = this.coaches
 
         },
@@ -42,7 +48,7 @@ export class ClubMembersComponent implements OnInit {
         }
 
       });
-    this.userService.getAllStudents().subscribe(
+    this.userService.getAllClubStudents(user.karateClub.clubId).subscribe(
       {
         next: (res) => {
           this.students = res;
@@ -54,21 +60,27 @@ export class ClubMembersComponent implements OnInit {
         }
 
       });
-    this.groupService.getAllGroups().subscribe(
+    this.groupService.getAllGroups(user.karateClub.clubId).subscribe(
       {
         next: (res: any) => {
-          for (let i=0; i < res.length; i++) {
-            if (res[i].coach == null) {
-              this.groupsWithoutCoach.push(res[i]);
-            }
-            else {
-              this.groups.push(res[i]);
-            }
-          }
+
+          this.groups = res;
           this.dataSourceGroups.data = this.groups
+
+        },
+        error: (e) => {
+          console.log(e);
+        }
+
+      });
+
+    this.groupService.getAllGroupsWithoutCoach().subscribe(
+      {
+        next: (res: any) => {
+
+          this.groupsWithoutCoach = res;
           this.dataSourceGroupsWithoutCoaches.data = this.groupsWithoutCoach
 
-          console.log(this.groups)
         },
         error: (e) => {
           console.log(e);
@@ -77,5 +89,60 @@ export class ClubMembersComponent implements OnInit {
       });
 
   }
+  exportCoachesToExcel(): void {
+    /* pass here the table id */
+    let element = document.getElementById('excel-table-coaches');
+    const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element, {dateNF:'mm/dd/yyyy;@',cellDates:true, raw: true});
+    /* generate workbook and add the worksheet */
+    ws['!cols'] = [
+      {wch: 15},
+      {wch: 15},
+      {wch: 20},
+      {wch: 15},
+      {wch: 15},
+    ];
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
+    /* save to file */
+    XLSX.writeFile(wb, this.fileNameCoaches + '_date_' + new Date(Date.now()).toDateString() + EXCEL_EXTENSION);
+
+  }
+  exportStudentsToExcel(): void {
+    /* pass here the table id */
+    let element = document.getElementById('excel-table-students');
+    const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element, {dateNF:'mm/dd/yyyy;@',cellDates:true, raw: true});
+    /* generate workbook and add the worksheet */
+    ws['!cols'] = [
+      {wch: 15},
+      {wch: 15},
+      {wch: 20},
+      {wch: 15},
+      {wch: 15},
+      {wch: 20},
+    ];
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+    /* save to file */
+    XLSX.writeFile(wb, this.fileNameStudents + '_date_' + new Date(Date.now()).toDateString() + EXCEL_EXTENSION);
+
+  }
+  exportGroupsToExcel(): void {
+    /* pass here the table id */
+    let element = document.getElementById('excel-table-groups');
+    const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element, {dateNF:'mm/dd/yyyy;@',cellDates:true, raw: true});
+    /* generate workbook and add the worksheet */
+    ws['!cols'] = [
+      {wch: 18},
+      {wch: 18},
+      {wch: 18},
+    ];
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+    /* save to file */
+    XLSX.writeFile(wb, this.fileNameGroups + '_date_' + new Date(Date.now()).toDateString() + EXCEL_EXTENSION);
+
+  }
 }

@@ -68,4 +68,11 @@ export class UserService {
     return this.http.get<User[]>(this.apiHost + "user/getAllStudents", {headers: this.headers});
   }
 
+  getAllClubCoaches(clubId: string) {
+    return this.http.get<User[]>(this.apiHost + "user/getAllClubCoaches/" + clubId, {headers: this.headers});
+  }
+  getAllClubStudents(clubId: string) {
+    return this.http.get<User[]>(this.apiHost + "user/getAllClubStudents/" + clubId, {headers: this.headers});
+  }
+
 }

@@ -235,3 +235,14 @@ mat-grid-tile {
 .fc .fc-daygrid-day.fc-day-today {
   background-color: rgba(255, 242, 172, 0.62);
 }
+
+.export-button {
+  cursor:pointer;
+  background-color: transparent;
+  overflow: hidden;
+
+}
+.export-button:hover {
+  background-color: rgba(199, 199, 210, 0.38);
+
+}

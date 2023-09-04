@@ -19,7 +19,9 @@ public interface IUserService {
 
 	List<User> getAllUsers();
 	List<Student> getAllStudents();
+	List<Student> getAllClubStudents(Long clubId);
 	List<User> getAllCoaches();
+	List<User> getAllClubCoaches(Long clubId);
 	List<Student> getStudentsInGroup(Long groupId);
 
 	User findLoggedInUser();

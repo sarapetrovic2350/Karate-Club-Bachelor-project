@@ -20,6 +20,7 @@ export class UserRegistrationComponent implements OnInit {
   ) { }
   title = 'Registration';
   user = new User();
+  loggedInUser = new User();
   submitted = false;
   passwordRepeated: string= "";
   street: string = "";
@@ -35,6 +36,7 @@ export class UserRegistrationComponent implements OnInit {
   noAvailableGroups: boolean = false;
 
   ngOnInit(): void {
+    this.loggedInUser = this.userService.getCurrentUser();
     let role = localStorage.getItem('role')
 
     if (role == "ROLE_ADMINISTRATOR") {
@@ -43,7 +45,7 @@ export class UserRegistrationComponent implements OnInit {
     if (role == "ROLE_COACH") {
       this.isCoach = true;
     }
-    this.groupService.getAllGroups().subscribe((data:any) => {
+    this.groupService.getAllGroups(this.loggedInUser.karateClub.clubId).subscribe((data:any) => {
       console.log(data);
       this.groupsForStudents = data;
     })
@@ -116,24 +118,28 @@ export class UserRegistrationComponent implements OnInit {
   }
 
   findAvailableGroups() {
-    this.groupService.getAllGroups().subscribe((data:any) => {
+    this.groupService.getAllGroups(this.loggedInUser.karateClub.clubId).subscribe((data:any) => {
       console.log(data);
 
       if(this.user.userType == "COACH") {
-        console.log(this.user.userType)
-        for (let i=0; i < data.length; i++) {
-          if(data[i].coach == null) {
-            this.availableGroupsForCoach.push(data[i]);
-            console.log(this.availableGroupsForCoach)
+        this.groupService.getAllGroupsWithoutCoach().subscribe(
+          {
+            next: (res: any) => {
 
-            this.noAvailableGroups = false;
-          }
-        }
-        this.groups = this.availableGroupsForCoach
-        console.log(this.groups)
-        if(this.groups.length == 0) {
-          this.noAvailableGroups = true;
-        }
+              this.availableGroupsForCoach = res;
+              this.noAvailableGroups = false;
+              this.groups = this.availableGroupsForCoach
+              console.log(this.groups)
+              if(this.groups.length == 0) {
+                this.noAvailableGroups = true;
+              }
+
+            },
+            error: (e) => {
+              console.log(e);
+            }
+
+          });
       }
       else {
         this.groups = data;

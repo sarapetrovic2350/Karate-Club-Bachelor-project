@@ -72,9 +72,9 @@ public class CompetitionController {
     }
 
     @PreAuthorize("hasAnyRole('ROLE_COACH', 'ROLE_ADMINISTRATOR')")
-    @GetMapping(value = "/getCompetitionsDisciplinesWithRegisteredStudents")
-    public ResponseEntity<List<CompetitionRegisteredStudentsDTO>> getCompetitionsDisciplinesWithRegisteredStudents() {
-        return new ResponseEntity<List<CompetitionRegisteredStudentsDTO>>(competitionService.getCompetitionsDisciplinesWithRegisteredStudents(), HttpStatus.OK);
+    @GetMapping(value = "/getCompetitionsDisciplinesWithRegisteredStudents/{clubId}")
+    public ResponseEntity<List<CompetitionRegisteredStudentsDTO>> getCompetitionsDisciplinesWithRegisteredStudents(@PathVariable Long clubId) {
+        return new ResponseEntity<List<CompetitionRegisteredStudentsDTO>>(competitionService.getCompetitionsDisciplinesWithRegisteredStudents(clubId), HttpStatus.OK);
     }
 
     @PreAuthorize("hasAnyRole('ROLE_COACH', 'ROLE_ADMINISTRATOR', 'ROLE_STUDENT')")
@@ -121,12 +121,7 @@ public class CompetitionController {
     public ResponseEntity<Boolean> checkIfClubIsRegistered(
             @RequestParam(required = true) Long competitionId,
             @RequestParam(required = true) Long clubId) {
-            boolean isRegistered = this.competitionService.checkIfClubIsRegisteredToCompetition(competitionId, clubId);
-            if(isRegistered) {
-                return new ResponseEntity<>(true,HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(false,HttpStatus.BAD_REQUEST);
-            }
+            return new ResponseEntity<>(this.competitionService.checkIfClubIsRegisteredToCompetition(competitionId, clubId), HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('ROLE_COACH')")

@@ -31,6 +31,8 @@ import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import {JWT_OPTIONS, JwtHelperService} from "@auth0/angular-jwt";
 import {AuthGuardService} from "./services/auth-guard.service";
 import {TokenInterceptor} from "./interceptor/TokenInterceptor";
+import { PayMembershipFeeComponent } from './components/pay-membership-fee/pay-membership-fee.component';
+import { MembershipFeeComponent } from './components/membership-fee/membership-fee.component';
 // @ts-ignore
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import {TokenInterceptor} from "./interceptor/TokenInterceptor";
     RegisteredStudentsToDisciplineComponent,
     ChangePasswordComponent,
     ForbiddenComponent,
+    PayMembershipFeeComponent,
+    MembershipFeeComponent,
 
   ],
     imports: [

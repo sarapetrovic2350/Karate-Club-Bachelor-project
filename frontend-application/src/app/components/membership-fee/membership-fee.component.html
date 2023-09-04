@@ -1,0 +1,29 @@
+<div class="container">
+  <table mat-table [dataSource]="dataSourceFees">
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef class="cell-center"> Membership fee name </th>
+      <td mat-cell *matCellDef="let fee" class="cell-center"> {{fee.membershipFeeName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef class="cell-center"> Price </th>
+      <td mat-cell *matCellDef="let fee" class="cell-center"> {{fee.price}} din </td>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef class="cell-center"> Payment date </th>
+      <td mat-cell *matCellDef="let fee" class="cell-center"> {{fee.paymentDate[2]}}.{{fee.paymentDate[1]}}.{{fee.paymentDate[0]}}. </td>
+    </ng-container>
+
+    <ng-container matColumnDef="paid">
+      <th mat-header-cell *matHeaderCellDef class="cell-center"> Is paid for current month </th>
+      <td mat-cell *matCellDef="let fee" class="cell-center"> {{fee.isPaidForMonth}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsFees; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumnsFees;"></tr>
+  </table>
+</div>
+
+

@@ -21,6 +21,7 @@ public interface ICompetitionService {
     DisciplineDTO registerStudentToDisciplineForCompetition(Long competitionId, Long disciplineId, Long userId);
     List<DisciplineCompetitionDTO> getDisciplinesOfCompetitionForStudent(Long userId);
 
-    List<CompetitionRegisteredStudentsDTO> getCompetitionsDisciplinesWithRegisteredStudents();
+    List<CompetitionRegisteredStudentsDTO> getCompetitionsDisciplinesWithRegisteredStudents(Long clubId);
+
     List<CompetitionMedalDTO> getCompetitionMedalsForKarateClub(Long clubId);
 }

@@ -18,14 +18,15 @@ export class CreateGroupComponent implements OnInit {
   coaches: User[] = [];
   chosenCoach: string = "";
   group = new Group();
+  loggedInUser: User;
   constructor(
     private router: Router,
     private userService: UserService,
     private groupService: GroupService
   ) { }
   ngOnInit(): void {
-
-    this.userService.getAllCoaches().subscribe(
+   this.loggedInUser = this.userService.getCurrentUser();
+    this.userService.getAllClubCoaches(this.loggedInUser.karateClub.clubId).subscribe(
       {
         next: (res) => {
           this.coaches = res;
