@@ -215,12 +215,14 @@ public class UserService implements IUserService {
 	}
 
 	public User findById(Long id) throws AccessDeniedException {
-		User u = userRepository.findById(id).orElseGet(null);
+		User u = userRepository.findByUserId(id);
 		return u;
 	}
 
 	public UserUpdateDTO updateUser(UserUpdateDTO user) {
-		User updatedUser = userRepository.findById(user.getUserId()).get();
+		System.out.println(user.getUserId());
+		System.out.println(user.getEmail());
+		User updatedUser = this.findById(user.getUserId());
 		updatedUser.setName(user.getName());
 		updatedUser.setSurname(user.getSurname());
 		updatedUser.setEmail(user.getEmail());

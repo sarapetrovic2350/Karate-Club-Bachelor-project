@@ -2,23 +2,23 @@ package KarateClub.model;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "groups")
-public class Group {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "groupId", unique = true, nullable = false)
-    private Long groupId;
+    @Entity
+    @Table(name = "groups")
+    public class Group {
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = "groupId", unique = true, nullable = false)
+        private Long groupId;
 
-    @Column(name = "groupName", nullable = false)
-    private String groupName;
+        @Column(name = "groupName", nullable = false)
+        private String groupName;
 
-    @Enumerated(EnumType.STRING)
-    private GroupCategory groupCategory;
+        @Enumerated(EnumType.STRING)
+        private GroupCategory groupCategory;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "coachId", referencedColumnName = "userId")
-    private Coach coach;
+        @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+        @JoinColumn(name = "coachId", referencedColumnName = "userId")
+        private Coach coach;
 
 
     public Group(String groupName, GroupCategory groupCategory) {

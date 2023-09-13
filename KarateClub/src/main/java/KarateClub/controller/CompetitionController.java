@@ -107,9 +107,11 @@ public class CompetitionController {
     @PostMapping("/registerClubToCompetition")
     public ResponseEntity<?> registerClubToCompetition(
             @RequestParam(required = true) Long competitionId,
-            @RequestParam(required = true) Long clubId) {
+            @RequestParam(required = true) Long clubId,
+            @RequestParam(required = true) Long administratorId)
+    {
         try {
-            this.competitionService.registerClubToCompetition(competitionId, clubId);
+            this.competitionService.registerClubToCompetition(competitionId, clubId, administratorId);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);

@@ -27,7 +27,7 @@ export class UpdateUserComponent implements OnInit {
   getUser() {
     this.user = this.userService.getCurrentUser();
     if (this.user != null) {
-      this.userService.getUserByEmail(this.user.email).subscribe(res => {
+      this.userService.getUserById(this.user.userId).subscribe(res => {
         this.user = res;
       })
     }

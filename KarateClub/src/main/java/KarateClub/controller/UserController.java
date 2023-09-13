@@ -91,7 +91,7 @@ public class UserController {
 		return userService.updateUser(u);
 	}
 
-	@PreAuthorize("hasAnyRole('ROLE_COACH', 'ROLE_ADMINISTRATOR')")
+	@PreAuthorize("hasAnyRole('ROLE_COACH', 'ROLE_ADMINISTRATOR', 'ROLE_STUDENT')")
 	@GetMapping(value = "/getUserById/{userId}")
 	public User loadById(@PathVariable Long userId) {
 		return this.userService.findById(userId);

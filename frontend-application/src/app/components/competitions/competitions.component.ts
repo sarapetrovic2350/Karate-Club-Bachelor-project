@@ -105,13 +105,13 @@ export class CompetitionsComponent implements OnInit {
   }
 
   registerClubToCompetition(competitionId: string) {
-    this.competitionService.registerClubToCompetition(competitionId, this.loggedInUser.karateClub.clubId).subscribe(
+    this.competitionService.registerClubToCompetition(competitionId, this.loggedInUser.karateClub.clubId, this.loggedInUser.userId).subscribe(
       {
         next: (res) => {
           Swal.fire({
             icon: 'success',
             title: 'Success!',
-            text: 'Successfully registered karate club to competition!',
+            text: 'Successfully registered karate club to competition! Check your email address to see details about competition.',
           })
           this.router.navigate(['/calendar']);
         },

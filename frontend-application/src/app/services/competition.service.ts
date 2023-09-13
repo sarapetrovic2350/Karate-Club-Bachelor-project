@@ -28,12 +28,13 @@ export class CompetitionService {
     return this.http.get<Competition[]>(this.apiHost + "/getCompetitionsClubIsRegisteredTo/" + clubId, {headers: this.headers});
   }
 
-  registerClubToCompetition(competitionId: any, clubId: any) {
+  registerClubToCompetition(competitionId: any, clubId: any, administratorId: any) {
     let queryParams = new HttpParams()
     console.log(competitionId);
     console.log(clubId);
     queryParams = queryParams.append("competitionId", competitionId)
     queryParams = queryParams.append("clubId", clubId)
+    queryParams = queryParams.append("administratorId", administratorId)
     console.log(queryParams);
     return this.http.post<any>(this.apiHostRegisterClub, null, {params: queryParams});
   }

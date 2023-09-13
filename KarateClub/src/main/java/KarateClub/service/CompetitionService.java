@@ -22,16 +22,19 @@ public class CompetitionService implements ICompetitionService {
     private UserService userService;
     private DisciplineService disciplineService;
     private MedalService medalService;
+    private EmailService emailService;
 
     @Autowired
     public CompetitionService(ICompetitionRepository competitionRepository, KarateClubService karateClubService,
-                              UserService userService, DisciplineService disciplineService, MedalService medalService){
+                              UserService userService, DisciplineService disciplineService,
+                              MedalService medalService, EmailService emailService){
         super();
         this.competitionRepository = competitionRepository;
         this.karateClubService = karateClubService;
         this.userService = userService;
         this.disciplineService = disciplineService;
         this.medalService = medalService;
+        this.emailService = emailService;
     }
     @Override
     public List<CompetitionDTO> getAllCompetitions() {
@@ -72,14 +75,34 @@ public class CompetitionService implements ICompetitionService {
     }
 
     @Override
-    @Transactional
-    public void registerClubToCompetition(Long competitionId, Long clubId) {
+    public void registerClubToCompetition(Long competitionId, Long clubId, Long administratorId) {
         KarateClub karateClub = karateClubService.findById(clubId);
         Competition competition = competitionRepository.findByCompetitionId(competitionId);
         competition.getRegisteredClubs().add(karateClub);
+        Administrator administrator = (Administrator) userService.findById(administratorId);
         competitionRepository.save(competition);
+        sendEmailForSuccessfulClubRegistration(administrator, competition, karateClub);
     }
+    @Override
+    public void sendEmailForSuccessfulClubRegistration(Administrator admin, Competition competition, KarateClub club) {
+        System.out.println("Admin's email: " + admin.getEmail());
+        try {
 
+            String recipientEmail = admin.getEmail();
+            String subject = "Successful registration to competition";
+            String message = "Thank you for registering your karate club to competition! \n\n" +
+                    "Competition details: \n" +
+                    "Name: " + competition.getCompetitionName() + "\n" +
+                    "Description: " + competition.getDescription() + "\n\n"+
+                    "Place: " + competition.getPlace() + "\n" +
+                    "Date: " + competition.getDate() + "\n\n"
+                    + "Glad to see you and good luck to all " + club.getName() + "'s students competing at " + competition.getCompetitionName() + ".\n";
+            emailService.sendNotificationAsync(recipientEmail, subject, message);
+        } catch (Exception e) {
+            System.out.println("Error sending email: " + e.getMessage());
+        }
+
+    }
     @Override
     public Boolean checkIfClubIsRegisteredToCompetition(Long competitionId, Long clubId) {
         Competition competition = competitionRepository.findByCompetitionId(competitionId);

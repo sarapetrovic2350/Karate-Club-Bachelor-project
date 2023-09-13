@@ -77,7 +77,7 @@
             <mat-label>Phone number: </mat-label>
             <input name ="phoneNumber" [(ngModel)]="user.phoneNumber" matInput required>
           </mat-form-field>
-          
+
           <mat-form-field appearance="fill" *ngIf="this.user.userType == 'STUDENT' ">
             <mat-label>Belt color: </mat-label>
             <input name ="beltColor" [(ngModel)]="user.beltColor" matInput disabled>

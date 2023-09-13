@@ -125,18 +125,17 @@
             <mat-error *ngIf="name.invalid">You must enter country</mat-error>
           </mat-form-field>
           <mat-form-field appearance="fill" *ngIf="this.user.userType == 'STUDENT'">
-            <mat-label>Weight: </mat-label>
+            <mat-label>Weight in kg: </mat-label>
             <input name ="weight" type="number" [(ngModel)]="weight" matInput required [formControl]="weightFormControl">
             <mat-error *ngIf="weightFormControl.invalid">You must enter student's weight</mat-error>
           </mat-form-field>
 
         </div>
       </div>
-      <br><br>
       <button *ngIf="isAdministrator" color="primary" [disabled]="email.invalid || name.invalid || lastName.invalid || password.invalid || passwordConfirm.invalid
               || streetFormControl.invalid || streetNumberFormControl.invalid ||
                cityFormControl.invalid || countryFormControl.invalid
-               || genderFormControl.invalid || jmbgFormControl.invalid || weightFormControl.invalid"
+               || genderFormControl.invalid || jmbgFormControl.invalid"
               class="btn" mat-raised-button type="submit">REGISTER {{user.userType}}</button><br>
       <button *ngIf="isCoach" color="primary" [disabled]="email.invalid || name.invalid || lastName.invalid || password.invalid || passwordConfirm.invalid
               || streetFormControl.invalid || streetNumberFormControl.invalid ||

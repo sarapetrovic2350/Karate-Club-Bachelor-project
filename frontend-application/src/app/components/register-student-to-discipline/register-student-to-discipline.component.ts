@@ -50,7 +50,13 @@ export class RegisterStudentToDisciplineComponent implements OnInit {
     this.groupService.getAllGroups(user.karateClub.clubId).subscribe(
       {
         next: (res: any) => {
-          this.groups = res;
+          this.groups = []
+          for (let i = 0; i < res.length; i ++) {
+            if(res[i].groupCategory == this.discipline.groupCategory) {
+              this.groups.push(res[i])
+            }
+          }
+          //this.groups = res;
           console.log(this.groups)
         },
         error: (e) => {
@@ -64,7 +70,13 @@ export class RegisterStudentToDisciplineComponent implements OnInit {
     this.userService.getStudentsInGroup(this.selectedGroup.groupId).subscribe(
       {
         next: (res: any) => {
-          this.students = res;
+          this.students = []
+          for (let i = 0; i < res.length; i ++) {
+            if(res[i].gender == this.discipline.genderCategory) {
+              this.students.push(res[i])
+            }
+          }
+         // this.students = res;
           console.log(this.students)
         },
         error: (e) => {

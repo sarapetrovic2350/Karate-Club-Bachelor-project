@@ -10,13 +10,13 @@ INSERT INTO public.address (city, country, street, street_number) VALUES ('Novi 
 INSERT INTO public.address (city, country, street, street_number) VALUES ('Novi Sad', 'Srbija', 'Pascanova', '159');
 INSERT INTO public.address (city, country, street, street_number) VALUES ('Budapest', 'Hungary', 'Stefania Ut 2.', '1143');
 
-INSERT INTO public.clubs (club_id, name, phone_number,address_id) VALUES (default, 'Karate Klub Nippon', '+3810603981759', '1');
+INSERT INTO public.clubs (club_id, name, phone_number,address_id) VALUES (default, 'Karate Klub Nippon', '+381613981759', '1');
 INSERT INTO public.clubs (club_id, name, phone_number, address_id) VALUES (default, 'Karate Klub Mladost', '+3810615931726', '2');
 INSERT INTO public.clubs (club_id, name, phone_number, address_id) VALUES (default, 'Karate Klub Grande', '+3610615931726', '7');
 
---1 ADMINISTRATOR 1 email: sara@gmail.com password: sarap Klub NIPPON
+--1 ADMINISTRATOR 1 email: petrovicsara10@gmail.com password: sarap Klub NIPPON
 INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, address_id, club_id, authority_id, enabled)
-VALUES ('Administrator', default, 'Sara', 'Petrovic', '0802988800032', 'sara@gmail.com','$2y$12$RU7O/mGpTgy4lD1GH2mf7.9bM54T2eoDlP7YbrU1P8lurHe3dQ/4q', 'K+IsDJLi43-jlR+Fiap1mG==', 'FEMALE', '+381642258974', 'ADMINISTRATOR', '3', '1', '1', true);
+VALUES ('Administrator', default, 'Sara', 'Petrovic', '0802988800032', 'petrovicsara10@gmail.com','$2y$12$RU7O/mGpTgy4lD1GH2mf7.9bM54T2eoDlP7YbrU1P8lurHe3dQ/4q', 'K+IsDJLi43-jlR+Fiap1mG==', 'FEMALE', '+381642258974', 'ADMINISTRATOR', '3', '1', '1', true);
 
 --2 ADMINISTRATOR 2 email: nikola@gmail.com password: nikola Klub MLADOST
 INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, address_id, club_id, authority_id, enabled)
@@ -78,7 +78,7 @@ INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, s
 VALUES ('Student', default, 'Nevena', 'Vasic', '1712005805067', 'nevena@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'NYk76xQWhz1JOKRDzp/CDQ==', 'FEMALE', '+381616895421', 'STUDENT','PURPLE', '5', '1','4', '3', true, 57.5);
 --15 STUDENT  Mladji seniori, Klub Nippon
 INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled, weight)
-VALUES ('Student', default, 'Nemanja', 'Lovric', '2110000800034', 'lovric@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'NLv36xQWhz1JOKRDzp/CDQ==', 'FEMALE', '+381611825186', 'STUDENT','BROWN', '5', '1','4', '3', true, 61);
+VALUES ('Student', default, 'Nemanja', 'Lovric', '2110000800034', 'lovric@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'NLv36xQWhz1JOKRDzp/CDQ==', 'MALE', '+381611825186', 'STUDENT','BROWN', '5', '1','4', '3', true, 61);
 --16 STUDENT Mladji seniori, Klub Nippon
 INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled, weight)
 VALUES ('Student', default, 'Petar', 'Mazic', '0603999800198', 'mazic@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'M456xQWhz1JOKRDzp/CDQ==', 'MALE', '+381647856745', 'STUDENT','BLACK', '5', '1','4', '3', true, 77);
@@ -99,10 +99,10 @@ INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, s
 VALUES ('Student', default, 'Masa', 'Antic', '0712005805036', 'antic@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'MAk76xQWhz1JOKRDzp/CDQ==', 'FEMALE', '+381643362354', 'STUDENT','GREEN', '4', '1','3', '3', true, 45.8);
 --21 STUDENT Juniori G2, Klub Nippon
 INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled, weight)
-VALUES ('Student', default, 'Nikola', 'Vasilic', '1503006800165', 'nikolav@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'NVl76xQWhz1JOKRDzp/CDQ==', 'MALE', '+381645093212', 'STUDENT','GREEN', '4', '1','3', '3', true, 52);
+VALUES ('Student', default, 'Nikola', 'Vasilic', '1503006800165', 'nikolav@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'NVl76xQWhz1JOKRDzp/CDQ==', 'MALE', '+381645093212', 'STUDENT','GREEN', '4', '1','3', '3', true, 58);
 --22 STUDENT Juniori G2, Klub Nippon
 INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled, weight)
-VALUES ('Student', default, 'Uros', 'Zivkovic', '0112006800458', 'uros@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'UZk76xQWhz1JOKRDzp/CDQ==', 'MALE', '+381611585875', 'STUDENT','GREEN', '4', '1','3', '3', true, 56.9);
+VALUES ('Student', default, 'Uros', 'Zivkovic', '0112006800458', 'uros@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'UZk76xQWhz1JOKRDzp/CDQ==', 'MALE', '+381611585875', 'STUDENT','GREEN', '4', '1','3', '3', true, 59.5);
 --23 STUDENT Juniori G2, Klub Nippon
 INSERT INTO public.user (dtype, user_id, name, surname, jmbg, email, password, salt, gender, phone_number, user_type, belt_color, address_id, club_id, group_id, authority_id, enabled, weight)
 VALUES ('Student', default, 'Lara', 'Zivkovic', '2609005805149', 'laraziv@gmail.com','$2a$12$wXFNJnK0zCqqCQdeR1b3PuJ27Aoho0yCNmNT0vDgvtrY0QWggOoDG', 'LZv76xQWhz1JOKRDzp/CDQ==', 'FEMALE', '+381643369874', 'STUDENT','RED', '4', '1','3', '3', true, 50.5);
@@ -140,12 +140,12 @@ INSERT INTO public.membership_fees (membership_fee_id, membership_fee_name, paym
 INSERT INTO public.membership_fees (membership_fee_id, membership_fee_name, payment_date, price, is_paid_for_month, student_id, club_id) VALUES (default, 'Mesecna clanarina Klub Mladost', '2023-08-15', 2700, true, '11', '2');
 INSERT INTO public.membership_fees (membership_fee_id, membership_fee_name, payment_date, price, is_paid_for_month, student_id, club_id) VALUES (default, 'Mesecna clanarina u Karate klubu Nippon', '2023-08-05', 2900, true, '9', '1');
 
-INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'KUP VOJVODINE','Competition for cadets and juniors both in kata and kumite will take place in Novi Becej.', '2023-09-12', 'Novi Becej, Serbia', 'karate.jpg');
-INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'BALKANSKO PRVENSTVO 2023','Seniors and juniors competition will take place in Skopje.', '2023-09-23', 'Skopje, Makedonija', 'balkan.jpg');
+INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'KUP VOJVODINE','Competition for cadets and juniors both in kata and kumite will take place in Novi Becej.', '2023-09-19', 'Novi Becej, Serbia', 'karate.jpg');
+INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'BALKANSKO PRVENSTVO 2023','Seniors and juniors competition will take place in Skopje.', '2023-09-30', 'Skopje, Makedonija', 'balkan.jpg');
 INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'World Senior Championships','The magnificent Papp Laszlo Sports Arena will host the 26th World Senior Championships.', '2023-10-05', 'Budapest, Hungary', 'senior.png');
-INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'JKA – WSKA OTVORENI MILOŠ KUP','Miloš Kup 2023 competition in kata for pioneers and cadets will take place in Trstenik.', '2023-10-20', 'Trstenik, Serbia', 'kid.jpg');
+INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'JKA – WSKA OTVORENI MILOŠ KUP','Miloš Kup 2023 competition in kata for pioneers and cadets will take place in Trstenik.', '2023-10-20', 'Trstenik, Serbia', 'karate3.jpg');
 INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'Mediterranean Karate Championships','The 29th edition of the Mediterranean Karate Seniors Championships in Tunis.', '2023-11-12', 'Tunis, Tunisia', 'karate2.jpg');
-INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'Balkan Karate Championships for Children','Championships for pioneers in kata disciplines will take place in Bar.', '2023-11-22', 'Bar, Montenegro', 'karate3.jpg');
+INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'Balkan Karate Championships for Children','Championships for pioneers in kata disciplines will take place in Bar.', '2023-11-22', 'Bar, Montenegro', 'kid.jpg');
 INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'Prvenstvo Evrope 2023','Prvenstvo Evrope for juniors and seniors will take place in Bratislava.', '2023-05-25', 'Bratislava, Slovakia', null);
 INSERT INTO public.competitions (competition_id, competition_name, description, date, place, image) VALUES (default, 'Commonwealth Karate Championships 2022','The 2022 Commonwealth Karate Championships for juniors and seniors will take place in London.', '2022-04-28', 'London, UK', null);
 
@@ -154,7 +154,7 @@ INSERT INTO public.competitions_clubs(competition_id, club_id) VALUES ('5', '1')
 INSERT INTO public.competitions_clubs(competition_id, club_id) VALUES ('7', '1');
 INSERT INTO public.competitions_clubs(competition_id, club_id) VALUES ('8', '1');
 INSERT INTO public.competitions_clubs(competition_id, club_id) VALUES ('1', '2');
-INSERT INTO public.competitions_clubs(competition_id, club_id) VALUES ('2', '2');
+INSERT INTO public.competitions_clubs(competition_id, club_id) VALUES ('2', '1');
 
 --KUP VOJVODINE DISCIPLINE
 INSERT INTO public.disciplines(discipline_id, discipline_type, gender_category, group_category, weight_category, competition_id) VALUES (default, 'KATA', 'FEMALE', 'JUNIORS', null, '1'); --1
